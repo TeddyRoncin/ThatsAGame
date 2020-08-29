@@ -4,3 +4,7 @@ Makefile
 # vscode files
 .vscode
 target
+
+# Vianney's bin files
+debug
+release
