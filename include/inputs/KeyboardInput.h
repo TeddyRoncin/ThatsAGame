@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <iostream>
 #include "SDL2/SDL.h"
 #include "EventDispatcher.h"
 

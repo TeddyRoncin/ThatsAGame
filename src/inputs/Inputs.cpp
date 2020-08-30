@@ -26,9 +26,10 @@ void Input::eventUpdate(SDL_Event events)
                 break;
             case SDL_QUIT:
                 m_quit = true;
+                std::cout << "Quit !" << std::endl;
                 break;
             default:
-                fprintf(stderr, "Event unandled : " + events.type);
+                std::cerr << "Event unandled : " << events.type << std::endl;
                 break;
         }
     }

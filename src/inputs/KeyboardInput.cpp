@@ -11,7 +11,7 @@ void KeyboardInput::Update(SDL_Event e)
         m_isKeyDown.at(e.key.keysym.sym) = false;
         break;
     default:
-        fprintf(stderr, "Keyboard event unandled : " + e.type);
+        std::cerr << "Keyboard event unandled : " << e.type << std::endl;
         break;
     };
 

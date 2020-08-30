@@ -34,7 +34,7 @@ void MouseInput::Update(SDL_Event e)
         }
         break;
     default:
-        fprintf(stderr, "Mouse event unandled : " + e.type);
+        std::cerr << "Mouse event unandled : " << e.type << std::endl;
         break;
     }
 

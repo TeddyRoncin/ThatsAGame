@@ -4,6 +4,7 @@
 #include <string>
 #include <stack>
 #include <utility>
+#include <iostream>
 
 #include "MouseInput.h"
 #include "KeyboardInput.h"

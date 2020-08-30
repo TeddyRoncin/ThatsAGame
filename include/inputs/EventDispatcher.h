@@ -19,7 +19,7 @@ class Event
 {
 public:
     Event();
-    ~Event();
+    ~Event() = default;
 
     Et::EventType getEventType() const;
 protected:

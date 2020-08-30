@@ -20,6 +20,8 @@ int main(int argc, char* argv[])
 
 	bool continuer = true;
 	
+	std::cout << "caca" << std::endl;
+
 	while(continuer)
 	{
 		//render
@@ -27,7 +29,7 @@ int main(int argc, char* argv[])
 		//inputs
 		SDL_Event events;
 		i.eventUpdate(events);
-		continuer = i.isQuitting();
+		continuer = !i.isQuitting();
 	}
 
 	SDL_Quit();
