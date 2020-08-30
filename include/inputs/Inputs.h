@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "MouseInput.h"
 #include "KeyboardInput.h"
 #include "WindowsInput.h"
