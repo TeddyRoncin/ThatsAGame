@@ -6,15 +6,15 @@
 
 class MapLoader {
 
-    public:
+public:
     static void registerMaps();
 
-    private:
+private:
     MapLoader();
     MapLoader(std::string fileName);
     void loadMap();
 
-    private:
-    std::string& m_FileStream;
+private:
+    std::string m_FileName;
 
 };

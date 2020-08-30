@@ -1,8 +1,6 @@
-#include <string>
-
 #include "map/MapManager.h"
-#include "map/Map.h"
 
+std::vector<Map> MapManager::maps {};
 
 Map MapManager::getMap(std::string name) {
 	for (Map map : maps) {
@@ -10,5 +8,5 @@ Map MapManager::getMap(std::string name) {
 			return map;
 		}
 	}
-	return Map("", 0, 0, nullptr, "");
+	return Map("", 0, 0, std::vector<std::vector<MapElement*>>(), "");
 }

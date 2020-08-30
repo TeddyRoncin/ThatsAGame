@@ -5,9 +5,12 @@
 
 #include "map/Map.h"
 
-namespace MapManager {
+class MapManager {
 
-	std::vector<Map> maps;
-	Map getMap(std::string name);
+public:
+	static Map getMap(std::string name);
+	static std::vector<Map> maps;
+private:
+	MapManager();
 
 };
