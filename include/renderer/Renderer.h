@@ -14,7 +14,7 @@ public:
 	void Clear();
 	void Render();
 
-	void AddTexture(int x, int y, const char* name, int width = 0, int height = 0);
+	void AddTexture(size_t x, size_t y, const char* name, size_t width = 0, size_t height = 0);
 	void RemoveTexture(const char* name);
 
 private:

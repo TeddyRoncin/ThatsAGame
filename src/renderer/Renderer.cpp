@@ -37,7 +37,7 @@ void Renderer::Render()
 	SDL_RenderPresent(m_Renderer);
 }
 
-void Renderer::AddTexture(int x, int y, const char* name, int width, int height)
+void Renderer::AddTexture(size_t x, size_t y, const char* name, size_t width, size_t height)
 {
 	m_Textures.emplace(name, Texture(m_Renderer, name, x, y, width, height));
 }
