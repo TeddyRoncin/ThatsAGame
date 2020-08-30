@@ -8,8 +8,10 @@ class MouseInput
 {
 public:
     void Update(SDL_Event e);
+
+    bool isDown(int key) const;
 private:
-    std::map<int, bool> m_mouseEvnt;
+    std::map<int, bool> m_isButtonDown;
     Coordinates coord;
 };
 

@@ -15,7 +15,8 @@ void KeyboardInput::Update(SDL_Event e)
         break;
     };
 
-    KeyboardEvent ke {e.key};
+    KeyboardEvent ke {e};
+    
 }
 
 bool KeyboardInput::isDown(int key) const
@@ -25,6 +26,6 @@ bool KeyboardInput::isDown(int key) const
 
 KeyboardEvent::KeyboardEvent(SDL_Event e)
 {
-    m_type = KeyboardEvent;
+    m_type = Et::KeyboardEvent;
     event = e.key;
 }

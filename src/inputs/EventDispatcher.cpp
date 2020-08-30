@@ -2,11 +2,12 @@
 
 Event::Event() {}
 
-EventType Event::getEventType() const
+Et::EventType Event::getEventType() const
 {
     return m_type;
 }
 
-EventHandler::EventHandler()
+static void addEvent(std::unique_ptr<Event> ptr)
 {
+    
 }
