@@ -5,8 +5,6 @@
 #include "KeyboardInput.h"
 #include "WindowsInput.h"
 
-#include "SDL2/SDL.h"
-
 class Input
 {
 public:
