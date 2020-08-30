@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <stack>
+#include <deque>
 
 namespace Et //for escaping the redefinition of KeyboardEvent
 {
@@ -19,7 +19,7 @@ class Event
 {
 public:
     Event();
-    virtual ~Event() = 0;
+    ~Event();
 
     Et::EventType getEventType() const;
 protected:
@@ -33,7 +33,7 @@ public:
     static std::unique_ptr<Event> nextEvent();
 
 private:
-    static std::stack<std::unique_ptr<Event>> m_listEvents;
+    static std::deque<std::unique_ptr<Event>> m_listEvents;
 };
 
 struct Coordinates

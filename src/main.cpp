@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <fstream>
 
-#include "Inputs/Inputs.h"
+#include "inputs/Inputs.h"
 
 int main(int argc, char* argv[])
 {

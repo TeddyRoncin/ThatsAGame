@@ -14,15 +14,15 @@ void WindowsInput::Update(SDL_Event e)
         m_size.x = e.window.data2;
         break;
     default:
-        fprintf(stderr, "Window event unandled : " + events.type);
+        fprintf(stderr, "Window event unandled : " + e.type);
         break;
     }
 
-    WindowsEvent event = e.window;
+    WindowsEvent event{e};
 }
 
-WindowsEvent(SDL_Event e)
+WindowsEvent::WindowsEvent(SDL_Event e)
 {
-    m_type = WindowsEvent;
+    m_type = Et::WindowsEvent;
     event = e.window;
 }

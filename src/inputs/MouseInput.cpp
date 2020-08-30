@@ -2,26 +2,39 @@
 
 void MouseInput::Update(SDL_Event e)
 {
+    std::unique_ptr<Event> event;
     switch(e.type)
     {
     case SDL_MOUSEBUTTONDOWN:
-        m_isButtonDown.at(e.key.keysym.sym) = true;
-        std::unique_ptr<Event> event{e};
-        EventHandler::addEvent(e);
+        {
+            m_isButtonDown.at(e.button.state) = true;
+            std::unique_ptr<Event> event{ new MouseButtonEvent{e} };
+            EventHandler::addEvent(std::move(event));
+        }
         break;
     case SDL_MOUSEBUTTONUP:
-        m_isButtonDown.at(e.key.keysym.sym) = false;
-        std::unique_ptr<Event> event{e};
-        EventHandler::addEvent(e);
+        {
+            m_isButtonDown.at(e.button.state) = false;
+            std::unique_ptr<Event> event{ new MouseButtonEvent{e}};
+            EventHandler::addEvent(std::move(event));
+        }
         break;
     case SDL_MOUSEMOTION:
-        coor.x = e.key.x;
-        coord.y = e.key.y;
-        std::unique_ptr<Event> event{e};
-        EventHandler::addEvent(e);
+        {
+            coord.x = e.motion.x;
+            coord.y = e.motion.y;
+            std::unique_ptr<Event> event{new MouseMotionEvent{e}};
+            EventHandler::addEvent(std::move(event));
+        }
+        break;
+    case SDL_MOUSEWHEEL:
+        {
+            std::unique_ptr<Event> event{new MouseWheelEvent{e}};
+            EventHandler::addEvent(std::move(event));
+        }
         break;
     default:
-        fprintf(stderr, "Mouse event unandled : " + events.type);
+        fprintf(stderr, "Mouse event unandled : " + e.type);
         break;
     }
 
@@ -30,23 +43,23 @@ void MouseInput::Update(SDL_Event e)
 
 bool MouseInput::isDown(int key) const
 {
-    return m_isKeyDown.at(key);
+    return m_isButtonDown.at(key);
 }
 
 MouseMotionEvent::MouseMotionEvent(SDL_Event e)
 {
-    m_type = MouseMotionEvent;
+    m_type = Et::MouseMotionEvent;
     event = e.motion;
 }
 
-MouseButtonEvent(SDL_Event e)
+MouseButtonEvent::MouseButtonEvent(SDL_Event e)
 {
-    m_type = MouseButtonEvent;
+    m_type = Et::MouseButtonEvent;
     event = e.button;
 }
 
-MouseWheelEvent(SDL_Event e)
+MouseWheelEvent::MouseWheelEvent(SDL_Event e)
 {
-    m_type = MouseWheelEvent;
+    m_type = Et::MouseWheelEvent;
     event = e.wheel;
 }
