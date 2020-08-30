@@ -1,11 +1,14 @@
-#include "MouseInput.h"
+#include "inputs/MouseInput.h"
 
 void MouseInput::Update(SDL_Event e)
 {
+    std::unique_ptr<Event> event = nullptr;
+
     switch(e.type)
     {
     case SDL_MOUSEBUTTONDOWN:
         m_isKeyDown.at(e.key.keysym.sym) = true;
+        event = std::move<MouseMotionEvent>
         break;
     case SDL_MOUSEBUTTONUP:
         m_isKeyDown.at(e.key.keysym.sym) = false;
@@ -20,19 +23,19 @@ void MouseInput::Update(SDL_Event e)
     }
 }
 
-virtual MouseMotionEvent::MouseMotionEvent(SDL_Event e)
+MouseMotionEvent::MouseMotionEvent(SDL_Event e)
 {
     m_type = MouseMotionEvent;
     event = e.motion;
 }
 
-virtual MouseButtonEvent(SDL_Event e)
+MouseButtonEvent(SDL_Event e)
 {
     m_type = MouseButtonEvent;
     event = e.button;
 }
 
-virtual MouseWheelEvent(SDL_Event e)
+MouseWheelEvent(SDL_Event e)
 {
     m_type = MouseWheelEvent;
     event = e.wheel;

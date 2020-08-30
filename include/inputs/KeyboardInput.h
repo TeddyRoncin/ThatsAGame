@@ -2,6 +2,7 @@
 
 #include <map>
 #include "SDL2/SDL.h"
+#include "EventDispatcher.h"
 
 class KeyboardInput //can be access at anytime, exist once
 {
@@ -18,6 +19,8 @@ private:
 class KeyboardEvent : public Event //just for the event handler
 {
 public:
-    virtual KeyboardEvent(SDL_Event e);
+    KeyboardEvent(SDL_Event e);
+    virtual KeyboardEvent() = default;
+
     SDL_KeyboardEvent event;
 };

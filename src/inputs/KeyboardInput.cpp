@@ -1,4 +1,4 @@
-#include "Inputs/KeyboardInput.h"
+#include "inputs/KeyboardInput.h"
 
 void KeyboardInput::Update(SDL_Event e)
 {
@@ -23,7 +23,7 @@ bool KeyboardInput::isDown(int key) const
     return m_isKeyDown.at(key);
 }
 
-virtual KeyboardEvent::KeyboardEvent(SDL_Event e)
+KeyboardEvent::KeyboardEvent(SDL_Event e)
 {
     m_type = KeyboardEvent;
     event = e.key;

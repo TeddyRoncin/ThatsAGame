@@ -1,4 +1,4 @@
-#include "WindowsInput.h"
+#include "inputs/WindowsInput.h"
 
 void WindowsInput::Update(SDL_Event e)
 {
@@ -23,7 +23,7 @@ void WindowsInput::Update(SDL_Event e)
     }
 }
 
-virtual WindowsEvent(SDL_Event e)
+WindowsEvent(SDL_Event e)
 {
     m_type = WindowsEvent;
     event = e.window;

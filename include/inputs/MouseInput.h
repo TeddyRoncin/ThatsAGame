@@ -2,6 +2,7 @@
 
 #include <map>
 #include "SDL2/SDL.h"
+#include "EventDispatcher.h"
 
 class MouseInput
 {
@@ -15,20 +16,23 @@ private:
 class MouseMotionEvent : public Event 
 {
 public:
-    virtual MouseMotionEvent(SDL_Event e);
+    MouseMotionEvent(SDL_Event e);
+    virtual KeyboardEvent() = default;
     SDL_MouseMotionEvent event;
 };
 
 class MouseButtonEvent : public Event 
 {
 public:
-    virtual MouseButtonEvent(SDL_Event e);
+    MouseButtonEvent(SDL_Event e);
+    virtual KeyboardEvent() = default;
     SDL_MouseButtonEvent event;
 };
 
 class MouseWheelEvent : public Event 
 {
 public:
-    virtual MouseWheelEvent(SDL_Event e);
+    MouseWheelEvent(SDL_Event e);
+    virtual KeyboardEvent() = default;
     SDL_MouseWheelEvent event;
 };
