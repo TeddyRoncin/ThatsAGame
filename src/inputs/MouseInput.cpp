@@ -4,6 +4,7 @@
 
 void MouseInput::Update(SDL_Event e)
 {
+<<<<<<< HEAD
     isPushUp = false;
     isPushDown = false;
 
@@ -57,6 +58,25 @@ void MouseInput::Update(SDL_Event e)
             std::unique_ptr<Event> event{new MouseWheelEvent{e}};
             EventHandler::addEvent(std::move(event));
         }
+=======
+    switch(e.type)
+    {
+    case SDL_MOUSEBUTTONDOWN:
+        m_isButtonDown.at(e.key.keysym.sym) = true;
+        std::unique_ptr<Event> event{e};
+        EventHandler::addEvent(e);
+        break;
+    case SDL_MOUSEBUTTONUP:
+        m_isButtonDown.at(e.key.keysym.sym) = false;
+        std::unique_ptr<Event> event{e};
+        EventHandler::addEvent(e);
+        break;
+    case SDL_MOUSEMOTION:
+        coor.x = e.key.x;
+        coord.y = e.key.y;
+        std::unique_ptr<Event> event{e};
+        EventHandler::addEvent(e);
+>>>>>>> debug and delete map folder to simplify the merge
         break;
     default:
         std::cerr << "Mouse event unandled : " << e.type << std::endl;
@@ -66,6 +86,7 @@ void MouseInput::Update(SDL_Event e)
 
 }
 
+<<<<<<< HEAD
 bool MouseInput::isDown(int key)
 {
     try
@@ -92,6 +113,11 @@ bool MouseInput::isBeeingPushUp() const
 int MouseInput::keyBeeingPush() const
 {
     return key;
+=======
+bool MouseInput::isDown(int key) const
+{
+    return m_isKeyDown.at(key);
+>>>>>>> debug and delete map folder to simplify the merge
 }
 
 MouseMotionEvent::MouseMotionEvent(SDL_Event e)

@@ -44,6 +44,7 @@ void KeyboardInput::Update(SDL_Event e)
         break;
     };
 
+<<<<<<< HEAD
     std::unique_ptr<Event> event{new KeyboardEvent{e}};
     EventHandler::addEvent(std::move(event));
 }
@@ -70,6 +71,10 @@ bool KeyboardInput::isBeeingPushDown() const
 bool KeyboardInput::isBeeingPushUp() const
 {
     return isPushUp;
+=======
+    KeyboardEvent ke {e};
+    
+>>>>>>> debug and delete map folder to simplify the merge
 }
 
 int KeyboardInput::keyBeeingPush() const

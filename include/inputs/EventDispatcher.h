@@ -1,5 +1,13 @@
 #pragma once
+<<<<<<< HEAD
 enum EventType
+=======
+
+#include <memory>
+#include <stack>
+
+namespace Et //for escaping the redefinition of KeyboardEvent
+>>>>>>> debug and delete map folder to simplify the merge
 {
     enum EventType
     {
