@@ -1,12 +1,22 @@
 #pragma once
 
-#include <string>
 #include <vector>
 #include <fstream>
+#include <filesystem>
+#include <string>
+#include <map>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
-class MapLoader {
+#include "MapManager.h"
+#include "MapElement.h"
+#include "EmptyMapElement.h"
+#include "Wall.h"
+#include "Map.h"
 
-    public:
+class MapLoader 
+{
+public:
     static void registerMaps();
 
     private:
@@ -14,7 +24,7 @@ class MapLoader {
     MapLoader(std::string fileName);
     void loadMap();
 
-    private:
+private:
     std::string& m_FileStream;
 
 };

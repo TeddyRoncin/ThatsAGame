@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-
 #include "map/Map.h"
 
 Map::Map(std::string name, int width, int height, MapElement** elements, std::string backgroundPath) :

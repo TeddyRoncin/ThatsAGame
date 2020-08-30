@@ -1,15 +1,4 @@
-#include <filesystem>
-#include <string>
-#include <map>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
-
-#include "map/Map.h"
 #include "map/MapLoader.h"
-#include "map/MapManager.h"
-#include "map/MapElement.h"
-#include "map/EmptyMapElement.h"
-#include "map/Wall.h"
 
 namespace pt = boost::property_tree;
 

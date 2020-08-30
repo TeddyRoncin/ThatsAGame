@@ -1,9 +1,10 @@
 #pragma once
 
-class MapElement {
+#include "../Entity/Entity.h"
 
-    public:
+class MapElement 
+{
+public:
     MapElement() {}
     virtual bool canEntityMoveOn(Entity entity) = 0;
-
 };
