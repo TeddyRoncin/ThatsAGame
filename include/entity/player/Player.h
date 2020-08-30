@@ -3,4 +3,4 @@
 class Player : public Entity
 {
 
-}
+};
