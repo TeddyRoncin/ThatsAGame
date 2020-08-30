@@ -8,14 +8,16 @@ void MouseInput::Update(SDL_Event e)
     {
     case SDL_MOUSEBUTTONDOWN:
         m_isKeyDown.at(e.key.keysym.sym) = true;
-        event = std::move<MouseMotionEvent>
+        event = std::move<MouseMotionEvent>(new MouseMotionEvent{e.key});
         break;
     case SDL_MOUSEBUTTONUP:
         m_isKeyDown.at(e.key.keysym.sym) = false;
+        event = std::move<MouseButtonEvent>(new MouseButtonEvent{e.key});
         break;
     case SDL_MOUSEMOTION:
         coor.x = e.key.x;
         coord.y = e.key.y;
+        event = std::move<MouseWheelEvent>(new MouseWheelEvent{e.key});
         break;
     default:
         fprintf(stderr, "Mouse event unandled : " + events.type);

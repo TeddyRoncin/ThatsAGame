@@ -1,11 +1,12 @@
-#include "../../include/inputs/EventDispatcher.h"
+#include "inputs/EventDispatcher.h"
+
+Event::Event() {}
 
 EventType Event::getEventType() const
 {
     return m_type;
 }
 
-EventHandler::EventHandler(std::size_t size)
+EventHandler::EventHandler()
 {
-    m_listEvents.reserve(size);
 }

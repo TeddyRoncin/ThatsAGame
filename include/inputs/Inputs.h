@@ -11,12 +11,6 @@
 
 #include "SDL2/SDL.h"
 
-struct Coordinates
-{
-    Uint16 x;
-    Unit16 y;
-}
-
 class Input
 {
 public:

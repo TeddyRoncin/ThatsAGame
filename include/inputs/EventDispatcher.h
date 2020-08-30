@@ -1,8 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <stack>
 
-struct EventType
+enum EventType
 {
     WindowsEvent,
     MouseMotionEvent,
@@ -21,18 +22,20 @@ public:
 private:
     EventType m_type;
 };
-
-
-
-
 class EventHandler
 {
 public:
-    EventHandler(std::size_t size = 10);
+    EventHandler();
     void addEvent(std::unique_ptr<Event> ptr);
 
     std::unique_ptr<Event> nextEvent();
 
 private:
     std::stack<std::unique_ptr<Event>> m_listEvents;
+};
+
+struct Coordinates
+{
+    int x;
+    int y;
 };

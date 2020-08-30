@@ -13,14 +13,12 @@ void WindowsInput::Update(SDL_Event e)
         m_size.x = e.window.data1;
         m_size.x = e.window.data2;
         break;
-    case SDL_MOUSEMOTION:
-        coor.x = e.key.x;
-        coord.y = e.key.y;
-        break;
     default:
         fprintf(stderr, "Window event unandled : " + events.type);
         break;
     }
+
+    WindowsEvent event = e.window;
 }
 
 WindowsEvent(SDL_Event e)

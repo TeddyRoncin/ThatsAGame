@@ -20,7 +20,7 @@ class KeyboardEvent : public Event //just for the event handler
 {
 public:
     KeyboardEvent(SDL_Event e);
-    virtual KeyboardEvent() = default;
+    virtual ~KeyboardEvent() = default;
 
     SDL_KeyboardEvent event;
 };

@@ -17,7 +17,7 @@ class MouseMotionEvent : public Event
 {
 public:
     MouseMotionEvent(SDL_Event e);
-    virtual KeyboardEvent() = default;
+    virtual ~MouseMotionEvent() = default;
     SDL_MouseMotionEvent event;
 };
 
@@ -25,7 +25,7 @@ class MouseButtonEvent : public Event
 {
 public:
     MouseButtonEvent(SDL_Event e);
-    virtual KeyboardEvent() = default;
+    virtual ~MouseButtonEvent() = default;
     SDL_MouseButtonEvent event;
 };
 
@@ -33,6 +33,6 @@ class MouseWheelEvent : public Event
 {
 public:
     MouseWheelEvent(SDL_Event e);
-    virtual KeyboardEvent() = default;
+    virtual ~MouseWheelEvent() = default;
     SDL_MouseWheelEvent event;
 };

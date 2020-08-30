@@ -11,11 +11,11 @@ void KeyboardInput::Update(SDL_Event e)
         m_isKeyDown.at(e.key.keysym.sym) = false;
         break;
     default:
-        fprintf(stderr, "Keyboard event unandled : " + events.type);
+        fprintf(stderr, "Keyboard event unandled : " + e.type);
         break;
-    }
+    };
 
-    KeyboardEvent ke(e);
+    KeyboardEvent ke {e.key};
 }
 
 bool KeyboardInput::isDown(int key) const

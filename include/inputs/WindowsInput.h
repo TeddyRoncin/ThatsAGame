@@ -15,6 +15,7 @@ private:
 class WindowsEvent : public Event 
 {
 public:
-    virtual WindowsEvent(SDL_Event e);
+    WindowsEvent(SDL_Event e);
+    virtual ~WindowsEvent() = default;
     SDL_WindowEvent event;
 };
