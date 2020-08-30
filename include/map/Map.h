@@ -1,12 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <vector>
 
 #include "map/MapElement.h"
 #include "entity/Entity.h"
 
-class Map {
+class Map
+{
 
 public:
     Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>>, std::string backgroundPath);
@@ -23,7 +25,4 @@ private:
     int m_Height;
     std::vector<std::vector<MapElement*>> m_Elements;
     std::string m_BackgroundPath;
-
-
-
 };
