@@ -25,4 +25,5 @@ private:
     int m_Height;
     std::vector<std::vector<MapElement*>> m_Elements;
     std::string m_BackgroundPath;
+
 };
