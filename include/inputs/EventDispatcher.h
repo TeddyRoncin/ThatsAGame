@@ -1,7 +1,5 @@
 #pragma once
-
-
-namespace Et //for escaping the redefinition of KeyboardEvent
+enum EventType
 {
     enum EventType
     {
@@ -38,6 +36,12 @@ private:
 };
 
 struct Coordinates //TODO faire un Union a partir de ca
+{
+    int x;
+    int y;
+};
+
+struct Coordinates
 {
     int x;
     int y;

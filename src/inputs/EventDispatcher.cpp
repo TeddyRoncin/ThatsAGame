@@ -1,4 +1,6 @@
-#include "pch.h"
+#include "inputs/EventDispatcher.h"
+
+Event::Event() {}
 
 #include "inputs/EventDispatcher.h"
 
@@ -9,6 +11,7 @@ Et::EventType Event::getEventType() const
     return m_type;
 }
 
+<<<<<<< HEAD
 std::deque<std::unique_ptr<Event>> EventHandler::m_listEvents {};
 
 void EventHandler::addEvent(std::unique_ptr<Event> ptr)
@@ -23,3 +26,8 @@ std::unique_ptr<Event> EventHandler::nextEvent()
     return e;
 }
 
+=======
+EventHandler::EventHandler()
+{
+}
+>>>>>>> commit debugging
