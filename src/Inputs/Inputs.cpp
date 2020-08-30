@@ -13,20 +13,16 @@ void Input::eventUpdate(SDL_Event events)
         {
             case SDL_KEYDOWN:
             case SDL_KEYUP:
-
+                m_keys.Update(events);
                 break;
             case SDL_MOUSEMOTION:
-
-                break;
             case SDL_MOUSEWHEEL:
-
-                break;
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
-
+                m_mouse.Update(events);
                 break;
             case SDL_WINDOWEVENT:
-
+                m_window.Update(events);
                 break;
             case SDL_QUIT:
                 m_quit = true;
@@ -41,4 +37,9 @@ void Input::eventUpdate(SDL_Event events)
 bool Input::isQuitting()
 {
     return m_quit;
+}
+
+EventType getEventType() const
+{
+    return m_type;
 }

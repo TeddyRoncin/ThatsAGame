@@ -3,7 +3,7 @@
 #include <map>
 #include "SDL2/SDL.h"
 
-class KeyboardInput
+class KeyboardInput //can be access at anytime, exist once
 {
 public:
     KeyboardInput() = default;
@@ -13,4 +13,11 @@ public:
     bool isDown(int key) const;
 private:
     std::map<int, bool> m_isKeyDown;
+};
+
+class KeyboardEvent : public Event //just for the event handler
+{
+public:
+    virtual KeyboardEvent(SDL_Event e);
+    SDL_KeyboardEvent event;
 };
