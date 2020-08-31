@@ -1,7 +1,9 @@
 #pragma once
 
-#include <unordered_map>
+#include <array>
+#include <set>
 
+#include "renderer/Layer.h"
 #include "renderer/Context.h"
 #include "renderer/Texture/Texture.h"
 
@@ -16,13 +18,13 @@ public:
 	void Clear();
 	void Render();
 
-	void AddTexture(size_t x, size_t y, const char* name, size_t width = 0, size_t height = 0);
-	void RemoveTexture(const char* name);
+	void AddTexture(Texture&& texture, Layer layer = Layer::Middle);
+	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
 	void RenderMap(const Map& map);
 
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
-	std::unordered_map<const char*, Texture> m_Textures;
+	std::array<std::set<Texture>, Layer::Layer_Length> m_Textures;
 };
