@@ -15,8 +15,8 @@ void KeyboardInput::Update(SDL_Event e)
         break;
     };
 
-    KeyboardEvent ke {e};
-    
+    std::unique_ptr<Event> event{new KeyboardEvent{e}};
+    EventHandler::addEvent(std::move(event));
 }
 
 bool KeyboardInput::isDown(int key) const

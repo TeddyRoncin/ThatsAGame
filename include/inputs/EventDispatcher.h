@@ -36,7 +36,7 @@ private:
     static std::deque<std::unique_ptr<Event>> m_listEvents;
 };
 
-struct Coordinates
+struct Coordinates //TODO faire un Union a partir de ca
 {
     int x;
     int y;

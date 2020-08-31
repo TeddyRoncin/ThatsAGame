@@ -29,7 +29,7 @@ void Input::eventUpdate(SDL_Event events)
                 std::cout << "Quit !" << std::endl;
                 break;
             default:
-                std::cerr << "Event unandled : " << events.type << std::endl;
+                std::cerr << "Event unandled : " << events.type << std::endl; //TODO : HANDLE THIS
                 break;
         }
     }
