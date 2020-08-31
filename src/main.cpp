@@ -23,9 +23,6 @@ int main(int argc, char* argv[])
 		std::cerr << "erreur window : " << SDL_GetError() << std::endl;
 	}
 	*/
-	Input i;
-
-	bool continuer = true;
 	
 	MapLoader::registerMaps();
 	Entity* player = new Player(0, 0);
@@ -37,18 +34,22 @@ int main(int argc, char* argv[])
         std::cout << mapElement.first << " " << mapElement.second << std::endl;
     }
 
-
-	renderer.RenderMap(MapManager::getMap("test"));
-	renderer.AddTexture(0,0,"assets/img/test.png", 10, 10);
-	while(continuer)
+	Input i;
+	unsigned int x(0);
+	Renderer renderer;
+	while(!i.isQuitting())
 	{
+		x++;
 		//render
+		std::cerr << "je passe dans la boucle pour la " << x << "ieme(s) fois\n";
+		renderer.RenderMap(MapManager::getMap("test"));
+		renderer.AddTexture("assets/img/test.png", 100, 100);
+		renderer.Render();
+		SDL_Delay(500);
 		renderer.Clear();
-    	Renderer renderer;
 		//inputs
 		SDL_Event events;
 		i.eventUpdate(events);
-		continuer = !i.isQuitting();
 	}
 
     delete player;
