@@ -1,6 +1,13 @@
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <fstream>
+#include <math.h>
+
+#include "renderer/Renderer.h"
+#include "entity/npc/ai/PathFinder.h"
+#include "map/MapLoader.h"
+#include "map/Map.h"
+#include "entity/player/Player.h"
+#include "map/MapLoader.h"
+#include "map/MapManager.h"
 
 #include "inputs/Inputs.h"
 
@@ -20,12 +27,24 @@ int main(int argc, char* argv[])
 
 	bool continuer = true;
 	
-	std::cout << "caca" << std::endl;
+	MapLoader::registerMaps();
+    Entity* player = new Player(0, 0);
+    Map map = MapManager::getMap("test");
+    std::cout << map.getBackgroundPath() << std::endl;
+    PathFinder pathfinder(map);
+    std::vector<std::pair<int, int>> path = pathfinder.find(0, 2, 2, 2, player);
+    for (std::pair<int, int> mapElement : path) {
+        std::cout << mapElement.first << " " << mapElement.second << std::endl;
+    }
+	Renderer renderer;
+
 
 	while(continuer)
 	{
 		//render
-
+		renderer.Clear();
+    	renderer.AddTexture(0,0,"assets/img/test.png", 10, 10);
+    	Renderer renderer;
 		//inputs
 		SDL_Event events;
 		i.eventUpdate(events);
@@ -34,4 +53,15 @@ int main(int argc, char* argv[])
 
 	SDL_Quit();
 	return EXIT_SUCCESS;
+    
+    /*
+    
+    renderer.Clear();
+    renderer.RenderMap(MapManager::getMap("test"));
+    renderer.AddTexture(0,0,"assets/img/test.png",100,100);
+    renderer.Render();
+    std::cin.get();*/
+    delete player;
+
+    return EXIT_SUCCESS;
 }
