@@ -17,6 +17,15 @@ Texture::Texture(SDL_Renderer* renderer, const char* dir, size_t x, size_t y, si
 	SDL_RenderCopy(renderer, m_Texture, nullptr, &m_Rect);
 }
 
+Texture::Texture(SDL_Renderer* renderer, SDL_Texture* texture)
+{
+	if(!texture) 
+	{
+		std::cerr << "Error : The texture you gave is not usable !" << std::endl;
+	}
+	//m_Rect = SDL_Rect{(int), (int), (int), (int)};
+}
+
 Texture::~Texture()
 {
 	SDL_DestroyTexture(m_Texture);

@@ -13,5 +13,5 @@
             {"tile": "W", "value": "WALL"}
         ]
     },
-    "backgroundPath": "assets/textures/cc.png"
+    "backgroundPath": "assets/textures/test.png"
 }
