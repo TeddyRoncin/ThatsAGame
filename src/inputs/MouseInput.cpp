@@ -2,6 +2,14 @@
 
 #include "inputs/MouseInput.h"
 
+MouseInput::~MouseInput()
+{
+    for(std::unique_ptr<int> key : m_isButtonDown)
+    {
+        delete(key);
+    }
+}
+
 void MouseInput::Update(SDL_Event e)
 {
     isPushUp = false;
@@ -11,16 +19,36 @@ void MouseInput::Update(SDL_Event e)
     {
     case SDL_MOUSEBUTTONDOWN:
         {
-            m_isButtonDown.at(e.button.state) = true;
+            try
+            {
+                m_isButtonDown.at(e.button.button) = true;
+            }
+            catch(const std::out_of_range& exeption)
+            {
+                m_isButtonDown.insert( std::pair<int, bool>{e.button.button, true});
+            }
             std::unique_ptr<Event> event{ new MouseButtonEvent{e} };
             EventHandler::addEvent(std::move(event));
+
+            isPushDown = true;
+            key = e.button.button;
         }
         break;
     case SDL_MOUSEBUTTONUP:
         {
-            m_isButtonDown.at(e.button.state) = false;
+            try
+            {
+                m_isButtonDown.at(e.button.button) = false;
+            }
+            catch(const std::out_of_range& exeption)
+            {
+                m_isButtonDown.insert( std::pair<int, bool>{e.button.button, false});
+            }
             std::unique_ptr<Event> event{ new MouseButtonEvent{e}};
             EventHandler::addEvent(std::move(event));
+
+            isPushUp = true;
+            key = e.button.button;
         }
         break;
     case SDL_MOUSEMOTION:
@@ -45,7 +73,10 @@ void MouseInput::Update(SDL_Event e)
 
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> debug and cleaning
 bool MouseInput::isDown(int key)
 {
     try
