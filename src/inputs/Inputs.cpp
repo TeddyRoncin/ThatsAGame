@@ -24,7 +24,11 @@ void Input::eventUpdate(SDL_Event events)
             case SDL_WINDOWEVENT:
                 m_window.Update(events);
                 break;
-            case SDL_QUIT:
+            case SDL_TEXTEDITING:
+            case SDL_TEXTINPUT:
+                break; //we dont handle this cause we already have the keyboard, maybe later
+            case SDL_QUIT: //the close button of the window
+            case SDL_APP_TERMINATING: //in case of the OS is closing the app
                 m_quit = true;
                 std::cout << "Quit !" << std::endl;
                 break;

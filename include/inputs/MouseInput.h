@@ -9,11 +9,21 @@ class MouseInput
 {
 public:
     void Update(SDL_Event e);
+    ~MouseInput();
 
-    bool isDown(int key) const;
+    bool isDown(int key);
+    //can't be const cause we add a button if you try it but is has never been push down before
+
+    bool isBeeingPushDown() const;
+    bool isBeeingPushUp() const;
+    int keyBeeingPush() const;
 private:
     std::map<int, bool> m_isButtonDown;
     Coordinates coord;
+
+    bool isPushDown;
+    bool isPushUp;
+    int key;
 };
 
 class MouseMotionEvent : public Event 

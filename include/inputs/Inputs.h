@@ -20,11 +20,12 @@ public:
     void eventUpdate(SDL_Event events); //where events are updated
 
     bool isQuitting();
-private:
-    KeyboardInput m_keys;
+
+    KeyboardInput m_keys; //in public so we can check them easely
     MouseInput m_mouse;
     WindowsInput m_window;
 
+private:
     bool m_quit;
 };
 

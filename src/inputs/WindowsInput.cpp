@@ -13,6 +13,12 @@ void WindowsInput::Update(SDL_Event e)
         m_size.x = e.window.data1;
         m_size.x = e.window.data2;
         break;
+    case SDL_WINDOWEVENT_ENTER:
+        isMouseIn = true;
+        break;
+    case SDL_WINDOWEVENT_LEAVE:
+        isMouseIn = false;
+        break;
     default:
         std::cerr << "Window event unandled : " << e.type << std::endl;
         break;
@@ -20,6 +26,21 @@ void WindowsInput::Update(SDL_Event e)
 
     std::unique_ptr<Event> event{new WindowsEvent{e}};
     EventHandler::addEvent(std::move(event));
+}
+
+Coordinates WindowsInput::getCoord() const
+{
+    return m_coord;
+}
+
+Coordinates WindowsInput::getSize() const
+{
+    return m_size;
+}
+
+bool WindowsInput::isMouseInside() const
+{
+    return isMouseIn;
 }
 
 WindowsEvent::WindowsEvent(SDL_Event e)
