@@ -35,12 +35,12 @@ Map::~Map()
     }
 }
 
-std::string Map::getName()
+std::string Map::getName() const
 {
     return m_Name;
 }
 
-std::string Map::getBackgroundPath()
+std::string Map::getBackgroundPath() const
 {
     return m_BackgroundPath;
 }

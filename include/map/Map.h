@@ -14,8 +14,8 @@ public:
     Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>>, std::string backgroundPath);
     Map(const Map& map);
     ~Map();
-    std::string getName();
-    std::string getBackgroundPath();
+    std::string getName() const;
+    std::string getBackgroundPath() const;
     int getWidth();
     int getHeight();
     bool canEntityMoveAt(int x, int y, Entity* entity);

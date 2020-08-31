@@ -47,3 +47,8 @@ void Renderer::RemoveTexture(const char* name)
 	m_Textures.erase(name);
 }
 
+void Renderer::RenderMap(const Map& map)
+{
+	Texture background(m_Renderer, map.getBackgroundPath().c_str(), 0, 0);
+	m_Textures.emplace(std::pair<const char*, Texture>(map.getBackgroundPath().c_str(), background));
+}
