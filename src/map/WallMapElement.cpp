@@ -2,7 +2,7 @@
 
 #include "map/WallMapElement.h"
 
-bool WallMapElement::canEntityMoveOn(Entity entity) {
+bool WallMapElement::canEntityMoveOn(Entity* entity) {
     return false;
 }
 

@@ -45,7 +45,7 @@ std::string Map::getBackgroundPath()
     return m_BackgroundPath;
 }
 
-bool Map::canEntityMoveAt(int x, int y, Entity entity)
+bool Map::canEntityMoveAt(int x, int y, Entity* entity)
 {
     return m_Elements[x][y]->canEntityMoveOn(entity);
 }
@@ -56,4 +56,14 @@ MapElement* Map::getAt(int x, int y)
         return nullptr;
     }
     return m_Elements[x][y];
+}
+
+int Map::getWidth()
+{
+    return m_Width;
+}
+
+int Map::getHeight()
+{
+    return m_Height;
 }

@@ -16,7 +16,9 @@ public:
     ~Map();
     std::string getName();
     std::string getBackgroundPath();
-    bool canEntityMoveAt(int x, int y, Entity entity);
+    int getWidth();
+    int getHeight();
+    bool canEntityMoveAt(int x, int y, Entity* entity);
     MapElement* getAt(int x, int y);
 
 private:

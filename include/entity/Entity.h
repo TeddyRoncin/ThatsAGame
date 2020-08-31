@@ -6,6 +6,7 @@ class Entity
 {
 
 public:
+    Entity(float x, float y);
     std::pair<float, float> getPosition();
     float getX();
     float getY();
