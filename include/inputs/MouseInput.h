@@ -9,7 +9,7 @@ class MouseInput
 {
 public:
     void Update(SDL_Event e);
-    ~MouseInput();
+    ~MouseInput() = default;
 
     bool isDown(int key);
     //can't be const cause we add a button if you try it but is has never been push down before

@@ -25,9 +25,11 @@ public:
 protected:
     Et::EventType m_type;
 };
+
 class EventHandler
 {
 public:
+
     static void addEvent(std::unique_ptr<Event> ptr);
 
     static std::unique_ptr<Event> nextEvent(); //note that using that will delete the event in the dispatcher. 

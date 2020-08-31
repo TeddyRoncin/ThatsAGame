@@ -20,3 +20,4 @@ std::unique_ptr<Event> EventHandler::nextEvent()
     m_listEvents.pop_front();
     return e;
 }
+

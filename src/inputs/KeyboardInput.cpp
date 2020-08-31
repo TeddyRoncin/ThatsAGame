@@ -1,13 +1,5 @@
 #include "inputs/KeyboardInput.h"
 
-KeyboardInput::~KeyboardInput()
-{
-    for(std::unique_ptr<int> key : m_isKeyDown)
-    {
-        delete(key);
-    }
-}
-
 void KeyboardInput::Update(SDL_Event e)
 {
     isPushDown = false;

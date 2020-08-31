@@ -9,7 +9,7 @@ class KeyboardInput //can be access at anytime, exist once
 {
 public:
     KeyboardInput() = default;
-    ~KeyboardInput();
+    ~KeyboardInput() = default;
 
     void Update(SDL_Event e);
 
