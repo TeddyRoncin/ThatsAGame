@@ -8,9 +8,9 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
-#include "MapManager.h"
-#include "MapElement.h"
-#include "EmptyMapElement.h"
+#include "map/MapManager.h"
+#include "map/MapElement.h"
+#include "map/EmptyMapElement.h"
 #include "map/Map.h"
 
 class MapLoader 
