@@ -1,0 +1,17 @@
+{
+    "name": "test",
+    "width": 3,
+    "height": 3,
+    "map": {
+        "mapPattern": [
+            ["W", "W", "W"],
+            ["E", "E", "E"],
+            ["E", "W", "E"]
+        ],
+        "tiles": [
+            {"tile": "E", "value": "EMPTY"},
+            {"tile": "W", "value": "WALL"}
+        ]
+    },
+    "backgroundPath": "assets/textures/test.png"
+}

@@ -1,0 +1,21 @@
+# Makefile
+Makefile
+
+# vscode files
+.vscode
+target
+
+# Vianney's bin files
+debug
+release
+
+# Emile's bin files
+
+obj
+bin
+premake5
+premake5.lua
+proj.make
+
+# PCH
+#include/pch.h.gch
