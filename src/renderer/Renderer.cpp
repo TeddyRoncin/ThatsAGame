@@ -30,25 +30,29 @@ void Renderer::Clear()
 
 void Renderer::Render()
 {
-	for(auto texture : m_Textures)
+	for(auto& Layer : m_Textures)
 	{
-		SDL_SetRenderTarget(m_Renderer, texture.second.m_Texture);
+		for(auto& texture : Layer)
+		{
+			SDL_SetRenderTarget(m_Renderer, texture.m_Texture);
+		}
 	}
 	SDL_RenderPresent(m_Renderer);
 }
 
-void Renderer::AddTexture(size_t x, size_t y, const char* name, size_t width, size_t height)
+void Renderer::AddTexture(Texture&& texture, Layer layer)
 {
-	m_Textures.emplace(name, Texture(m_Renderer, name, x, y, width, height));
+	if(texture.needBinding)
+		texture.Bind(m_Renderer);
+	m_Textures[layer].emplace(texture);
 }
 
-void Renderer::RemoveTexture(const char* name)
+void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, size_t height, Layer layer)
 {
-	m_Textures.erase(name);
+	m_Textures[layer].emplace(Texture(m_Renderer, dir, x, y, width, height));
 }
 
 void Renderer::RenderMap(const Map& map)
 {
-	Texture background(m_Renderer, map.getBackgroundPath().c_str(), 0, 0);
-	m_Textures.emplace(std::pair<const char*, Texture>(map.getBackgroundPath().c_str(), background));
+	m_Textures[Layer::Background].emplace(Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
 }
