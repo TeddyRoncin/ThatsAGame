@@ -12,14 +12,15 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
 {
     std::vector<Node> openNodes;
     std::vector<Node> closedNodes;
-    openNodes.push_back(Node(startX, startY, nullptr, 0, 0, 0, 0));
-    while (true) {
+    Node firstNode(startX, startY, nullptr, 0, 0, 0, 0);
+    openNodes.push_back(firstNode);
+    int tour = 0;
+    while (tour < 10) {
         int currentNodeId = findCurrentNode(openNodes);
         Node currentNode = openNodes[currentNodeId];
-        //std::cout << currentNode.getX() << currentNode.getY() << std::endl;
         openNodes.erase(openNodes.begin() + currentNodeId);
         closedNodes.push_back(currentNode);
-        if (currentNode.getX() == endX && currentNode.getY() == endY) {
+        if (std::round(currentNode.getX()) == endX && std::round(currentNode.getY()) == endY) {
             return getPath(startX, startY, currentNode);
         }
         std::vector<Node> newNeighbourNodes = getNeighbourNodes(currentNode, startX, startY, endX, endY, m_Map, entity, closedNodes);
@@ -28,13 +29,16 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
                 openNodes.push_back(newNeighbourNode);
             } else {
                 for (Node node : openNodes) {
-                    if (node.getPosition() == newNeighbourNode.getPosition() && newNeighbourNode.m_FCost < node.m_FCost) {
+                    if (std::round(newNeighbourNode.getX()) == std::round(node.getX()) &&
+                    std::round(newNeighbourNode.getY()) == std::round(node.getY())
+                    && newNeighbourNode.m_FCost < node.m_FCost) {
                         node.m_ComeFrom = newNeighbourNode.m_ComeFrom;
                         node.m_FCost = newNeighbourNode.m_FCost;
                     }
                 }
             }
         }
+        tour++;
     }
 }
 
@@ -60,13 +64,12 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
         std::pair<int, int>(std::round(currentNode.getX()), std::round(currentNode.getY() + 1)),
         std::pair<int, int>(std::round(currentNode.getX() - 1), std::round(currentNode.getY()))
     };
-    for (std::pair<int, int> coords : neighbourNodeCoords) {
-        if (coords.first >= 0 && coords.first < map.getWidth() &&
-        coords.second >= 0 && coords.second < map.getHeight() &&
-        map.canEntityMoveAt(coords.first, coords.second, entity) &&
-        !containsNode(closedNodes, coords)) {
-            Node node = Node(coords.first, coords.second, currentNode, startX, startY, endX, endY);
-            neighbourNodes.push_back(Node(coords.first, coords.second, currentNode, startX, startY, endX, endY));
+    for (auto[x, y] : neighbourNodeCoords) {
+        if (x >= 0 && x < map.getWidth() &&
+        y >= 0 && y < map.getHeight() &&
+        map.canEntityMoveAt(x, y, entity) &&
+        !containsNode(closedNodes, std::pair<int, int>(x, y))) {
+            neighbourNodes.push_back(Node(x, y, &closedNodes[closedNodes.size() - 1], startX, startY, endX, endY));
         }
     }
     return neighbourNodes;
@@ -74,13 +77,13 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
 
 bool PathFinder::containsNode(std::vector<Node> vector, Node nodeToSearch)
 {
-    return containsNode(vector, nodeToSearch.getPosition());
+    return containsNode(vector, std::pair<int, int>(std::round(nodeToSearch.getX()), std::round(nodeToSearch.getY())));
 }
 
 bool PathFinder::containsNode(std::vector<Node> vector, std::pair<int, int> coords)
 {
     for (Node node : vector) {
-        if (node.getX() == coords.first && node.getY() == coords.second) {
+        if (std::round(node.getX()) == coords.first && std::round(node.getY()) == coords.second) {
             return true;
         }
     }
@@ -90,11 +93,10 @@ bool PathFinder::containsNode(std::vector<Node> vector, std::pair<int, int> coor
 std::vector<std::pair<int, int>> PathFinder::getPath(int startX, int startY, Node currentNode)
 {
     std::vector<std::pair<int, int>> path;
-    while (currentNode.getX() != startX && currentNode.getY() != startY) {
-        //std::cout << "Il y a qq chose !" << std::endl;
-        path.push_back(std::pair<int, int>(currentNode.getX(), currentNode.getY()));
+    while (std::round(currentNode.getX()) != startX || std::round(currentNode.getY()) != startY) {
+        path.push_back(std::pair<int, int>(std::round(currentNode.getX()), std::round(currentNode.getY())));
         currentNode = *currentNode.m_ComeFrom;
     }
-    path.push_back(std::pair<int, int>(currentNode.getX(), currentNode.getY()));
+    path.push_back(std::pair<int, int>(std::round(currentNode.getX()), std::round(currentNode.getY())));
     return path;
 }

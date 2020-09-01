@@ -12,6 +12,7 @@ public:
 public:
     Node(int posX, int posY, Node comeFrom, int startX, int startY, int endX, int endY);
     Node(int posX, int posY, Node* comeFrom, int startX, int startY, int endX, int endY);
+    Node(const Node& node);
 
 private:
     void computeFCost(int startX, int startY, int endX, int endY);

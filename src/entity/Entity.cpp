@@ -6,17 +6,17 @@ m_Position(x, y)
 
 }
 
-std::pair<float, float> Entity::getPosition()
+std::pair<float, float> Entity::getPosition() const
 {
     return m_Position;
 }
 
-float Entity::getX()
+float Entity::getX() const
 {
     return m_Position.first;
 }
 
-float Entity::getY()
+float Entity::getY() const
 {
     return m_Position.second;
 }
