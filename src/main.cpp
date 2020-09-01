@@ -52,6 +52,5 @@ int main(int argc, char* argv[])
 	}
 
     delete player;
-
     return EXIT_SUCCESS;
 }

@@ -14,8 +14,7 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
     std::vector<Node> closedNodes;
     Node firstNode(startX, startY, nullptr, 0, 0, 0, 0);
     openNodes.push_back(firstNode);
-    int tour = 0;
-    while (tour < 10) {
+    while (openNodes.size() > 0) {
         int currentNodeId = findCurrentNode(openNodes);
         Node currentNode = openNodes[currentNodeId];
         openNodes.erase(openNodes.begin() + currentNodeId);
@@ -38,8 +37,8 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
                 }
             }
         }
-        tour++;
     }
+    return std::vector<std::pair<int, int>>();
 }
 
 int PathFinder::findCurrentNode(std::vector<Node> openNodes)
