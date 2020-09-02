@@ -5,9 +5,14 @@
 class MapManager 
 {
 public:
+    static void registerMaps();
     static Map getMap(std::string name);
 
+private:
+    static bool loaded;
     static std::vector<Map> maps;
+    static void loadMap(std::string fileName);
+
 private:
     MapManager();
 };
