@@ -1,6 +1,6 @@
 #pragma once
 
-enum EventType
+namespace Et
 {
     enum EventType
     {
@@ -26,6 +26,7 @@ protected:
 class EventHandler
 {
 public:
+    EventHandler();
 
     static void addEvent(std::unique_ptr<Event> ptr);
 
