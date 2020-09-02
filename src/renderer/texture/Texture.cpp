@@ -25,7 +25,7 @@ Texture::Texture(const char* dir, SDL_Renderer* renderer)
 }
 
 Texture::Texture(const char* dir, size_t x, size_t y, size_t width, size_t height)
-	:m_Surface(IMG_Load(dir)), m_Texture(nullptr), m_Rect{x,y,width,height}, needBinding(true)
+	:m_Surface(IMG_Load(dir)), m_Texture(nullptr), m_Rect{(int)x,(int)y,(int)width,(int)height}, needBinding(true)
 {
 	if(!m_Surface)
 	{

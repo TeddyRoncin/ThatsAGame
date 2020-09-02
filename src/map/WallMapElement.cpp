@@ -14,5 +14,5 @@ MapElement* WallMapElement::copy()
 
 const char* WallMapElement::getTexturePath() const
 {
-    return "assets/textures/wall_element.png";
+    return "assets/textures/wall_map_element.png";
 }
