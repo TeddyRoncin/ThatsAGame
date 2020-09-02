@@ -7,12 +7,12 @@ bool EmptyMapElement::canEntityMoveOn(Entity* entity)
     return true;
 }
 
-void EmptyMapElement::display()
-{
-    std::cout << "EmptyMapElement";
-}
-
 MapElement* EmptyMapElement::copy()
 {
     return new EmptyMapElement();
+}
+
+const char* EmptyMapElement::getTexturePath() const
+{
+    return "assets/textures/test.png";
 }
