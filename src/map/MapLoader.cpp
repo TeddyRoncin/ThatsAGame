@@ -58,5 +58,5 @@ void MapLoader::loadMap()
 		std::cerr << "Height of the map is not equal to the height given in the json" << std::endl;
 		return;
 	}
-	MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
+	//MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
 }
