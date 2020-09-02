@@ -2,14 +2,6 @@
 
 #include "inputs/MouseInput.h"
 
-MouseInput::~MouseInput()
-{
-    for(std::unique_ptr<int> key : m_isButtonDown)
-    {
-        delete(key);
-    }
-}
-
 void MouseInput::Update(SDL_Event e)
 {
     isPushUp = false;
