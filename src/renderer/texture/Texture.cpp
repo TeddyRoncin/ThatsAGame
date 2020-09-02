@@ -24,6 +24,15 @@ Texture::Texture(const char* dir, SDL_Renderer* renderer)
 	}
 }
 
+Texture::Texture(const char* dir, size_t x, size_t y, size_t width, size_t height)
+	:m_Surface(IMG_Load(dir)), m_Texture(nullptr), m_Rect{x,y,width,height}, needBinding(true)
+{
+	if(!m_Surface)
+	{
+		std::cerr << "IMG_LoadError (for SDL_Surface): " << IMG_GetError() << std::endl;
+	}
+}
+
 Texture::Texture(SDL_Renderer* renderer, const char* dir, size_t x, size_t y, size_t width, size_t height)
 	:m_Surface(nullptr), m_Texture(IMG_LoadTexture(renderer, dir)), m_Rect{(int)x, (int)y, (int)width, (int)height}
 {

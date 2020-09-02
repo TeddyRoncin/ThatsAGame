@@ -16,6 +16,10 @@ public:
 	*/
 	Texture(const char* dir, SDL_Renderer* renderer = nullptr);
 	/*
+	*	The texture only needs to be bind
+	*/
+	Texture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0);
+	/*
 	*	The texture is fully created
 	*	no concept of layer here
 	*/
