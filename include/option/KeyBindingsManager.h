@@ -1,7 +1,5 @@
 #pragma once
 
-#include "pch.h"
-
 enum KeyBindings
 {
     GoForward,

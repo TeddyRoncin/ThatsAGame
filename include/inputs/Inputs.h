@@ -1,11 +1,8 @@
 #pragma once
 
-
 #include "MouseInput.h"
 #include "KeyboardInput.h"
 #include "WindowsInput.h"
-
-#include "SDL2/SDL.h"
 
 class Input
 {
