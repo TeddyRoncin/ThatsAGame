@@ -7,7 +7,7 @@ class EmptyMapElement : public MapElement {
 
 public:
     virtual bool canEntityMoveOn(Entity* entity);
-    virtual void display();
     virtual MapElement* copy();
+    virtual const char* getTexturePath() const;
 
 };

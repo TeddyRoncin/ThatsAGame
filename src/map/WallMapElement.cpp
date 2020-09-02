@@ -2,15 +2,17 @@
 
 #include "map/WallMapElement.h"
 
-bool WallMapElement::canEntityMoveOn(Entity* entity) {
+bool WallMapElement::canEntityMoveOn(Entity* entity)
+{
     return false;
-}
-
-void WallMapElement::display() {
-    std::cout << "WallMapElement";
 }
 
 MapElement* WallMapElement::copy()
 {
     return new WallMapElement();
+}
+
+const char* WallMapElement::getTexturePath() const
+{
+    return "assets/textures/wall_element.png";
 }

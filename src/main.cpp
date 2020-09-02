@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 		std::cerr << "je passe dans la boucle pour la " << x << "ieme(s) fois\n";
 		renderer.RenderMap(MapManager::getMap("test"));
 		renderer.AddTexture("assets/img/test.png", 100, 100);
-		renderer.Render();
+		//renderer.Render();
 		SDL_Delay(500);
 		renderer.Clear();
 		//inputs

@@ -1,13 +1,16 @@
 #pragma once
 
 #include "entity/Entity.h"
+#include "renderer/texture/Texture.h"
 
-class MapElement {
+class MapElement
+{
 
 public:
     MapElement() {}
     virtual bool canEntityMoveOn(Entity* entity) = 0;
-    virtual void display() = 0;
     virtual MapElement* copy() = 0;
+    virtual const char* getTexturePath() const = 0;
+    virtual Texture&& getTexture(int x, int y) const;
 
 };

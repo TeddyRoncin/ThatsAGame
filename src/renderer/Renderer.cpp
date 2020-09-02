@@ -55,4 +55,19 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 void Renderer::RenderMap(const Map& map)
 {
 	m_Textures[Layer::Background].emplace(Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
+	int x(0), y(0);
+	for(std::vector<MapElement*> raw : map.getMapElements())
+	{
+		for(MapElement* element : raw)
+		{
+			Texture&& temp = element->getTexture(x,y);
+			if(temp.needBinding)
+			{
+				temp.Bind(m_Renderer);
+			}
+			m_Textures[Layer::Background].emplace(temp);
+			y++;
+		}
+		x++;
+	}
 }
