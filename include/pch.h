@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <utility>
+#include <filesystem>
 
 #include <array>
 #include <vector>
