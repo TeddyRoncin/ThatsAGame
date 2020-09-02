@@ -20,6 +20,7 @@ public:
 
 	void RenderMap(const Map& map);
 
+
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;

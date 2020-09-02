@@ -71,3 +71,4 @@ void Renderer::RenderMap(const Map& map)
 		x++;
 	}
 }
+

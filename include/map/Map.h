@@ -8,7 +8,7 @@ class Map
 {
 
 public:
-    Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>>, std::string backgroundPath);
+    Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>> elements, std::string backgroundPath);
     Map(const Map& map);
     ~Map();
     std::string getName() const;
