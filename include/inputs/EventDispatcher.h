@@ -1,7 +1,6 @@
 #pragma once
 
-
-namespace Et //for escaping the redefinition of KeyboardEvent
+enum EventType
 {
     enum EventType
     {
@@ -37,7 +36,7 @@ private:
     static std::deque<std::unique_ptr<Event>> m_listEvents;
 };
 
-struct Coordinates //TODO faire un Union a partir de ca
+struct Coordinates
 {
     int x;
     int y;

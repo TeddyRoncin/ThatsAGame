@@ -7,41 +7,20 @@ void MouseInput::Update(SDL_Event e)
     isPushUp = false;
     isPushDown = false;
 
-    std::unique_ptr<Event> event;
     switch(e.type)
     {
     case SDL_MOUSEBUTTONDOWN:
         {
-            try
-            {
-                m_isButtonDown.at(e.button.button) = true;
-            }
-            catch(const std::out_of_range& exeption)
-            {
-                m_isButtonDown.insert( std::pair<int, bool>{e.button.button, true});
-            }
+            m_isButtonDown.at(e.button.state) = true;
             std::unique_ptr<Event> event{ new MouseButtonEvent{e} };
             EventHandler::addEvent(std::move(event));
-
-            isPushDown = true;
-            key = e.button.button;
         }
         break;
     case SDL_MOUSEBUTTONUP:
         {
-            try
-            {
-                m_isButtonDown.at(e.button.button) = false;
-            }
-            catch(const std::out_of_range& exeption)
-            {
-                m_isButtonDown.insert( std::pair<int, bool>{e.button.button, false});
-            }
+            m_isButtonDown.at(e.button.state) = false;
             std::unique_ptr<Event> event{ new MouseButtonEvent{e}};
             EventHandler::addEvent(std::move(event));
-
-            isPushUp = true;
-            key = e.button.button;
         }
         break;
     case SDL_MOUSEMOTION:
@@ -59,12 +38,13 @@ void MouseInput::Update(SDL_Event e)
         }
         break;
     default:
-        std::cerr << "Mouse event unandled : " << e.type << std::endl;
+        fprintf(stderr, "Mouse event unandled : " + e.type);
         break;
     }
 
 
 }
+
 
 bool MouseInput::isDown(int key)
 {

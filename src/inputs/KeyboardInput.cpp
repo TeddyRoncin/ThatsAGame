@@ -38,12 +38,13 @@ void KeyboardInput::Update(SDL_Event e)
         key = e.key.keysym.sym;
     case SDL_TEXTEDITING:
     case SDL_TEXTINPUT:
-        std::cerr << "editing text" << std::endl;
+        break;
     default:
         std::cerr << "Keyboard event unandled : " << e.type << std::endl;
         break;
     };
 
+<<<<<<< HEAD
     std::unique_ptr<Event> event{new KeyboardEvent{e}};
     EventHandler::addEvent(std::move(event));
 }
@@ -70,6 +71,10 @@ bool KeyboardInput::isBeeingPushDown() const
 bool KeyboardInput::isBeeingPushUp() const
 {
     return isPushUp;
+=======
+    KeyboardEvent ke {e};
+    
+>>>>>>> debug and delete map folder to simplify the merge
 }
 
 int KeyboardInput::keyBeeingPush() const
