@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "inputs/EventDispatcher.h"
 
 Event::Event() {}

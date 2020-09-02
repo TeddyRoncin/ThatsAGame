@@ -1,6 +1,5 @@
 #pragma once
 
-#include "SDL2/SDL.h"
 #include "EventDispatcher.h"
 
 class KeyboardInput //can be access at anytime, exist once
