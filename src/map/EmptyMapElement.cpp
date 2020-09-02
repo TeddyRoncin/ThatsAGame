@@ -14,5 +14,5 @@ MapElement* EmptyMapElement::copy()
 
 const char* EmptyMapElement::getTexturePath() const
 {
-    return "assets/textures/test.png";
+    return "assets/textures/empty_map_element.png";
 }
