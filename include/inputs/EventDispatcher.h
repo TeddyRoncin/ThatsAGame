@@ -1,13 +1,6 @@
 #pragma once
-<<<<<<< HEAD
+
 enum EventType
-=======
-
-#include <memory>
-#include <stack>
-
-namespace Et //for escaping the redefinition of KeyboardEvent
->>>>>>> debug and delete map folder to simplify the merge
 {
     enum EventType
     {
@@ -41,12 +34,6 @@ public:
 
 private:
     static std::deque<std::unique_ptr<Event>> m_listEvents;
-};
-
-struct Coordinates //TODO faire un Union a partir de ca
-{
-    int x;
-    int y;
 };
 
 struct Coordinates
