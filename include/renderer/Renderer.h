@@ -2,7 +2,7 @@
 
 #include "renderer/Layer.h"
 #include "renderer/Context.h"
-#include "renderer/Texture/Texture.h"
+#include "renderer/texture/Texture.h"
 
 #include "map/Map.h"
 
