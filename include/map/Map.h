@@ -13,10 +13,11 @@ public:
     ~Map();
     std::string getName() const;
     std::string getBackgroundPath() const;
-    int getWidth();
-    int getHeight();
-    bool canEntityMoveAt(int x, int y, Entity* entity);
-    MapElement* getAt(int x, int y);
+    int getWidth() const;
+    int getHeight() const;
+    bool canEntityMoveAt(int x, int y, Entity* entity) const;
+    MapElement* getAt(int x, int y) const;
+    std::vector<std::vector<MapElement*>> getMapElements() const;
 
 private:
     std::string m_Name;
