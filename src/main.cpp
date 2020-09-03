@@ -6,7 +6,7 @@
 #include "entity/npc/ai/PathFinder.h"
 
 #include "renderer/Renderer.h"
-#include "renderer/Timer.h"
+#include "utils/Timer.h"
 //#include "inputs/Inputs.h"
 
 int main(int argc, char* argv[])

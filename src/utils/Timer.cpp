@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "renderer/Timer.h"
+#include "utils/Timer.h"
 
 Timer::Timer() :
 m_FpsCap(60)
