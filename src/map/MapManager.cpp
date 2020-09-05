@@ -76,6 +76,5 @@ void MapManager::loadMap(std::string fileName)
 			std::cout << mapElement << std::endl;
 		}
 	}
-	Map map(name, width, height, mapElements, backgroundPath);
-	MapManager::maps.push_back(map);
+	MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
 }
