@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "map/MapElement.h"
 #include "entity/Entity.h"
 
@@ -9,7 +8,8 @@ class Map
 
 public:
     Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>>, std::string backgroundPath);
-    Map(const Map& map);
+    Map(Map& map);
+    Map(Map&& map);
     ~Map();
     std::string getName() const;
     std::string getBackgroundPath() const;

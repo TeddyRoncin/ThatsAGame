@@ -1,5 +1,3 @@
-#define BOOST_BIND_GLOBAL_PLACEHOLDERS
-
 #include <cstdio>
 #include <cmath>
 
@@ -21,8 +19,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
-
 // BOOST LIBRARY
+#define BOOST_BIND_GLOBAL_PLACEHOLDERS
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>

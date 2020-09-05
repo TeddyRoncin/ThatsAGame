@@ -5,7 +5,7 @@
 class Scene
 {
 public:
-	Scene(const Map& map);
+	Scene(Map& map);
 private:
 
 	Map m_currentMap;
