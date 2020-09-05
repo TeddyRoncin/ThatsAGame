@@ -1,12 +1,12 @@
 {
-    "name": "test",
+    "name": "Super Map ^^",
     "width": 3,
     "height": 3,
     "map": {
         "mapPattern": [
             ["W", "W", "W"],
-            ["E", "E", "E"],
-            ["E", "W", "E"]
+            ["W", "W", "W"],
+            ["W", "W", "W"]
         ],
         "tiles": [
             {"tile": "E", "value": "EMPTY"},

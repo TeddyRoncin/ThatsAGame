@@ -56,11 +56,17 @@ void Renderer::RenderMap(const Map& map)
 {
 	m_Textures[Layer::Background].emplace(Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
 	int x(0), y(0);
+	std::vector<std::vector<MapElement*>> mapElements = map.getMapElements();
 	for(std::vector<MapElement*> raw : map.getMapElements())
 	{
 		for(MapElement* element : raw)
 		{
+			std::cout << element->canEntityMoveOn(nullptr) << std::endl;
+			std::cout << "et la on est ici" << std::endl;
+			std::cout << element->getTexturePath() << std::endl;
+			std::cout << "et mtn la" << std::endl;
 			Texture&& temp = element->getTexture(x,y);
+			std::cout << ":thinking: what ???" << std::endl;
 			if(temp.needBinding)
 			{
 				temp.Bind(m_Renderer);
@@ -71,3 +77,4 @@ void Renderer::RenderMap(const Map& map)
 		x++;
 	}
 }
+

@@ -3,9 +3,14 @@
 #include "entity/Entity.h"
 
 Entity::Entity(float x, float y) :
-m_Position(x, y)
+m_Position(std::pair<float, float>(x, y))
 {
 
+}
+
+Entity::Entity(const Entity& entity) :
+m_Position(std::pair<float, float>(entity.m_Position.first, entity.m_Position.second))
+{
 }
 
 std::pair<float, float> Entity::getPosition() const

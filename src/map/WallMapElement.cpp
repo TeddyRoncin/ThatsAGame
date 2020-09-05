@@ -16,3 +16,4 @@ const char* WallMapElement::getTexturePath() const
 {
     return "assets/textures/wall_map_element.png";
 }
+

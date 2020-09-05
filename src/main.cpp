@@ -1,13 +1,13 @@
 #include "pch.h"
 
 #include "map/Map.h"
-#include "map/MapLoader.h"
 #include "map/MapManager.h"
 #include "entity/player/Player.h"
 #include "entity/npc/ai/PathFinder.h"
 
 #include "renderer/Renderer.h"
-#include "inputs/Inputs.h"
+#include "utils/Timer.h"
+//#include "inputs/Inputs.h"
 
 int main(int argc, char* argv[])
 {
@@ -23,31 +23,35 @@ int main(int argc, char* argv[])
 	}
 	*/
 	
-	MapLoader::registerMaps();
+	MapManager::registerMaps();
+	//OptionManager::load();
 	Entity* player = new Player(0, 0);
-    Map map = MapManager::getMap("test");
-    std::cout << map.getBackgroundPath() << std::endl;
+    Map map = MapManager::getMap("Super Map ^^");
+    //std::cout << map.getBackgroundPath() << std::endl;
     PathFinder pathfinder(map);
     std::vector<std::pair<int, int>> path = pathfinder.find(0, 2, 2, 2, player);
     for (std::pair<int, int> mapElement : path) {
         std::cout << mapElement.first << " " << mapElement.second << std::endl;
     }
-	Input i;
+	//Input i;
 	unsigned int x(0);
 	Renderer renderer;
-	while(!i.isQuitting())
+	Timer timer(2);
+	//OptionManager::load(renderer);
+	while (true)//(!i.isQuitting())
 	{
 		x++;
 		//render
 		std::cerr << "je passe dans la boucle pour la " << x << "ieme(s) fois\n";
-		renderer.RenderMap(MapManager::getMap("test"));
+		renderer.RenderMap(map);
 		renderer.AddTexture("assets/img/test.png", 100, 100);
-		//renderer.Render();
-		SDL_Delay(500);
+		renderer.Render();
+		//SDL_Delay(500);
+		timer.waitForNextFrame();
 		renderer.Clear();
 		//inputs
-		SDL_Event events;
-		i.eventUpdate(events);
+		//SDL_Event events;
+		//i.eventUpdate(events);
 	}
 
     delete player;

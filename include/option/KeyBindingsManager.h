@@ -1,7 +1,5 @@
 #pragma once
 
-#include "pch.h"
-
 enum KeyBindings
 {
     GoForward,
@@ -10,7 +8,7 @@ enum KeyBindings
     GoRightwards,
     OpenInventory,
     OpenParameters
-}
+};
 
 class KeyBindingsManager
 {
@@ -21,4 +19,4 @@ public:
 
 private:
     std::map<int, KeyBindings> options;
-}
+};

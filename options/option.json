@@ -1,0 +1,20 @@
+{
+    "video": {
+        "fullscreen": false,
+        "fpsCap": 2
+    },
+    "language": {
+        "language": "fr",
+        "subtitles": {
+            "activated": false,
+            "language": ""
+        }
+    },
+    "control": {
+        "moveForward": 0,
+        "moveBackward": 1,
+        "moveLeft": 2,
+        "moveRight": 3,
+        "hit": 4
+    }
+}

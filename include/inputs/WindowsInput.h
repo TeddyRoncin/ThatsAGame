@@ -1,7 +1,5 @@
 #pragma once
 
-
-#include "SDL2/SDL.h"
 #include "EventDispatcher.h"
 
 class WindowsInput
