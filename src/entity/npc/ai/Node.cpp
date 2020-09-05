@@ -2,7 +2,7 @@
 
 #include "entity/npc/ai/Node.h"
 
-Node::Node(int posX, int posY, Node comeFrom, int startX, int startY, int endX, int endY) :
+Node::Node(int posX, int posY, Node& comeFrom, int startX, int startY, int endX, int endY) :
 Entity(posX, posY),
 m_ComeFrom(&comeFrom)
 {

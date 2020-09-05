@@ -5,8 +5,8 @@
     "map": {
         "mapPattern": [
             ["W", "W", "W"],
-            ["E", "E", "E"],
-            ["E", "W", "E"]
+            ["W", "W", "W"],
+            ["W", "W", "W"]
         ],
         "tiles": [
             {"tile": "E", "value": "EMPTY"},

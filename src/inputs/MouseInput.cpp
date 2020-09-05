@@ -65,10 +65,6 @@ void MouseInput::Update(SDL_Event e)
 
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> debug and cleaning
 bool MouseInput::isDown(int key)
 {
     try

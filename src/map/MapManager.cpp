@@ -71,6 +71,11 @@ void MapManager::loadMap(std::string fileName)
 		std::cerr << "Height of the map is not equal to the height given in the json" << std::endl;
 		return;
 	}
+	for (std::vector<MapElement*> column : mapElements) {
+		for (MapElement* mapElement : column) {
+			std::cout << mapElement << std::endl;
+		}
+	}
 	Map map(name, width, height, mapElements, backgroundPath);
 	MapManager::maps.push_back(map);
 }
