@@ -7,7 +7,7 @@ class Map
 {
 
 public:
-    Map(Map& map);
+    Map(const Map& map);
     Map(Map&& map);
     Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>> elements, std::string backgroundPath);
     ~Map();

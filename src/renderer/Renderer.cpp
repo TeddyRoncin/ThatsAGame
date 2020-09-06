@@ -52,23 +52,23 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 	m_Textures[layer].emplace(Texture(m_Renderer, dir, x, y, width, height));
 }
 
-void Renderer::RenderMap(Map& map)
+void Renderer::RenderMap(const Map& map)
 {
 	m_Textures[Layer::Background].emplace(Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
-	int x(0), y(0);
-	for(std::vector<MapElement*> raw : map.getMapElements())
+	auto test = map.getMapElements();
+	for(int i (0); i < test.size(); i++)
 	{
-		for(MapElement* element : raw)
+		for(int k(0); k < test[i].size(); k++)
 		{
-			Texture&& temp = element->getTexture(x,y);
-			if(temp.needBinding)
-			{
-				temp.Bind(m_Renderer);
-			}
-			m_Textures[Layer::Background].emplace(temp);
-			y++;
+			test[i][k]->getTexturePath();
+			test[i][k]->getWidth();
+			test[i][k]->getHeight();
+			// m_Textures[Layer::Background].emplace(
+			// 	Texture(m_Renderer,test[i][k]->getTexturePath(),
+			// 		test[i][k]->getWidth()*i,test[i][k]->getHeight()*k,
+			// 		test[i][k]->getWidth(),test[i][k]->getHeight()
+			// 	)
+			// );
 		}
-		x++;
 	}
 }
-

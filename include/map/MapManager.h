@@ -6,7 +6,7 @@ class MapManager
 {
 public:
     static void registerMaps();
-    static Map getMap(std::string name);
+    static const Map& getMap(std::string name);
 
 private:
     static bool loaded;

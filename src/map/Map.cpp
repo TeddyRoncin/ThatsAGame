@@ -9,20 +9,15 @@ Map::Map(std::string name, int width, int height, std::vector<std::vector<MapEle
     m_Elements(elements),
     m_BackgroundPath(backgroundPath)
 {
-
 }
 
-Map::Map(Map& map) :
-    m_Name(map.m_Name),
-    m_Width(map.m_Width),
-    m_Height(map.m_Height),
-    m_BackgroundPath(map.m_BackgroundPath)
+Map::Map(const Map& map)
+    :m_Name(map.m_Name), m_Width(map.m_Width), m_Height(map.m_Height), m_BackgroundPath(map.m_BackgroundPath)
 {
     for (int x = 0; x < m_Width; x++) {
         m_Elements.push_back(std::vector<MapElement*>());
         for (int y = 0; y < m_Height; y++) {
             m_Elements[x].push_back(map.m_Elements[x][y]);
-            map.m_Elements[x][y] = nullptr;
         }
     }
 }

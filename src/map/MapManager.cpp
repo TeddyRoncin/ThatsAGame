@@ -23,9 +23,9 @@ void MapManager::registerMaps()
 	MapManager::loaded = true;
 }
 
-Map MapManager::getMap(std::string name)
+const Map& MapManager::getMap(std::string name)
 {
-	for (Map map : maps) {
+	for (Map& map : maps) {
 		if (map.getName() == name) {
 			return map;
 		}
@@ -55,9 +55,13 @@ void MapManager::loadMap(std::string fileName)
 		for (pt::ptree::value_type& cell : row.second) {
 			std::string mapElementName = tiles[cell.second.get_value<std::string>()];
 			if (mapElementName == "EMPTY") {
+				std::cerr << "EmptyElement" << std::endl;
 				mapElements[x].push_back(new EmptyMapElement());
 			} else if (mapElementName == "WALL") {
+				std::cerr << "WallElement" << std::endl;
 				mapElements[x].push_back(new WallMapElement());
+			} else {
+				std::cerr << "No Element Here !" << std::endl;
 			}
 			x++;
 		}
@@ -70,11 +74,6 @@ void MapManager::loadMap(std::string fileName)
 	if (y != height) {
 		std::cerr << "Height of the map is not equal to the height given in the json" << std::endl;
 		return;
-	}
-	for (std::vector<MapElement*> column : mapElements) {
-		for (MapElement* mapElement : column) {
-			std::cout << mapElement << std::endl;
-		}
 	}
 	MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
 }

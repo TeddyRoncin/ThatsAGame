@@ -7,7 +7,7 @@ class PathFinder
 {
 
 public:
-    PathFinder(Map map);
+    PathFinder(const Map& map);
     std::vector<std::pair<int, int>> find(int startX, int startY, int endX, int endY, Entity* entity);
 
 private:
