@@ -74,7 +74,3 @@ void Texture::Bind(SDL_Renderer* renderer)
 	}
 }
 
-bool Texture::operator<(const Texture& texture) const
-{
-	return ( (m_Rect.w > texture.m_Rect.w) && (m_Rect.h > texture.m_Rect.h) );
-}

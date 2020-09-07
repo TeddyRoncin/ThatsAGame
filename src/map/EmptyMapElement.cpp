@@ -2,6 +2,13 @@
 
 #include "map/EmptyMapElement.h"
 
+EmptyMapElement::EmptyMapElement()
+    :MapElement()
+{}
+
+EmptyMapElement::~EmptyMapElement()
+{}
+
 bool EmptyMapElement::canEntityMoveOn(Entity* entity)
 {
     return true;

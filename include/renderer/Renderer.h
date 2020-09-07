@@ -20,9 +20,8 @@ public:
 
 	void RenderMap(const Map& map);
 
-
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
-	std::array<std::set<Texture>, Layer::Layer_Length> m_Textures;
+	std::array<std::list<Texture>, Layer::Layer_Length> m_Textures;
 };

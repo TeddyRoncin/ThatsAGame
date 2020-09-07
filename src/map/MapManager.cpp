@@ -55,10 +55,8 @@ void MapManager::loadMap(std::string fileName)
 		for (pt::ptree::value_type& cell : row.second) {
 			std::string mapElementName = tiles[cell.second.get_value<std::string>()];
 			if (mapElementName == "EMPTY") {
-				std::cerr << "EmptyElement" << std::endl;
 				mapElements[x].push_back(new EmptyMapElement());
 			} else if (mapElementName == "WALL") {
-				std::cerr << "WallElement" << std::endl;
 				mapElements[x].push_back(new WallMapElement());
 			} else {
 				std::cerr << "No Element Here !" << std::endl;

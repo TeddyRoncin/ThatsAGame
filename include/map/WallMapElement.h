@@ -6,6 +6,8 @@
 class WallMapElement : public MapElement {
 
 public:
+    WallMapElement();
+    virtual ~WallMapElement() override;
     virtual bool canEntityMoveOn(Entity* entity);
     virtual const char* getTexturePath() const;
     virtual const size_t getWidth() const override;

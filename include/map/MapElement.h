@@ -7,10 +7,10 @@ class MapElement
 {
 
 public:
-    MapElement() {}
-    virtual bool canEntityMoveOn(Entity* entity) = 0;
-    virtual const char* getTexturePath() const = 0;
-    virtual const size_t getWidth() const = 0;
-    virtual const size_t getHeight() const = 0;
+    virtual ~MapElement() {}
+    virtual bool canEntityMoveOn(Entity* entity) =0;
+    virtual const char* getTexturePath() const =0;
+    virtual const size_t getWidth() const =0;
+    virtual const size_t getHeight() const =0;
 
 };

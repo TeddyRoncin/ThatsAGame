@@ -34,11 +34,6 @@ public:
 	*/
 	Texture(const Texture&) = default;
 
-	/*
-	*	operator for the std::set
-	*/
-	bool operator<(const Texture& texture) const;
-
 	~Texture();
 
 	void Bind(SDL_Renderer* renderer);

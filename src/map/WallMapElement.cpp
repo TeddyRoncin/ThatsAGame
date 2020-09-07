@@ -2,6 +2,13 @@
 
 #include "map/WallMapElement.h"
 
+WallMapElement::WallMapElement()
+    :MapElement()
+{}
+
+WallMapElement::~WallMapElement()
+{}
+
 bool WallMapElement::canEntityMoveOn(Entity* entity)
 {
     return false;
