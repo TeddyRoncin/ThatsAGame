@@ -56,13 +56,13 @@ void Renderer::RenderMap(const Map& map)
 {
 	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin() ,Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
 	auto test = map.getMapElements();
-	for(int i (0); i < test.size(); i++)
+	for(size_t i (0); i < test.size(); i++)
 	{
-		for(int k(0); k < test[i].size(); k++)
+		for(size_t k(0); k < test[i].size(); k++)
 		{
-			m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(),
+			m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].end(),
 				Texture(m_Renderer,test[i][k]->getTexturePath(),
-					test[i][k]->getWidth()*k,test[i][k]->getHeight()*i,
+					test[i][k]->getWidth()*i,test[i][k]->getHeight()*k,
 					test[i][k]->getWidth(),test[i][k]->getHeight()
 				)
 			);

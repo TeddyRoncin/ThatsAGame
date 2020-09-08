@@ -4,9 +4,9 @@
     "height": 3,
     "map": {
         "mapPattern": [
-            ["W", "W", "W"],
-            ["W", "W", "W"],
-            ["W", "W", "W"]
+            ["W", "E", "W"],
+            ["E", "E", "E"],
+            ["E", "W", "E"]
         ],
         "tiles": [
             {"tile": "E", "value": "EMPTY"},
