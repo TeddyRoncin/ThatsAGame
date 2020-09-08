@@ -8,6 +8,7 @@ class PathFinder
 
 public:
     PathFinder(const Map& map);
+    ~PathFinder();
     std::vector<std::pair<int, int>> find(int startX, int startY, int endX, int endY, Entity* entity);
 
 private:
@@ -15,7 +16,7 @@ private:
 
 private:
     int findCurrentNode(std::vector<Node> openNodes);
-    std::vector<Node> getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Map map, Entity* entity, std::vector<Node>& closedNodes);
+    std::vector<Node> getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, const Map& map, Entity* entity, std::vector<Node>& closedNodes);
     bool containsNode(std::vector<Node> vector, Node nodeToSearch);
     bool containsNode(std::vector<Node> vector, std::pair<int, int> coords);
     std::vector<std::pair<int, int>> getPath(int startX, int startY, Node currentNode);

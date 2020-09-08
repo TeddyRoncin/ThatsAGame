@@ -5,8 +5,10 @@
 PathFinder::PathFinder(const Map& map) :
 m_Map(map)
 {
-
 }
+
+PathFinder::~PathFinder()
+{}
 
 std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int endX, int endY, Entity* entity)
 {
@@ -55,7 +57,7 @@ int PathFinder::findCurrentNode(std::vector<Node> openNodes)
     return currentNodeIndex;
 }
 
-std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Map map, Entity* entity, std::vector<Node>& closedNodes)
+std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, const Map& map, Entity* entity, std::vector<Node>& closedNodes)
 {
     std::vector<Node> neighbourNodes;
     std::vector<std::pair<int, int>> neighbourNodeCoords {
