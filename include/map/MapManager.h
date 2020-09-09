@@ -13,6 +13,6 @@ private:
     static std::vector<Map> maps;
     static void loadMap(std::string fileName);
 
-private:
+protected:
     MapManager();
 };

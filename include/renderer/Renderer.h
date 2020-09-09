@@ -18,7 +18,7 @@ public:
 	void AddTexture(Texture&& texture, Layer layer = Layer::Middle);
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
-	void RenderMap(const Map& map);
+	void AddMap(const Map& map);
 
 private:
 	SDL_Window* m_Window;

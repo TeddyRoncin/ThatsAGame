@@ -11,6 +11,11 @@ bool MapManager::loaded = false;
 
 std::vector<Map> MapManager::maps {};
 
+MapManager::MapManager()
+{
+	registerMaps();
+}
+
 void MapManager::registerMaps()
 {
 	if (MapManager::loaded) {

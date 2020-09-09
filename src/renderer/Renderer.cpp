@@ -52,7 +52,7 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 	m_Textures[layer].emplace_back(Texture(m_Renderer, dir, x, y, width, height));
 }
 
-void Renderer::RenderMap(const Map& map)
+void Renderer::AddMap(const Map& map)
 {
 	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin() ,Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
 	auto test = map.getMapElements();
