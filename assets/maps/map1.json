@@ -1,12 +1,15 @@
 {
-    "name": "Super Map ^^",
-    "width": 3,
-    "height": 3,
+    "name": "map_test",
+    "width": 6,
+    "height": 6,
     "map": {
         "mapPattern": [
-            ["W", "E", "W"],
-            ["E", "E", "E"],
-            ["E", "W", "E"]
+            ["W", "W", "W", "W", "W", "W"],
+            ["W", "E", "E", "E", "E", "W"],
+            ["W", "E", "W", "W", "E", "W"],
+            ["W", "E", "W", "W", "E", "W"],
+            ["W", "E", "E", "E", "E", "W"],
+            ["W", "W", "W", "W", "W", "W"]
         ],
         "tiles": [
             {"tile": "E", "value": "EMPTY"},
