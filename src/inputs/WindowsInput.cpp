@@ -7,13 +7,13 @@ void WindowsInput::Update(SDL_Event e)
     switch(e.type)
     {
     case SDL_WINDOWEVENT_MOVED:
-        m_coord.x = e.window.data1;
-        m_coord.x = e.window.data2;
+        m_coord.position.first = e.window.data1;
+        m_coord.position.second = e.window.data2;
         break;
     case SDL_WINDOWEVENT_SIZE_CHANGED: //both have the same effect
     case SDL_WINDOWEVENT_RESIZED:
-        m_size.x = e.window.data1;
-        m_size.x = e.window.data2;
+        m_size.dimension.first = e.window.data1;
+        m_size.dimension.second = e.window.data2;
         break;
     case SDL_WINDOWEVENT_ENTER:
         isMouseIn = true;
@@ -37,18 +37,18 @@ void WindowsInput::Update(SDL_Event e)
         break;
     }
 
-    std::unique_ptr<Event> event{new WindowsEvent{e}};
+    std::unique_ptr<Event> event{std::make_unique<Event>(WindowsEvent{e})};
     EventHandler::addEvent(std::move(event));
 }
 
-Coordinates WindowsInput::getCoord() const
+std::pair<int, int> WindowsInput::getCoord() const
 {
-    return m_coord;
+    return m_coord.getPosition();
 }
 
-Coordinates WindowsInput::getSize() const
+std::pair<int, int> WindowsInput::getSize() const
 {
-    return m_size;
+    return m_size.getDimension();
 }
 
 bool WindowsInput::isMouseInside() const

@@ -4,7 +4,7 @@
 Renderer::Renderer()
 	:Context(SDL_INIT_VIDEO), m_Window(nullptr), m_Renderer(nullptr)
 {
-	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,300,300,SDL_WindowFlags::SDL_WINDOW_SHOWN);
+	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,600,600,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
 	if(!m_Window)
 	{
 		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;

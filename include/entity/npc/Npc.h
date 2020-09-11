@@ -5,7 +5,4 @@
 
 class Npc : public Entity
 {
-
-
-
 };

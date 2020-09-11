@@ -35,7 +35,7 @@ const Map& MapManager::getMap(std::string name)
 			return map;
 		}
 	}
-	return Map("", 0, 0, std::vector<std::vector<MapElement*>>(), "");
+	return maps[0];
 }
 
 void MapManager::loadMap(std::string fileName)

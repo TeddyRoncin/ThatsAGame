@@ -5,12 +5,11 @@
 class MapManager 
 {
 public:
-    static void registerMaps();
-    static const Map& getMap(std::string name);
-
-private:
-    static bool loaded;
     static std::vector<Map> maps;
+    static const Map& getMap(std::string name);
+private:
+    static void registerMaps();
+    static bool loaded;
     static void loadMap(std::string fileName);
 
 protected:

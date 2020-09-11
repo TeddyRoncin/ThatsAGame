@@ -7,5 +7,6 @@ int main(int argc, char* argv[])
 
 	Game test;
 	test.loop();
-    return EXIT_SUCCESS;
+	std::vector<int> a;
+	return EXIT_SUCCESS;
 }

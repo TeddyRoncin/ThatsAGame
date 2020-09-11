@@ -45,8 +45,8 @@ void MouseInput::Update(SDL_Event e)
         break;
     case SDL_MOUSEMOTION:
         {
-            coord.x = e.motion.x;
-            coord.y = e.motion.y;
+            coord.position.first = e.motion.x;
+            coord.position.second = e.motion.y;
             std::unique_ptr<Event> event{new MouseMotionEvent{e}};
             EventHandler::addEvent(std::move(event));
         }

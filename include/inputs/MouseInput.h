@@ -16,7 +16,7 @@ public:
     int keyBeeingPush() const;
 private:
     std::map<int, bool> m_isButtonDown;
-    Coordinates coord;
+    Position<int> coord;
 
     bool isPushDown;
     bool isPushUp;

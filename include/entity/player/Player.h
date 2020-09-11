@@ -4,8 +4,4 @@
 
 class Player : public Entity
 {
-
-public:
-    Player(float x, float y);
-
 };

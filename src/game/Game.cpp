@@ -3,9 +3,9 @@
 #include "game/Game.h"
 
 Game::Game()
-	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("Super Map ^^"))
+	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("map_test"))
 {
-	AddMap(m_CurrentMap); // change this must be polymorphique !!!
+	AddMap(m_CurrentMap);
 	Clear();
 }
 
