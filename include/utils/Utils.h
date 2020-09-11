@@ -3,11 +3,15 @@
 template<typename T>
 struct Position
 {
-public:
 	std::pair<T, T> position;
 
 	Position(const T& x, const T& y)
 		:position(x,y)
+	{
+	}
+
+	Position(const Position& pos)
+		:position(pos)
 	{
 	}
 
@@ -23,6 +27,11 @@ struct Dimension
 
 	Dimension(const T& width, const T& height)
 		:dimension(width, height)
+	{
+	}
+
+	Dimension(const Dimension& dim)
+		:dimension(dim)
 	{
 	}
 
