@@ -5,6 +5,8 @@
 class WindowsInput
 {
 public:
+    WindowsInput();
+    ~WindowsInput() = default;
     void Update(SDL_Event e);
 
     std::pair<int, int> getCoord() const;

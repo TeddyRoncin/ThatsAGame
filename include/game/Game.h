@@ -1,5 +1,7 @@
 #pragma once
 
+#include "entity/player/Player.h"
+
 #include "renderer/Renderer.h"
 #include "inputs/Inputs.h"
 
@@ -14,4 +16,5 @@ public:
 	void loop();
 private:
 	Map m_CurrentMap;
+	Player m_Player;
 };

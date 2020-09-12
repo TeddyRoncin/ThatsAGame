@@ -2,6 +2,10 @@
 
 #include "inputs/MouseInput.h"
 
+MouseInput::MouseInput()
+    :coord(0,0)
+{}
+
 void MouseInput::Update(SDL_Event e)
 {
     isPushUp = false;

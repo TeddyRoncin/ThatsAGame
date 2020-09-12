@@ -2,6 +2,11 @@
 
 #include "inputs/WindowsInput.h"
 
+WindowsInput::WindowsInput()
+    :m_coord(0,0), m_size(0,0)
+{
+}
+
 void WindowsInput::Update(SDL_Event e)
 {
     switch(e.type)

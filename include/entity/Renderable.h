@@ -1,14 +1,14 @@
 #pragma once
 
-// Je vais surement faire hérité renderable de entity pour lui donner l'atribut de position
+#include "entity/Entity.h"
 
-class Renderable
+class Renderable : public Entity
 {
 public:
-	Renderable(float x, float y, float width, float height, const char* _sprite);
-	virtual ~Renderable();
+	Renderable(const char * name, float x, float y, float width, float height, const char* sprite);
+	virtual ~Renderable() override;
 
-	Position<float> m_pos;
+public:
 	Dimension<float> m_dim;
-	const char* sprite;
+	const char* m_sprite;
 };

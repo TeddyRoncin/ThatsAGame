@@ -1,9 +1,11 @@
 #pragma once
 
-// Je vais surement mettre l'attribut de position dan l'entity
-
 class Entity
 {
 public:
-	Entity(const char* name);
+	Entity(const char* name, float x, float y);
+	virtual ~Entity();
+public:
+	const char* m_name;
+	Position<float> m_pos;
 };

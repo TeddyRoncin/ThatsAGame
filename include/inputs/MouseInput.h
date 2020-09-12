@@ -6,6 +6,7 @@ class MouseInput
 {
 public:
     void Update(SDL_Event e);
+    MouseInput();
     ~MouseInput() = default;
 
     bool isDown(int key);

@@ -2,8 +2,8 @@
 
 #include "entity/Renderable.h"
 
-Renderable::Renderable(float x, float y, float width, float height, const char* _sprite)
-	:m_pos(x,y), m_dim(width,height), sprite(_sprite)
+Renderable::Renderable(const char* name, float x, float y, float width, float height, const char* sprite)
+	:Entity(name, x, y), m_dim(width,height), m_sprite(sprite)
 {
 }
 
