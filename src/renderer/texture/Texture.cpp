@@ -46,7 +46,10 @@ Texture::Texture(SDL_Renderer* renderer, const char* dir, size_t x, size_t y, si
 }
 
 Texture::Texture(Texture&& texture)
-	:m_Surface(texture.m_Surface), m_Texture(texture.m_Texture), m_Rect(texture.m_Rect), needBinding(texture.needBinding)
+	:m_Surface(texture.m_Surface),
+	m_Texture(texture.m_Texture),
+	m_Rect(texture.m_Rect),
+	needBinding(texture.needBinding)
 {
 	texture.m_Surface = nullptr;
 	texture.m_Texture = nullptr;
