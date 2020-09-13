@@ -12,7 +12,10 @@ Map::Map(std::string name, int width, int height, std::vector<std::vector<MapEle
 }
 
 Map::Map(const Map& map)
-    :m_Name(map.m_Name), m_Width(map.m_Width), m_Height(map.m_Height), m_BackgroundPath(map.m_BackgroundPath)
+    :m_Name(map.m_Name),
+    m_Width(map.m_Width),
+    m_Height(map.m_Height),
+    m_BackgroundPath(map.m_BackgroundPath)
 {
     for (int x = 0; x < m_Width; x++) {
         m_Elements.push_back(std::vector<MapElement*>());

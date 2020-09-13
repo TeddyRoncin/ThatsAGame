@@ -12,7 +12,7 @@ namespace fs = std::filesystem;
 
 bool MapManager::loaded = false;
 
-std::vector<Map> MapManager::maps {};
+std::vector<Map> MapManager::maps { Map("", 0, 0, {}, "") };
 
 MapManager::MapManager()
 {
