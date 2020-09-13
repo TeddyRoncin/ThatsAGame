@@ -25,7 +25,7 @@ void MapManager::registerMaps()
 	}
 	const std::string PATH = "assets/maps/";
 	for (fs::path file : fs::directory_iterator(PATH)) {
-		if (file.extension() == "json") {
+		if (file.extension().string() == std::string(".json")) {
 			MapManager::loadMap(file.relative_path().string());
 		}
 	}
