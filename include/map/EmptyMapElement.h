@@ -6,10 +6,11 @@
 class EmptyMapElement : public MapElement {
 
 public:
-    EmptyMapElement() {}
-    virtual bool canEntityMoveOn(Entity* entity) override;
-    virtual MapElement* copy() override;
-    virtual const char* getTexturePath() const override;
-    //virtual Texture&& getTexture(size_t x, size_t y) const;
+    EmptyMapElement();
+    virtual ~EmptyMapElement() override;
+    virtual bool canEntityMoveOn(Entity* entity);
+    virtual const char* getTexturePath() const;
+    virtual const size_t getWidth() const override;
+    virtual const size_t getHeight() const override;
 
 };

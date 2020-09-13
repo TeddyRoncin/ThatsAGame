@@ -7,11 +7,12 @@ class PathFinder
 {
 
 public:
-    PathFinder(Map& map);
+    PathFinder(const Map& map);
+    ~PathFinder();
     std::vector<std::pair<int, int>> find(int startX, int startY, int endX, int endY, Entity* entity);
 
 private:
-    Map& m_Map;
+    const Map& m_Map;
 
 private:
     int findCurrentNode(std::vector<Node> openNodes);

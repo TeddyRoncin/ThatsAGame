@@ -20,7 +20,6 @@ Texture::Texture(const char* dir, SDL_Renderer* renderer)
 			std::cerr << "IMG_LoadTextureError : " << IMG_GetError() << std::endl;
 		}
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_Rect.w, &m_Rect.h);
-		SDL_RenderCopy(renderer, m_Texture, nullptr, &m_Rect);
 	}
 }
 
@@ -44,7 +43,6 @@ Texture::Texture(SDL_Renderer* renderer, const char* dir, size_t x, size_t y, si
 	{
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_Rect.w, &m_Rect.h);
 	}
-	SDL_RenderCopy(renderer, m_Texture, nullptr, &m_Rect);
 }
 
 Texture::Texture(Texture&& texture)
@@ -67,14 +65,12 @@ void Texture::Bind(SDL_Renderer* renderer)
 {
 	if(!needBinding)
 		return;
+	m_Texture = SDL_CreateTextureFromSurface(renderer, m_Surface);
+	SDL_FreeSurface(m_Surface);
+	m_Surface = nullptr;
 	if(m_Rect.w == 0 || m_Rect.h == 0)
 	{
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_Rect.w, &m_Rect.h);
 	}
-	SDL_RenderCopy(renderer, m_Texture, nullptr, &m_Rect);
 }
 
-bool Texture::operator<(const Texture& texture) const
-{
-	return ( (m_Rect.w > texture.m_Rect.w) && (m_Rect.h > texture.m_Rect.h) );
-}

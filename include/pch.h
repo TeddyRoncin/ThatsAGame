@@ -16,6 +16,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <list>
 #include <deque>
 #include <stack>
 #include <unordered_map>
@@ -34,3 +35,5 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+
+#include "utils/Utils.h"

@@ -4,12 +4,11 @@
 
 class Scene
 {
+
 public:
-	Scene(Map& map);
+    Scene(Map& map);
+
 private:
+    Map& m_currentMap;
 
-	Map m_currentMap;
-
-	Scene() = default;
-	Scene(const Scene&) = default;
 };

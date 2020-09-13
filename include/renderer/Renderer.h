@@ -5,6 +5,7 @@
 #include "renderer/texture/Texture.h"
 
 #include "map/Map.h"
+#include "entity/player/Player.h"
 
 class Renderer : protected Context
 {
@@ -18,11 +19,11 @@ public:
 	void AddTexture(Texture&& texture, Layer layer = Layer::Middle);
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
-	void RenderMap(Map& map);
-
+	void AddMap(const Map& map);
+	void RenderPlayer(const Player& player);
 
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
-	std::array<std::set<Texture>, Layer::Layer_Length> m_Textures;
+	std::array<std::list<Texture>, Layer::Layer_Length> m_Textures;
 };

@@ -5,15 +5,17 @@
 class WindowsInput
 {
 public:
+    WindowsInput();
+    ~WindowsInput() = default;
     void Update(SDL_Event e);
 
-    Coordinates getCoord() const;
-    Coordinates getSize() const;
+    std::pair<int, int> getCoord() const;
+    std::pair<int, int> getSize() const;
 
     bool isMouseInside() const;
 private:
-    Coordinates m_coord;
-    Coordinates m_size;
+    Position<int> m_coord;
+    Dimension<int> m_size;
 
     bool isMouseIn;
 };

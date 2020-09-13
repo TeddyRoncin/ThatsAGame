@@ -3,7 +3,7 @@
 #include "entity/npc/ai/Node.h"
 
 Node::Node(int posX, int posY, Node& comeFrom, int startX, int startY, int endX, int endY) :
-Entity(posX, posY),
+Entity("node", posX, posY),
 m_ComeFrom(&comeFrom)
 {
     //std::cout << "le come from ds le constructeur ! (sans ptr) : " << m_ComeFrom << std::endl;
@@ -11,7 +11,7 @@ m_ComeFrom(&comeFrom)
 }
 
 Node::Node(int posX, int posY, Node* comeFrom, int startX, int startY, int endX, int endY) :
-Entity(posX, posY),
+Entity("node", posX, posY),
 m_ComeFrom(comeFrom)
 {
     //std::cout << "le come from ds le constructeur ! (avc ptr) : " << m_ComeFrom << std::endl;
@@ -19,7 +19,7 @@ m_ComeFrom(comeFrom)
 }
 
 Node::Node(const Node& node) :
-Entity(node.getX(), node.getY()),
+Entity("node", node.m_pos.getX(), node.m_pos.getY()),
 m_ComeFrom(node.m_ComeFrom),
 m_GCost(node.m_GCost),
 m_FCost(node.m_FCost)
@@ -35,5 +35,5 @@ void Node::computeFCost(int startX, int startY, int endX, int endY)
         return;
     }
     m_GCost = m_ComeFrom->m_GCost + 1;
-    m_FCost = m_GCost + std::abs(std::round(getX()) - endX) + std::abs(std::round(getY()) - endY);
+    m_FCost = m_GCost + std::abs(std::round(m_pos.getX()) - endX) + std::abs(std::round(m_pos.getY()) - endY);
 }

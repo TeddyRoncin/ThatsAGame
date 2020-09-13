@@ -1,15 +1,13 @@
 #pragma once
 
+#include "utils/Utils.h"
+
 class Entity
 {
-
 public:
-    Entity(float x, float y);
-    Entity(const Entity& entity);
-    std::pair<float, float> getPosition() const;
-    float getX() const;
-    float getY() const;
-private:
-    std::pair<float, float> m_Position;
-
+	Entity(const char* name, float x, float y);
+	virtual ~Entity();
+public:
+	const char* m_name;
+	Position<float> m_pos;
 };

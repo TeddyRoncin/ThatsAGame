@@ -1,9 +1,13 @@
 {
-    "name": "Super Map ^^",
-    "width": 3,
-    "height": 3,
+    "name": "map_test",
+    "width": 6,
+    "height": 6,
     "map": {
-        "mapPattern": "assets/maps/map1.png"
+        "mapPattern": "assets/maps/map1.bmp",
+        "tiles": [
+            {"tile": "E", "value": "EMPTY"},
+            {"tile": "W", "value": "WALL"}
+        ]
     },
     "backgroundPath": "assets/textures/test.png"
 }
