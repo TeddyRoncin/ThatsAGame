@@ -1,10 +1,10 @@
 #include "pch.h"
 
-#include "utils/Utils.h"
+#include "utils/RGBColor.h"
 
 bool RGBColor::operator==(RGBColor color)
 {
-    return R == color.R && G == color.G && B == color.B;
+	return ( (R == color.R) && (G == color.G) && (B == color.B) );
 }
 
 RGBColor getPixelColor(SDL_Surface* surface, size_t x, size_t y)

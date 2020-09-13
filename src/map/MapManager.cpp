@@ -3,7 +3,6 @@
 #include "map/MapManager.h"
 #include "map/EmptyMapElement.h"
 #include "map/WallMapElement.h"
-#include "utils/Utils.h"
 #include "bmploader/BMPFile.h"
 #include "bmploader/BMPImage.h"
 

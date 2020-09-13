@@ -1,7 +1,5 @@
 #pragma once
 
-#include "utils/Utils.h"
-
 class Entity
 {
 public:
