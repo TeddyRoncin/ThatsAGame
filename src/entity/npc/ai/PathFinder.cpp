@@ -101,5 +101,6 @@ std::vector<std::pair<int, int>> PathFinder::getPath(int startX, int startY, Nod
         currentNode = *currentNode.m_ComeFrom;
     }
     path.push_back(std::pair<int, int>(std::round(currentNode.m_pos.getX()), std::round(currentNode.m_pos.getY())));
+    std::reverse(path.begin(), path.end());
     return path;
 }

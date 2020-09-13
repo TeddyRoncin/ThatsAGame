@@ -1,6 +1,8 @@
 #pragma once
 
 #include "entity/player/Player.h"
+#include "entity/npc/Npc.h"
+#include "entity/npc/SimpleNpc.h"
 
 #include "renderer/Renderer.h"
 #include "inputs/Inputs.h"
@@ -17,4 +19,5 @@ public:
 private:
 	Map m_CurrentMap;
 	Player m_Player;
+	std::vector<Npc*> m_Entities;
 };
