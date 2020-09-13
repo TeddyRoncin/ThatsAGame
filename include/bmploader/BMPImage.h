@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utils/Utils.h"
+#include "utils/RGBColor.h"
 
 class BMPImage
 {
