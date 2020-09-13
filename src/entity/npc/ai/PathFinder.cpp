@@ -2,7 +2,7 @@
 
 #include "entity/npc/ai/PathFinder.h"
 
-PathFinder::PathFinder(Map map) :
+PathFinder::PathFinder(Map& map) :
 m_Map(map)
 {
 
@@ -23,7 +23,7 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
         if (std::round(currentNode.getX()) == endX && std::round(currentNode.getY()) == endY) {
             return getPath(startX, startY, currentNode);
         }
-        std::vector<Node> newNeighbourNodes = getNeighbourNodes(currentNode, startX, startY, endX, endY, m_Map, entity, closedNodes);
+        std::vector<Node> newNeighbourNodes = getNeighbourNodes(currentNode, startX, startY, endX, endY, entity, closedNodes);
         for (Node newNeighbourNode : newNeighbourNodes) {
             if (!containsNode(openNodes, newNeighbourNode)) {
                 openNodes.push_back(newNeighbourNode);
@@ -55,7 +55,7 @@ int PathFinder::findCurrentNode(std::vector<Node> openNodes)
     return currentNodeIndex;
 }
 
-std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Map map, Entity* entity, std::vector<Node>& closedNodes)
+std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Entity* entity, std::vector<Node>& closedNodes)
 {
     std::vector<Node> neighbourNodes;
     std::vector<std::pair<int, int>> neighbourNodeCoords {
@@ -65,9 +65,9 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
         std::pair<int, int>(std::round(currentNode.getX() - 1), std::round(currentNode.getY()))
     };
     for (auto[x, y] : neighbourNodeCoords) {
-        if (x >= 0 && x < map.getWidth() &&
-        y >= 0 && y < map.getHeight() &&
-        map.canEntityMoveAt(x, y, entity) &&
+        if (x >= 0 && x < m_Map.getWidth() &&
+        y >= 0 && y < m_Map.getHeight() &&
+        m_Map.canEntityMoveAt(x, y, entity) &&
         !containsNode(closedNodes, std::pair<int, int>(x, y))) {
             neighbourNodes.push_back(Node(x, y, closedNodes[closedNodes.size() - 1], startX, startY, endX, endY));
         }

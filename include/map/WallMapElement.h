@@ -6,9 +6,10 @@
 class WallMapElement : public MapElement {
 
 public:
-    virtual bool canEntityMoveOn(Entity* entity);
-    virtual MapElement* copy();
-    virtual const char* getTexturePath() const;
-    //virtual Texture getTexture(size_t x, size_t y) const;
+    WallMapElement() {}
+    virtual bool canEntityMoveOn(Entity* entity) override;
+    virtual MapElement* copy() override;
+    virtual const char* getTexturePath() const override;
+    //virtual Texture&& getTexture(size_t x, size_t y) const;
 
 };

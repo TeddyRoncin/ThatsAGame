@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "scene/Scene.h"
 
 Scene::Scene(Map& map)

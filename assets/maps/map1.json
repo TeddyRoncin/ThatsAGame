@@ -3,15 +3,7 @@
     "width": 3,
     "height": 3,
     "map": {
-        "mapPattern": [
-            ["W", "W", "W"],
-            ["W", "W", "W"],
-            ["W", "W", "W"]
-        ],
-        "tiles": [
-            {"tile": "E", "value": "EMPTY"},
-            {"tile": "W", "value": "WALL"}
-        ]
+        "mapPattern": "assets/maps/map1.png"
     },
     "backgroundPath": "assets/textures/test.png"
 }

@@ -3,6 +3,7 @@ Makefile
 
 # vscode files
 .vscode
+.vs
 target
 
 # Vianney's bin files

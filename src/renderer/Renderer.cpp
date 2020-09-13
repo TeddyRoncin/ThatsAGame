@@ -57,7 +57,7 @@ void Renderer::RenderMap(Map& map)
 	std::cerr << "Here RenderMap()" << std::endl;
 	m_Textures[Layer::Background].emplace(Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0));
 	int x(0), y(0);
-	std::vector<std::vector<MapElement*>> mapElements = map.getMapElements();
+	//std::vector<std::vector<MapElement*>> mapElements = map.getMapElements();
 	for(std::vector<MapElement*> raw : map.getMapElements())
 	{
 		for(MapElement* element : raw)
