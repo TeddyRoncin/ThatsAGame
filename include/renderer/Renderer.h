@@ -20,7 +20,7 @@ public:
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
 	void AddMap(const Map& map);
-	void RenderPlayer(const Player& player);
+	void RenderPlayer(const Renderable& player);
 
 private:
 	SDL_Window* m_Window;

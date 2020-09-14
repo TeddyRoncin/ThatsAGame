@@ -70,12 +70,14 @@ void Renderer::AddMap(const Map& map)
 	}
 }
 
-void Renderer::RenderPlayer(const Player& player)
+void Renderer::RenderPlayer(const Renderable& player)
 {
 	Texture texture(m_Renderer, player.m_sprite, 
-		(int)player.m_pos.getX(), (int)player.m_pos.getY(), 
+		(int) (player.m_pos.getX()*100), (int)(player.m_pos.getY() * 100), 
 		(int)player.m_dim.getWidth(), (int)player.m_dim.getHeight()
 	);
 	SDL_RenderCopy(m_Renderer, texture.m_Texture, nullptr, &texture.m_Rect);
 	SDL_RenderPresent(m_Renderer);
 }
+
+

@@ -81,13 +81,5 @@ int Map::getHeight() const
 
 std::vector<std::vector<MapElement*>> Map::getMapElements() const
 {
-    for (int x = 0; x < m_Width; x++)
-    {
-        for (int y = 0; y < m_Height; y++)
-        {
-			Texture temp = m_Elements[x][y]->getTexture(0, 0);
-            std::cout << temp.needBinding << std::endl;
-        }
-    }
     return m_Elements;
 }

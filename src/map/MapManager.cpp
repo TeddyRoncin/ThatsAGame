@@ -79,5 +79,12 @@ void MapManager::loadMap(std::string fileName)
 			}
 		}
 	}
+	int i;
+	/*for (std::vector<MapElement*> column : mapElements) {
+		for (MapElement* elt : column) {
+			i++;
+			std::cout << "salut" << std::endl;
+		}
+	}*/
 	MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
 }
