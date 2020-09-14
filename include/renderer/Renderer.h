@@ -5,7 +5,7 @@
 #include "renderer/texture/Texture.h"
 
 #include "map/Map.h"
-#include "entity/player/Player.h"
+#include "entity/Entity.h"
 
 class Renderer : protected Context
 {
@@ -20,7 +20,7 @@ public:
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
 	void AddMap(const Map& map);
-	void RenderPlayer(const Renderable& player);
+	void RenderEntity(const Entity& ent);
 
 private:
 	SDL_Window* m_Window;
