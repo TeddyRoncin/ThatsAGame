@@ -70,9 +70,9 @@ void MapManager::loadMap(std::string fileName)
 		for (size_t x(0); x < height; x++) {
 			RGBColor color = image.getRGBColor(x, y);
 			if (color == RGBColor{255, 255, 255}) {
-				mapElements[x].push_back(new EmptyMapElement());
+				mapElements[y].push_back(new EmptyMapElement());
 			} else if (color == RGBColor{0, 0, 0}) {
-				mapElements[x].push_back(new WallMapElement());
+				mapElements[y].push_back(new WallMapElement());
 			} else {
 				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 				return;
