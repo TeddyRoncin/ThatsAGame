@@ -2,7 +2,7 @@
 
 #include "entity/npc/Npc.h"
 
-Npc::Npc(char* name, int x, int y, int width, int height, char* sprite) :
+Npc::Npc(char* name, int x, int y, float width, float height, char* sprite) :
     Renderable(name, x, y, width, height, sprite)
 {
 

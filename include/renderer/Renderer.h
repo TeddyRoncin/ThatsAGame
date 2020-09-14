@@ -20,10 +20,14 @@ public:
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
 	void AddMap(const Map& map);
-	void RenderPlayer(const Renderable& player);
+	void RenderEntity(const Renderable& entity);
 
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
 	std::array<std::list<Texture>, Layer::Layer_Length> m_Textures;
+	size_t m_MapWidth;
+	size_t m_MapHeight;
+	size_t WINDOW_WIDTH = 600;
+	size_t WINDOW_HEIGHT = 600;
 };

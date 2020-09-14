@@ -5,7 +5,7 @@
 #include "entity/npc/ai/PathFinder.h"
 
 SimpleNpc::SimpleNpc(const Map& map) :
-    Npc("salut", 0, 2, 40, 40, "assets/textures/test.png")
+    Npc("salut", 0, 2, 0.5, 0.5, "assets/textures/test.png")
 {
     PathFinder pathFinder(map);
     m_PathToTravel = pathFinder.find(0, 2, 2, 2, this);
@@ -28,5 +28,4 @@ void SimpleNpc::update()
     if (m_pos.getX() == m_PathToTravel[0].first && m_pos.getY() == m_PathToTravel[0].second) {
         m_PathToTravel.erase(m_PathToTravel.begin());
     }
-    std::cout << m_pos.getX() << "   " << m_pos.getY() << std::endl;
 }
