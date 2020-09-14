@@ -25,7 +25,7 @@ int BMPImage::getColor(size_t x, size_t y)
 
 RGBColor BMPImage::getRGBColor(size_t x, size_t y)
 {
-    size_t pixelIndex = x * m_Height + y;
+    size_t pixelIndex = y * m_Width + x;
     RGBColor color;
     color.R = m_Image[pixelIndex] & 0xFF;
     color.G = (m_Image[pixelIndex] >> 2) & 0xFF;

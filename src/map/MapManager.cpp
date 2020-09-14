@@ -65,10 +65,9 @@ void MapManager::loadMap(std::string fileName)
 		return;
 	}
 	std::vector<std::vector<MapElement*>> mapElements;
-	size_t x = 0, y = 0;
-	for (; x < width; x++) {
+	for (size_t y(0); y < width; y++) {
 		mapElements.push_back(std::vector<MapElement*>());
-		for (; y < height; y++) {
+		for (size_t x(0); x < height; x++) {
 			RGBColor color = image.getRGBColor(x, y);
 			if (color == RGBColor{255, 255, 255}) {
 				mapElements[x].push_back(new EmptyMapElement());
