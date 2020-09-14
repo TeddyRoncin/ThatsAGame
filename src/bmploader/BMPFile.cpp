@@ -23,12 +23,12 @@ BMPImage BMPFile::load()
     }
     loadFileHeader();
     loadImageHeader();
-    std::cout   << "m_Offset : " << m_Offset << std::endl
-                << "m_ImageHeaderSize : " << m_ImageHeaderSize << std::endl
-                << "m_ImageWidth : " << m_ImageWidth << std::endl
-                << "m_ImageHeight : " << m_ImageHeight << std::endl
-                << "m_BitDepth : " << m_BitDepth << std::endl
-                << "m_CompressionMethod : " << m_CompressionMethod << std::endl;
+    // std::cout   << "m_Offset : " << m_Offset << std::endl
+    //             << "m_ImageHeaderSize : " << m_ImageHeaderSize << std::endl
+    //             << "m_ImageWidth : " << m_ImageWidth << std::endl
+    //             << "m_ImageHeight : " << m_ImageHeight << std::endl
+    //             << "m_BitDepth : " << m_BitDepth << std::endl
+    //             << "m_CompressionMethod : " << m_CompressionMethod << std::endl;
     if (!loadImage()) {
         return BMPImage(0, 0, 0, std::vector<int>());
     }

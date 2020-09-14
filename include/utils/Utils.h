@@ -15,8 +15,8 @@ struct Position
 	{
 	}
 
-	T getX() const { return (std::round(position.first * 100) / 100); }
-	T getY() const { return (std::round(position.second * 100) / 100); }
+	T getX() const { return position.first; }
+	T getY() const { return position.second; }
 	std::pair<T, T> getPosition() const { return (position); }
 };
 
