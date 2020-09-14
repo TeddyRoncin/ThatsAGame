@@ -9,10 +9,11 @@ public:
     int getFpsCap();
     void setFpsCap(int fpsCap);
     void waitForNextFrame();
+    float getFps();
 
 private:
     int m_FpsCap;
-    int m_TimeRunning;
+    std::chrono::time_point<std::chrono::system_clock> m_StartTime;
     int m_LastFrameTime;
     int m_FrameTime;
     int getCurrentTime();

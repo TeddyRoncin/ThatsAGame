@@ -78,7 +78,6 @@ void Renderer::RenderEntity(const Renderable& entity)
 {
 	size_t ELEMENT_WIDTH = WINDOW_WIDTH / m_MapWidth;
 	size_t ELEMENT_HEIGHT = WINDOW_HEIGHT / m_MapHeight;
-	std::cout << ELEMENT_WIDTH * entity.m_dim.getWidth() << std::endl;
 	Texture texture(m_Renderer, entity.m_sprite,
 		ELEMENT_WIDTH * entity.m_pos.getX(), ELEMENT_HEIGHT * entity.m_pos.getY(),
 		ELEMENT_WIDTH * entity.m_dim.getWidth(), ELEMENT_HEIGHT * entity.m_dim.getHeight()

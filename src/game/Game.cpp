@@ -26,7 +26,7 @@ Game::~Game()
 
 void Game::loop()
 {
-	Timer timer(10);
+	Timer timer(-1);
 	while(!isQuitting())
 	{
 		Render();
@@ -37,6 +37,7 @@ void Game::loop()
 		}
 		SDL_Event events;
 		eventUpdate(events);
+		std::cout << "FPS : " << timer.getFps() << std::endl;
 		timer.waitForNextFrame();
 	}
 }
