@@ -7,6 +7,11 @@ Input::Input()
 {
 }
 
+Input::~Input()
+{
+    EventHandler::kill();
+}
+
 void Input::eventUpdate(SDL_Event events)
 {
     while( SDL_PollEvent(&events))
@@ -39,6 +44,8 @@ void Input::eventUpdate(SDL_Event events)
                 break;
         }
     }
+
+    EventHandler::removeOld();
 }
 
 bool Input::isQuitting()

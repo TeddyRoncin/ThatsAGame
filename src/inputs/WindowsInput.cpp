@@ -42,7 +42,7 @@ void WindowsInput::Update(SDL_Event e)
         break;
     }
 
-    std::unique_ptr<Event> event{std::make_unique<Event>(WindowsEvent{e})};
+    std::unique_ptr<Event> event{std::make_unique<WindowsEvent>(e)};
     EventHandler::addEvent(std::move(event));
 }
 

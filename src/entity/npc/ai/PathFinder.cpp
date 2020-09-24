@@ -97,7 +97,7 @@ std::vector<std::pair<int, int>> PathFinder::getPath(int startX, int startY, Nod
     std::vector<std::pair<int, int>> path;
     while (std::round(currentNode.m_pos.getX()) != startX || std::round(currentNode.m_pos.getY()) != startY) {
         path.push_back(std::pair<int, int>(std::round(currentNode.m_pos.getX()), std::round(currentNode.m_pos.getY())));
-        std::cout << currentNode.m_ComeFrom << std::endl;
+        //std::cout << currentNode.m_ComeFrom << std::endl;
         currentNode = *currentNode.m_ComeFrom;
     }
     path.push_back(std::pair<int, int>(std::round(currentNode.m_pos.getX()), std::round(currentNode.m_pos.getY())));

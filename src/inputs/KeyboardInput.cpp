@@ -44,7 +44,7 @@ void KeyboardInput::Update(SDL_Event e)
         break;
     };
 
-    std::unique_ptr<Event> event{new KeyboardEvent{e}};
+    std::unique_ptr<Event> event{std::make_unique<KeyboardEvent>(e)};
     EventHandler::addEvent(std::move(event));
 }
 

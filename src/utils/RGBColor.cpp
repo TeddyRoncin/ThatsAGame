@@ -10,7 +10,7 @@ bool RGBColor::operator==(RGBColor color)
 RGBColor getPixelColor(SDL_Surface* surface, size_t x, size_t y)
 {
     RGBColor color;
-    std::cout << "debut" << ((Uint32*) surface->pixels)[y * surface->w + x] << "fin" << std::endl;
+    //std::cout << "debut" << ((Uint32*) surface->pixels)[y * surface->w + x] << "fin" << std::endl;
     /*void* test;
     memcpy(test, surface->pixels, surface->pitch * surface->h);
     std::cout << *test << std::endl;*/

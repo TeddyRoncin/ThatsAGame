@@ -103,9 +103,9 @@ bool BMPFile::loadImage()
     }
     for (int y = m_ImageHeight - 1; y >= 0; y--) {
         for (int x = 0; x < m_ImageWidth; x++) {
-            std::cout << x << y << std::endl;
+            //std::cout << x << y << std::endl;
             m_Image[x * m_ImageHeight + y] = getValue(3);
-            std::cout << m_Image[x * m_ImageHeight + y] << std::endl;
+            //std::cout << m_Image[x * m_ImageHeight + y] << std::endl;
         }
         m_CurrentByte += 4 - (m_ImageHeight * 3) % 4;
     }

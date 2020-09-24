@@ -37,7 +37,7 @@ void Game::loop()
 		}
 		SDL_Event events;
 		eventUpdate(events);
-		std::cout << "FPS : " << timer.getFps() << std::endl;
+		//std::cout << "FPS : " << timer.getFps() << std::endl;
 		timer.waitForNextFrame();
 	}
 }
