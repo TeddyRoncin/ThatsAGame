@@ -18,17 +18,17 @@ void SimpleNpc::update()
         return;
     }
     if (m_pos.getX() == m_PathToTravel[0].first && m_pos.getY() < m_PathToTravel[0].second) {
-        m_pos.position.second += 0.02;
-        std::cout << "going up" << std::endl;
+        m_pos.position.second += 0.1;
+        // std::cout << "going up" << std::endl;
     } else if (m_pos.getX() == m_PathToTravel[0].first && m_pos.getY() > m_PathToTravel[0].second) {
-        m_pos.position.second -= 0.02;
-        std::cout << "going down" << std::endl;
+        m_pos.position.second -= 0.1;
+        // std::cout << "going down" << std::endl;
     } else if (m_pos.getX() < m_PathToTravel[0].first && m_pos.getY() == m_PathToTravel[0].second) {
-        std::cout << "going right" << std::endl;
-        m_pos.position.first += 0.02;
+        // std::cout << "going right" << std::endl;
+        m_pos.position.first += 0.1;
     } else {
-        std::cout << "going left" << std::endl;
-        m_pos.position.first -= 0.02;
+        // std::cout << "going left" << std::endl;
+        m_pos.position.first -= 0.1;
     }
     if (std::round(m_pos.getX() * 100) == std::round(m_PathToTravel[0].first * 100) &&
         std::round(m_pos.getY() * 100) == std::round(m_PathToTravel[0].second * 100)) {

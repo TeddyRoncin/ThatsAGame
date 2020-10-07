@@ -53,15 +53,15 @@ void MapManager::loadMap(std::string fileName)
 	std::string mapPatternFile = root.get<std::string>("map.mapPattern");
 	BMPImage image = BMPFile(mapPatternFile).load();
 	if (image.getWidth() == 0) {
-		std::cerr << "Could not load image for map " << fileName << std::endl;
+		// std::cerr << "Could not load image for map " << fileName << std::endl;
 		return;
 	}
 	if (width != image.getWidth()) {
-		std::cerr << "Width of the map is not equal to the width given in the json" << std::endl;
+		// std::cerr << "Width of the map is not equal to the width given in the json" << std::endl;
 		return;
 	}
 	if (height != image.getHeight()) {
-		std::cerr << "Height of the map is not equal to the height given in the json" << std::endl;
+		// std::cerr << "Height of the map is not equal to the height given in the json" << std::endl;
 		return;
 	}
 	std::vector<std::vector<MapElement*>> mapElements;
@@ -74,7 +74,7 @@ void MapManager::loadMap(std::string fileName)
 			} else if (color == RGBColor{0, 0, 0}) {
 				mapElements[x].push_back(new WallMapElement());
 			} else {
-				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
+				// std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 				return;
 			}
 		}

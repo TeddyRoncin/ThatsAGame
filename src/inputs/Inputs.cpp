@@ -32,10 +32,10 @@ void Input::eventUpdate(SDL_Event events)
             case SDL_QUIT: //the close button of the window
             case SDL_APP_TERMINATING: //in case of the OS is closing the app
                 m_quit = true;
-                std::cout << "Quit !" << std::endl;
+                // std::cout << "Quit !" << std::endl;
                 break;
             default:
-                std::cerr << "Event unandled : " << events.type << std::endl; //TODO : HANDLE THIS
+                // std::cerr << "Event unandled : " << events.type << std::endl; //TODO : HANDLE THIS
                 break;
         }
     }

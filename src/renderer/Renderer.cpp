@@ -7,12 +7,12 @@ Renderer::Renderer()
 	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
 	if(!m_Window)
 	{
-		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
+		// std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
 	}
 	m_Renderer = SDL_CreateRenderer(m_Window,-1,0);
 	if(!m_Renderer)
 	{
-		std::cerr << "SDL_CreateRendererError: " << SDL_GetError() << std::endl;
+		// std::cerr << "SDL_CreateRendererError: " << SDL_GetError() << std::endl;
 	}
 }
 

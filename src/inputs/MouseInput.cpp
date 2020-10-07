@@ -62,7 +62,7 @@ void MouseInput::Update(SDL_Event e)
         }
         break;
     default:
-        std::cerr << "Mouse event unandled : " << e.type << std::endl;
+        // std::cerr << "Mouse event unandled : " << e.type << std::endl;
         break;
     }
 
