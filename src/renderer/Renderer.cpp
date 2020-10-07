@@ -26,9 +26,15 @@ void Renderer::Clear()
 {
 	SDL_SetRenderDrawColor(m_Renderer,0,0,0,255);
 	SDL_RenderClear(m_Renderer);
+	SDL_RenderPresent(m_Renderer);
 }
 
-void Renderer::Render()
+void Renderer::Present()
+{
+	SDL_RenderPresent(m_Renderer);
+}
+
+void Renderer::UpdateRender()
 {
 	for(auto& Layer : m_Textures)
 	{
@@ -37,7 +43,6 @@ void Renderer::Render()
 			SDL_RenderCopy(m_Renderer, texture.m_Texture, nullptr, &texture.m_Rect);
 		}
 	}
-	SDL_RenderPresent(m_Renderer);
 }
 
 void Renderer::AddTexture(Texture&& texture, Layer layer)

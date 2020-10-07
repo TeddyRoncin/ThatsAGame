@@ -5,7 +5,7 @@
 
 Game::Game()
 	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("map_test")),
-	m_Player("first player", 100, 100, 0.5, 0.5, "assets/img/test.png"), m_Entities()
+	m_Player("first player", 100, 100, 100.0f, 100.0f, "assets/img/test.png"), m_Entities()
 {
 	m_Entities.push_back(new SimpleNpc(m_CurrentMap));
 	AddMap(m_CurrentMap);
@@ -29,16 +29,15 @@ void Game::loop()
 	Timer timer(-1);
 	while(!isQuitting())
 	{
+		UpdateRender();
 		RenderEntity(m_Player);
 		for (Npc* entity : m_Entities) {
 			entity->update();
 			RenderEntity(*entity);
 		}
-		Render();
+		Present();
 		SDL_Event events;
 		eventUpdate(events);
-		//std::cout << "FPS : " << timer.getFps() << std::endl;
 		timer.waitForNextFrame();
-		Clear();
 	}
 }

@@ -14,7 +14,8 @@ public:
 	~Renderer();
 
 	void Clear();
-	void Render();
+	void UpdateRender();
+	void Present();
 
 	void AddTexture(Texture&& texture, Layer layer = Layer::Middle);
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
