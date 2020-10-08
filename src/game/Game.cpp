@@ -27,6 +27,7 @@ Game::~Game()
 void Game::loop()
 {
 	Timer timer(-1);
+	Entity ent("font test", 10.0f, 10.0f);
 	while(!isQuitting())
 	{
 		UpdateRender();
@@ -35,6 +36,7 @@ void Game::loop()
 			entity->update();
 			RenderEntity(*entity);
 		}
+		RenderEntity(ent);
 		Present();
 		SDL_Event events;
 		eventUpdate(events);
