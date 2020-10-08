@@ -18,6 +18,5 @@ int main(int argc, char* argv[])
 	return EXIT_SUCCESS;*/
 	Game test;
 	test.loop();
-	std::vector<int> a;
 	return EXIT_SUCCESS;
 }

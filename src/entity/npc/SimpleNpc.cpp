@@ -5,7 +5,7 @@
 #include "entity/npc/ai/PathFinder.h"
 
 SimpleNpc::SimpleNpc(const Map& map) :
-    Npc("npc pathfinding Teddy", 0, 2, 100.0f, 100.0f, "assets/textures/test.png")
+    Npc("npc pathfinding Teddy", 0.0f, 400.0f, 200.0f, 200.0f, "assets/textures/test.png")
 {
     PathFinder pathFinder(map);
     m_PathToTravel = pathFinder.find(0, 2, 2, 2, this);
@@ -17,21 +17,21 @@ void SimpleNpc::update()
     if (m_PathToTravel.size() == 0) {
         return;
     }
-    if (m_pos.getX() == m_PathToTravel[0].first && m_pos.getY() < m_PathToTravel[0].second) {
-        m_pos.position.second += 0.1f;
+    if (m_pos.getX()/200.0f == m_PathToTravel[0].first &&
+        m_pos.getY()/200.0f == m_PathToTravel[0].second) {
+        m_PathToTravel.erase(m_PathToTravel.begin());
+    }
+    if (m_pos.getX()/200.0f == m_PathToTravel[0].first && m_pos.getY()/200.0f < m_PathToTravel[0].second) {
+        m_pos.position.second += 0.5f;
         //std::cout << "going up" << std::endl;
-    } else if (m_pos.getX() == m_PathToTravel[0].first && m_pos.getY() > m_PathToTravel[0].second) {
-        m_pos.position.second -= 0.1f;
+    } else if (m_pos.getX()/200.0f == m_PathToTravel[0].first && m_pos.getY()/200.0f > m_PathToTravel[0].second) {
+        m_pos.position.second -= 0.5f;
         //std::cout << "going down" << std::endl;
-    } else if (m_pos.getX() < m_PathToTravel[0].first && m_pos.getY() == m_PathToTravel[0].second) {
+    } else if (m_pos.getX()/200.0f < m_PathToTravel[0].first && m_pos.getY()/200.0f == m_PathToTravel[0].second) {
         //std::cout << "going right" << std::endl;
-        m_pos.position.first += 0.1f;
+        m_pos.position.first += 0.5f;
     } else {
         //std::cout << "going left" << std::endl;
-        m_pos.position.first -= 0.1f;
-    }
-    if (std::round(m_pos.getX() * 100) == std::round(m_PathToTravel[0].first * 100) &&
-        std::round(m_pos.getY() * 100) == std::round(m_PathToTravel[0].second * 100)) {
-        m_PathToTravel.erase(m_PathToTravel.begin());
+        m_pos.position.first -= 0.5f;
     }
 }

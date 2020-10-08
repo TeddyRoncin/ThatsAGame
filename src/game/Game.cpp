@@ -5,7 +5,7 @@
 
 Game::Game()
 	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("map_test")),
-	m_Player("first player", 100, 100, 100.0f, 100.0f, "assets/img/test.png"), m_Entities()
+	m_Player("first player", 100, 100, 100.0f, 100.0f, "assets/img/test.png")
 {
 	m_Entities.push_back(new SimpleNpc(m_CurrentMap));
 	AddMap(m_CurrentMap);
