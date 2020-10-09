@@ -4,7 +4,7 @@
 Renderer::Renderer()
 	:Context(SDL_INIT_VIDEO), m_Window(nullptr), m_Renderer(nullptr)
 {
-	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
+	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,600,600,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
 	if(!m_Window)
 	{
 		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
@@ -54,27 +54,25 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 
 void Renderer::AddMap(const Map& map)
 {
-	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(), Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
+	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(), Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0, SDL_GetWindowSurface(m_Window)->w, SDL_GetWindowSurface(m_Window)->h));
 	auto test = map.getMapElements();
-	m_MapWidth = map.getWidth();
-	m_MapHeight = map.getHeight();
-	size_t ELEMENT_WIDTH = WINDOW_WIDTH / m_MapWidth;
-	size_t ELEMENT_HEIGHT = WINDOW_HEIGHT / m_MapHeight;
+	size_t xEnlargement = SDL_GetWindowSurface(m_Window)->w / map.getWidth();
+	size_t yEnlargement = SDL_GetWindowSurface(m_Window)->h / map.getHeight();
 	for(size_t i (0); i < test.size(); i++)
 	{
 		for(size_t k(0); k < test[i].size(); k++)
 		{
 			m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].end(),
 				Texture(m_Renderer, test[i][k]->getTexturePath(),
-					ELEMENT_WIDTH * i, ELEMENT_WIDTH * k,
-					ELEMENT_HEIGHT, ELEMENT_HEIGHT
+					xEnlargement * i, yEnlargement * k,
+					xEnlargement, yEnlargement
 				)
 			);
 		}
 	}
 }
 
-void Renderer::RenderEntity(const Entity& ent)
+void Renderer::RenderEntity(const Entity& ent, size_t mapWidth, size_t mapHeight)
 {
-	ent.Render(m_Renderer);
+	ent.Render(m_Renderer, SDL_GetWindowSurface(m_Window)->w / mapWidth, SDL_GetWindowSurface(m_Window)->h / mapHeight);
 }

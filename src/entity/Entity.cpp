@@ -11,7 +11,7 @@ Entity::~Entity()
 {
 }
 
-void Entity::Render(SDL_Renderer* renderer) const
+void Entity::Render(SDL_Renderer* renderer, int xEnlargement, int yEnlargement) const
 {
 	TTF_Font* Sans = TTF_OpenFont("assets/font/fontbase.ttf", 24);
 

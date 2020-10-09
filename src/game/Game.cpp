@@ -4,10 +4,13 @@
 #include "utils/Timer.h"
 
 Game::Game()
-	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("map_test")),
+	:Renderer(),
+	Input(),
+	MapManager(),
+	m_CurrentMap(getMap("map_test")),
 	m_Player("first player", 100, 100, 0.5, 0.5, "assets/img/test.png"), m_Entities()
 {
-	m_Entities.push_back(new SimpleNpc(m_CurrentMap));
+	//m_Entities.push_back(new SimpleNpc(m_CurrentMap));
 	AddMap(m_CurrentMap);
 	auto[playerx, playery] = m_Player.m_pos.getPosition();
 	auto[playerw, playerh] = m_Player.m_dim.getDimension();
@@ -26,18 +29,20 @@ Game::~Game()
 
 void Game::loop()
 {
-	Timer timer(-1);
+	Timer timer(100);
 	while(!isQuitting())
 	{
 		Render();
-		RenderEntity(m_Player);
-		for (Npc* entity : m_Entities) {
+		RenderEntity(m_Player, m_CurrentMap.getWidth(), m_CurrentMap.getHeight());
+		for (Npc* entity : m_CurrentMap.getEntities()) {
 			entity->update();
-			RenderEntity(*entity);
+			RenderEntity(*entity, m_CurrentMap.getWidth(), m_CurrentMap.getHeight());
+			std::cout << "salut !" << std::endl;
 		}
 		SDL_Event events;
 		eventUpdate(events);
 		std::cout << "FPS : " << timer.getFps() << std::endl;
 		timer.waitForNextFrame();
+		//return;
 	}
 }
