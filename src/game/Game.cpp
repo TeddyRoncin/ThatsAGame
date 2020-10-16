@@ -5,11 +5,8 @@
 #include "entity/npc/SimpleNpc.h"
 
 Game::Game()
-	:Renderer(),
-	Input(),
-	MapManager(),
-	m_CurrentMap(getMap("map_test")),
-	m_Player("first player", 100, 100, 0.5, 0.5, "assets/img/test.png"), m_Entities()
+	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("map_test")),
+	m_Player("first player", 0.0f, 2.0f, 100.0f, 100.0f, "assets/textures/test2.png")
 {
 	m_Entities.push_back(new SimpleNpc(0, 0));
 	AddMap(m_CurrentMap);

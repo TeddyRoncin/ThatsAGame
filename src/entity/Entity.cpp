@@ -22,8 +22,8 @@ void Entity::Render(SDL_Renderer* renderer, int xEnlargement, int yEnlargement) 
 	SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 
 	SDL_Rect Message_rect;
-	Message_rect.x = (int)m_pos.getX();
-	Message_rect.y = (int)m_pos.getY();
+	Message_rect.x = (int) (m_pos.getX() * xEnlargement);
+	Message_rect.y = (int) (m_pos.getY() * yEnlargement);
 	Message_rect.w = 190;
 	Message_rect.h = 50;
 
