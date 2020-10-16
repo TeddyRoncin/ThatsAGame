@@ -38,11 +38,11 @@ void WindowsInput::Update(SDL_Event e)
     case SDL_WINDOWEVENT_HIT_TEST:
         break; //this is ugly but if we need that we'll see later about that
     default:
-        std::cerr << "Window event unandled : " << e.type << std::endl;
+        // std::cerr << "Window event unandled : " << e.type << std::endl;
         break;
     }
 
-    std::unique_ptr<Event> event{std::make_unique<Event>(WindowsEvent{e})};
+    std::unique_ptr<Event> event{std::make_unique<WindowsEvent>(e)};
     EventHandler::addEvent(std::move(event));
 }
 

@@ -14,9 +14,11 @@ release
 
 obj
 bin
+bin-int
 premake5
 premake5.lua
 proj.make
+Proj.make
 
 # PCH
 include/pch.h.gch

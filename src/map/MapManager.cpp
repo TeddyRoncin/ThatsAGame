@@ -14,7 +14,7 @@ namespace fs = std::filesystem;
 bool MapManager::loaded = false;
 
 MapManager::MapManager() :
-	m_Maps { Map("", 0, 0, {}, "", {}) }
+	m_Maps { Map("", 0, 0, {}, "" , {} ) }
 {
 	registerMaps();
 }
@@ -81,11 +81,11 @@ void MapManager::loadMap(std::string fileName)
 				return;
 			}
 			if (color.B == 255) {
+				std::cout << "on a une entité !" << std::endl;
 				entities.push_back(new SimpleNpc(x, y));
-			}
+			} 
 		}
 	}
-	std::cout << fileName << std::endl;
-	Map map(name, width, height, mapElements, backgroundPath, entities);
-	m_Maps.push_back(map);
+	//Map map(name, width, height, mapElements, backgroundPath, entities);
+	m_Maps.push_back(Map(name, width, height, mapElements, backgroundPath, entities));
 }

@@ -6,7 +6,7 @@
 class Npc : public Renderable
 {
 public:
-    Npc(char* name, int x, int y, float width, float height, char* sprite);
+    Npc(const char* name, float x, float y, float width, float height, const char* sprite);
     virtual void update() = 0;
 
 };

@@ -21,6 +21,7 @@ public:
     bool canEntityMoveAt(int x, int y, Entity* entity) const;
     MapElement* getAt(int x, int y) const;
     std::vector<std::vector<MapElement*>> getMapElements() const;
+    //const Map& copy() const;
 
 private:
     std::string m_Name;

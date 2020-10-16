@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "renderer/Renderer.h"
+#include "map/WallMapElement.h"
 
 Renderer::Renderer()
 	:Context(SDL_INIT_VIDEO), m_Window(nullptr), m_Renderer(nullptr)
@@ -7,12 +8,12 @@ Renderer::Renderer()
 	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,600,600,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
 	if(!m_Window)
 	{
-		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
+		// std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
 	}
 	m_Renderer = SDL_CreateRenderer(m_Window,-1,0);
 	if(!m_Renderer)
 	{
-		std::cerr << "SDL_CreateRendererError: " << SDL_GetError() << std::endl;
+		// std::cerr << "SDL_CreateRendererError: " << SDL_GetError() << std::endl;
 	}
 }
 
@@ -26,9 +27,15 @@ void Renderer::Clear()
 {
 	SDL_SetRenderDrawColor(m_Renderer,0,0,0,255);
 	SDL_RenderClear(m_Renderer);
+	SDL_RenderPresent(m_Renderer);
 }
 
-void Renderer::Render()
+void Renderer::Present()
+{
+	SDL_RenderPresent(m_Renderer);
+}
+
+void Renderer::UpdateRender()
 {
 	for(auto& Layer : m_Textures)
 	{
@@ -37,7 +44,6 @@ void Renderer::Render()
 			SDL_RenderCopy(m_Renderer, texture.m_Texture, nullptr, &texture.m_Rect);
 		}
 	}
-	SDL_RenderPresent(m_Renderer);
 }
 
 void Renderer::AddTexture(Texture&& texture, Layer layer)
@@ -55,15 +61,22 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 void Renderer::AddMap(const Map& map)
 {
 	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(), Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0, SDL_GetWindowSurface(m_Window)->w, SDL_GetWindowSurface(m_Window)->h));
-	auto test = map.getMapElements();
+	//auto test = map.getMapElements();
 	size_t xEnlargement = SDL_GetWindowSurface(m_Window)->w / map.getWidth();
 	size_t yEnlargement = SDL_GetWindowSurface(m_Window)->h / map.getHeight();
-	for(size_t i (0); i < test.size(); i++)
+	for(size_t i (0); i < map.getWidth(); i++)
 	{
-		for(size_t k(0); k < test[i].size(); k++)
+		for(size_t k(0); k < map.getHeight(); k++)
 		{
+			MapElement* me = map.getAt(i, k);
+			(*me).getHeight();
+			std::cout << map.getAt(i, k)->getTexturePath() << std::endl;
+			std::cout << Texture(m_Renderer, map.getAt(i, k)->getTexturePath(),
+					xEnlargement * i, yEnlargement * k,
+					xEnlargement, yEnlargement
+				).m_Rect.h << std::endl;
 			m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].end(),
-				Texture(m_Renderer, test[i][k]->getTexturePath(),
+				Texture(m_Renderer, map.getAt(i, k)->getTexturePath(),
 					xEnlargement * i, yEnlargement * k,
 					xEnlargement, yEnlargement
 				)

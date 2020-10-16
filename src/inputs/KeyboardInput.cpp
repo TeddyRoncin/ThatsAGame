@@ -38,13 +38,13 @@ void KeyboardInput::Update(SDL_Event e)
         key = e.key.keysym.sym;
     case SDL_TEXTEDITING:
     case SDL_TEXTINPUT:
-        std::cerr << "editing text" << std::endl;
+        // std::cerr << "editing text" << std::endl;
     default:
-        std::cerr << "Keyboard event unandled : " << e.type << std::endl;
+        // std::cerr << "Keyboard event unandled : " << e.type << std::endl;
         break;
     };
 
-    std::unique_ptr<Event> event{new KeyboardEvent{e}};
+    std::unique_ptr<Event> event{std::make_unique<KeyboardEvent>(e)};
     EventHandler::addEvent(std::move(event));
 }
 

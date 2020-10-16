@@ -23,7 +23,7 @@ void MouseInput::Update(SDL_Event e)
             {
                 m_isButtonDown.insert( std::pair<int, bool>{e.button.button, true});
             }
-            std::unique_ptr<Event> event{ new MouseButtonEvent{e} };
+            std::unique_ptr<Event> event{ std::make_unique<MouseButtonEvent>(e)};
             EventHandler::addEvent(std::move(event));
 
             isPushDown = true;
@@ -40,7 +40,7 @@ void MouseInput::Update(SDL_Event e)
             {
                 m_isButtonDown.insert( std::pair<int, bool>{e.button.button, false});
             }
-            std::unique_ptr<Event> event{ new MouseButtonEvent{e}};
+            std::unique_ptr<Event> event{ std::make_unique<MouseButtonEvent>(e)};
             EventHandler::addEvent(std::move(event));
 
             isPushUp = true;
@@ -51,18 +51,18 @@ void MouseInput::Update(SDL_Event e)
         {
             coord.position.first = e.motion.x;
             coord.position.second = e.motion.y;
-            std::unique_ptr<Event> event{new MouseMotionEvent{e}};
+            std::unique_ptr<Event> event{std::make_unique<MouseMotionEvent>(e)};
             EventHandler::addEvent(std::move(event));
         }
         break;
     case SDL_MOUSEWHEEL:
         {
-            std::unique_ptr<Event> event{new MouseWheelEvent{e}};
+            std::unique_ptr<Event> event{std::make_unique<MouseWheelEvent>(e)};
             EventHandler::addEvent(std::move(event));
         }
         break;
     default:
-        std::cerr << "Mouse event unandled : " << e.type << std::endl;
+        // std::cerr << "Mouse event unandled : " << e.type << std::endl;
         break;
     }
 

@@ -10,6 +10,11 @@ Map::Map(std::string name, int width, int height, std::vector<std::vector<MapEle
     m_BackgroundPath(backgroundPath),
     m_Entities(entities)
 {
+    for (int x = 0; x < m_Width; x++) {
+        for (int y = 0; y < m_Height; y++) {
+            m_Elements[x][y]->getTexturePath();
+        }
+    }
 }
 
 Map::Map(const Map& map)
@@ -24,6 +29,10 @@ Map::Map(const Map& map)
             m_Elements[x].push_back(map.m_Elements[x][y]);
         }
     }
+    m_Entities = std::vector<Npc*>();
+    for (Npc* entity : map.m_Entities) {
+        m_Entities.push_back(entity);
+    }
 }
 
 Map::Map(Map&& map)
@@ -36,7 +45,7 @@ Map::Map(Map&& map)
             map.m_Elements[x][y] = nullptr;
         }
     }
-    for (int i = 0; i < m_Width; i++) {
+    for (int i = 0; i < map.m_Entities.size(); i++) {
         m_Entities.push_back(map.m_Entities[i]);
         map.m_Entities[i] = nullptr;
     }
@@ -46,9 +55,9 @@ Map::~Map()
 {
     for (int x(0); x < m_Elements.size(); x++) {
         for (int y(0); y < m_Elements[x].size(); y++) {
-            //if (m_Elements[x][y] != nullptr) {
-            delete m_Elements[x][y];
-            //}
+            if (m_Elements[x][y] != nullptr) {
+                delete m_Elements[x][y];
+            }
         }
     }
     for (int i = 0; i < m_Entities.size(); i++) {
@@ -70,7 +79,6 @@ std::string Map::getBackgroundPath() const
 
 std::vector<Npc*> Map::getEntities() const
 {
-    std::cout << "on les envoie ! : " <<  m_Entities.size() << std::endl;
     return m_Entities;
 }
 
@@ -84,6 +92,7 @@ MapElement* Map::getAt(int x, int y) const
     if (x < 0 || x >= m_Width || y < 0 || y >= m_Height) {
         return nullptr;
     }
+    m_Elements[x][y]->getTexturePath();
     return m_Elements[x][y];
 }
 
@@ -101,3 +110,8 @@ std::vector<std::vector<MapElement*>> Map::getMapElements() const
 {
     return m_Elements;
 }
+
+/*const Map& Map::copy() const
+{
+    return Map(this);
+}*/
