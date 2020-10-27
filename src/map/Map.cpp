@@ -2,13 +2,11 @@
 
 #include "map/Map.h"
 
-Map::Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>> elements, std::string backgroundPath, std::vector<Npc*> entities) :
+Map::Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>> elements) :
     m_Name(name),
     m_Width(width),
     m_Height(height),
-    m_Elements(elements),
-    m_BackgroundPath(backgroundPath),
-    m_Entities(entities)
+    m_Elements(elements)
 {
     for (int x = 0; x < m_Width; x++) {
         for (int y = 0; y < m_Height; y++) {
@@ -20,8 +18,7 @@ Map::Map(std::string name, int width, int height, std::vector<std::vector<MapEle
 Map::Map(const Map& map)
     :m_Name(map.m_Name),
     m_Width(map.m_Width),
-    m_Height(map.m_Height),
-    m_BackgroundPath(map.m_BackgroundPath)
+    m_Height(map.m_Height)
 {
     for (int x = 0; x < m_Width; x++) {
         m_Elements.push_back(std::vector<MapElement*>());
@@ -29,14 +26,10 @@ Map::Map(const Map& map)
             m_Elements[x].push_back(map.m_Elements[x][y]);
         }
     }
-    m_Entities = std::vector<Npc*>();
-    for (Npc* entity : map.m_Entities) {
-        m_Entities.push_back(entity);
-    }
 }
 
 Map::Map(Map&& map)
-    :m_Name(map.m_Name), m_Width(map.m_Width), m_Height(map.m_Height), m_BackgroundPath(map.m_BackgroundPath) 
+    :m_Name(map.m_Name), m_Width(map.m_Width), m_Height(map.m_Height)
 {
     for (int x = 0; x < m_Width; x++) {
         m_Elements.push_back(std::vector<MapElement*>());
@@ -44,10 +37,6 @@ Map::Map(Map&& map)
             m_Elements[x].push_back(map.m_Elements[x][y]);
             map.m_Elements[x][y] = nullptr;
         }
-    }
-    for (int i = 0; i < map.m_Entities.size(); i++) {
-        m_Entities.push_back(map.m_Entities[i]);
-        map.m_Entities[i] = nullptr;
     }
 }
 
@@ -60,11 +49,6 @@ Map::~Map()
             }
         }
     }
-    for (int i = 0; i < m_Entities.size(); i++) {
-        if (m_Entities[i] != nullptr) {
-            delete m_Entities[i];
-        }
-    }
 }
 
 std::string Map::getName() const
@@ -72,20 +56,10 @@ std::string Map::getName() const
     return m_Name;
 }
 
-std::string Map::getBackgroundPath() const
-{
-    return m_BackgroundPath;
-}
-
-std::vector<Npc*> Map::getEntities() const
-{
-    return m_Entities;
-}
-
-bool Map::canEntityMoveAt(int x, int y, Entity* entity) const
+/*bool Map::canEntityMoveAt(int x, int y, Entity* entity) const
 {
     return m_Elements[x][y]->canEntityMoveOn(entity);
-}
+}*/
 
 MapElement* Map::getAt(int x, int y) const
 {
@@ -111,7 +85,13 @@ std::vector<std::vector<MapElement*>> Map::getMapElements() const
     return m_Elements;
 }
 
+
 /*const Map& Map::copy() const
 {
     return Map(this);
 }*/
+
+std::string Map::getBackgroundPath() const
+{
+    return "";
+}

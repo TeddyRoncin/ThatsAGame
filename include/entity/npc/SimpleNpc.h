@@ -12,7 +12,6 @@ public:
     void addPathFinder(const PathFinder& pathFinder);
     virtual void update();
 
-private:
-    std::vector<std::pair<int, int>> m_PathToTravel;
+
 
 };

@@ -60,21 +60,15 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 
 void Renderer::AddMap(const Map& map)
 {
-	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(), Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0, SDL_GetWindowSurface(m_Window)->w, SDL_GetWindowSurface(m_Window)->h));
-	//auto test = map.getMapElements();
+	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(),
+											Texture(m_Renderer, "assets/textures/" + map.getName().c_str() + ".png", 0, 0,
+											SDL_GetWindowSurface(m_Window)->w, SDL_GetWindowSurface(m_Window)->h));
 	size_t xEnlargement = SDL_GetWindowSurface(m_Window)->w / map.getWidth();
 	size_t yEnlargement = SDL_GetWindowSurface(m_Window)->h / map.getHeight();
 	for(size_t i (0); i < map.getWidth(); i++)
 	{
 		for(size_t k(0); k < map.getHeight(); k++)
 		{
-			MapElement* me = map.getAt(i, k);
-			(*me).getHeight();
-			std::cout << map.getAt(i, k)->getTexturePath() << std::endl;
-			std::cout << Texture(m_Renderer, map.getAt(i, k)->getTexturePath(),
-					xEnlargement * i, yEnlargement * k,
-					xEnlargement, yEnlargement
-				).m_Rect.h << std::endl;
 			m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].end(),
 				Texture(m_Renderer, map.getAt(i, k)->getTexturePath(),
 					xEnlargement * i, yEnlargement * k,

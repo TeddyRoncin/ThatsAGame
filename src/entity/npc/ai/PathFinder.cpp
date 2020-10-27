@@ -69,7 +69,7 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
     for (auto[x, y] : neighbourNodeCoords) {
         if (x >= 0 && x < m_Map.getWidth() &&
         y >= 0 && y < m_Map.getHeight() &&
-        m_Map.canEntityMoveAt(x, y, entity) &&
+        m_Map.getAt(x, y)->canEntityMoveOn(entity) &&
         !containsNode(closedNodes, std::pair<int, int>(x, y))) {
             neighbourNodes.push_back(Node(x, y, closedNodes[closedNodes.size() - 1], startX, startY, endX, endY));
         }

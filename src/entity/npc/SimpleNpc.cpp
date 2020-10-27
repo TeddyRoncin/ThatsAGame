@@ -8,12 +8,9 @@ SimpleNpc::SimpleNpc(int x, int y) :
 {
 }
 
-void SimpleNpc::addPathFinder(const PathFinder& pathFinder) {
-    m_PathToTravel = pathFinder.find(std::floor(m_pos.getX()), std::floor(m_pos.getY()), 2, 2, this);
-}
-
 void SimpleNpc::update()
 {
+    std::cout << m_PathToTravel.size() << std::endl;
     if (m_PathToTravel.size() == 0) {
         return;
     }
@@ -26,6 +23,7 @@ void SimpleNpc::update()
     } else {
         m_pos.position.first -= 0.02;
     }
+    std::cout << "pos : " <<  m_pos.position.first << "   " << m_pos.position.second << std::endl;
     if (std::round(m_pos.getX() * 100) == std::round(m_PathToTravel[0].first * 100) &&
         std::round(m_pos.getY() * 100) == std::round(m_PathToTravel[0].second * 100)) {
         m_PathToTravel.erase(m_PathToTravel.begin());
