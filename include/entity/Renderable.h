@@ -9,7 +9,7 @@ public:
 	Renderable(const char * name, float x, float y, float width, float height, const char* sprite);
 	virtual ~Renderable() override;
 
-	virtual void Render(SDL_Renderer* renderer, int xEnlargement, int yEnlargement) const override;
+	virtual void Render(SDL_Renderer* renderer) const override;
 
 public:
 	Dimension<float> m_dim;

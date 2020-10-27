@@ -21,7 +21,7 @@ public:
 	void AddTexture(const char* dir, size_t x = 0, size_t y = 0, size_t width = 0, size_t height = 0, Layer layer = Layer::Middle);
 
 	void AddMap(const Map& map);
-	void RenderEntity(const Entity& ent, size_t mapWidth, size_t mapHeight);
+	void RenderEntity(const Entity& ent);
 
 private:
 	SDL_Window* m_Window;
@@ -29,6 +29,6 @@ private:
 	std::array<std::list<Texture>, Layer::Layer_Length> m_Textures;
 	size_t m_MapWidth;
 	size_t m_MapHeight;
-	size_t m_WindowWidth;
-	size_t m_WindowHeight;
+	size_t WINDOW_WIDTH = 600;
+	size_t WINDOW_HEIGHT = 600;
 };

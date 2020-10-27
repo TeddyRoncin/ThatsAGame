@@ -20,5 +20,4 @@ private:
 	Map m_CurrentMap;
 	Player m_Player;
 	std::vector<Npc*> m_Entities;
-
 };
