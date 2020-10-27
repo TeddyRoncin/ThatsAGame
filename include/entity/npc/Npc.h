@@ -1,10 +1,6 @@
 #pragma once
 
 #include "entity/Renderable.h"
-<<<<<<< HEAD
-#include "entity/npc/ai/PathFinder.h"
-=======
->>>>>>> github/functionnal
 
 
 class Npc : public Renderable
