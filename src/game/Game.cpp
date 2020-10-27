@@ -26,25 +26,6 @@ Game::~Game()
 
 void Game::loop()
 {
-<<<<<<< HEAD
-	Timer timer(60);
-	//Entity ent("font test", 10.0f, 10.0f);
-	while(!isQuitting())
-	{
-		//std::cout << "le nb dentités de la map : " << m_CurrentMap.getEntities().size() << std::endl;
-		UpdateRender();
-		RenderEntity(m_Player, m_CurrentMap.getWidth(), m_CurrentMap.getHeight());
-		for (Npc* entity : getEntitiesOf(m_CurrentMap)) {
-			entity->update();
-			RenderEntity(*entity, m_CurrentMap.getWidth(), m_CurrentMap.getHeight());
-		}
-		/*for (Npc* entity : m_Entities) {
-			entity->update();
-			RenderEntity(*entity, m_CurrentMap.getWidth(), m_CurrentMap.getHeight());
-			std::cout << "salut !" << std::endl;
-		}*/
-		//RenderEntity(ent, m_CurrentMap.getWidth(), m_CurrentMap.getHeight());
-=======
 	Timer timer(-1);
 	while(!isQuitting())
 	{
@@ -54,14 +35,9 @@ void Game::loop()
 			entity->update();
 			RenderEntity(*entity);
 		}
->>>>>>> github/functionnal
 		Present();
 		SDL_Event events;
 		eventUpdate(events);
 		timer.waitForNextFrame();
-<<<<<<< HEAD
-		//return;
-=======
->>>>>>> github/functionnal
 	}
 }

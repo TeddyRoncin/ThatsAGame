@@ -1,18 +1,10 @@
 #include "pch.h"
 #include "renderer/Renderer.h"
-<<<<<<< HEAD
-#include "map/WallMapElement.h"
-=======
->>>>>>> github/functionnal
 
 Renderer::Renderer()
 	:Context(SDL_INIT_VIDEO), m_Window(nullptr), m_Renderer(nullptr)
 {
-<<<<<<< HEAD
-	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,600,600,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
-=======
 	m_Window = SDL_CreateWindow("Render Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
->>>>>>> github/functionnal
 	if(!m_Window)
 	{
 		// std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
@@ -87,13 +79,7 @@ void Renderer::AddMap(const Map& map)
 	}
 }
 
-<<<<<<< HEAD
-void Renderer::RenderEntity(const Entity& ent, size_t mapWidth, size_t mapHeight)
-{
-	ent.Render(m_Renderer, SDL_GetWindowSurface(m_Window)->w / mapWidth, SDL_GetWindowSurface(m_Window)->h / mapHeight);
-=======
 void Renderer::RenderEntity(const Entity& ent)
 {
 	ent.Render(m_Renderer);
->>>>>>> github/functionnal
 }
