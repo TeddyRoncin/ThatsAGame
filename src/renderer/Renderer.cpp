@@ -57,26 +57,20 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 	m_Textures[layer].emplace_back(Texture(m_Renderer, dir, x, y, width, height));
 }
 
-void Renderer::AddMap(const Map& map)
+void Renderer::AddMap(const NewMap& map)
 {
-	m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].begin(), Texture(m_Renderer, map.getBackgroundPath().c_str(), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
-	auto test = map.getMapElements();
-	m_MapWidth = map.getWidth();
-	m_MapHeight = map.getHeight();
-	size_t ELEMENT_WIDTH = WINDOW_WIDTH / m_MapWidth;
-	size_t ELEMENT_HEIGHT = WINDOW_HEIGHT / m_MapHeight;
-	for(size_t i (0); i < test.size(); i++)
+	for(size_t y(0); y < map.Height(); y++)
 	{
-		for(size_t k(0); k < test[i].size(); k++)
+		for(size_t x(0); x < map.Width(); x++)
 		{
-			m_Textures[Layer::Background].emplace(m_Textures[Layer::Background].end(),
-				Texture(m_Renderer, test[i][k]->getTexturePath(),
-					ELEMENT_WIDTH * i, ELEMENT_WIDTH * k,
-					ELEMENT_HEIGHT, ELEMENT_HEIGHT
-				)
-			);
+			m_Textures[Layer::Background].emplace_back(Texture(
+				m_Renderer, map[x + y * map.Height()]->getTexturePath(),
+				map[x + y * map.Height()]->getWidth()*x, map[x + y * map.Height()]->getHeight()*y,
+				map[x + y * map.Height()]->getWidth(), map[x + y * map.Height()]->getHeight()
+			));
 		}
 	}
+
 }
 
 void Renderer::RenderEntity(const Entity& ent)

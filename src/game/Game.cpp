@@ -4,17 +4,11 @@
 #include "utils/Timer.h"
 
 Game::Game()
-	:Renderer(), Input(), MapManager(), m_CurrentMap(getMap("map_test")),
-	m_Player("first player", 100, 100, 100.0f, 100.0f, "assets/img/test.png")
+	:Renderer(), Input(),
+	m_Player("first player", 400.0f, 400.0f, 200.0f, 200.0f, "assets/img/test.png")
 {
-	m_Entities.push_back(new SimpleNpc(m_CurrentMap));
-	AddMap(m_CurrentMap);
-	// auto[playerx, playery] = m_Player.m_pos.getPosition();
-	// auto[playerw, playerh] = m_Player.m_dim.getDimension();
-	//AddTexture(m_Player.m_sprite, playerx, playery, playerw, playerh, Layer::Top);
-	//AddTexture(m_Entities[0]->m_sprite, m_Entities[0]->m_pos.getX() * 100, m_Entities[0]->m_pos.getY()*100,
-	//			m_Entities[0]->m_dim.getWidth(), m_Entities[0]->m_dim.getHeight(), Layer::Top);
-	//Clear();
+	m_Entities.push_back(new SimpleNpc(map));
+	AddMap(map);
 }
 
 Game::~Game()

@@ -57,7 +57,7 @@ void NewMap::registerMaps()
 void NewMap::loadMap(const char* name)
 {
 	pt::ptree maps;
-	std::string map("assets/maps/");  map += name;
+	std::string map("assets/maps/");  map += std::string(name) += std::string(".json");
 	pt::read_json(map, maps);
 
 	m_Width = maps.get<int>("width");
@@ -80,8 +80,8 @@ void NewMap::loadMap(const char* name)
 		return;
 	}
 
-	for (size_t x(0); x < m_Width; x++) {
-		for (size_t y(0); y < m_Height; y++) {
+	for (size_t y(0); y < m_Height; y++) {
+		for (size_t x(0); x < m_Width; x++) {
 			RGBColor color = pattern.getRGBColor(x, y);
 			if ((int) color.R == 255 && (int) color.G == 255) {
 				m_Elements.emplace_back(new EmptyMapElement(/*maybe give it a size from the width and height of the map*/));

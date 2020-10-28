@@ -1,14 +1,14 @@
 #pragma once
 
 #include "entity/npc/Npc.h"
-#include "map/Map.h"
+#include "map/Maps.h"
 #include "entity/npc/ai/PathFinder.h"
 
 class SimpleNpc : public Npc
 {
 
 public:
-    SimpleNpc(const Map& map);
+    SimpleNpc(const NewMap& map);
     virtual void update();
 
 private:

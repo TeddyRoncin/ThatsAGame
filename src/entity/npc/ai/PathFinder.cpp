@@ -2,7 +2,7 @@
 
 #include "entity/npc/ai/PathFinder.h"
 
-PathFinder::PathFinder(const Map& map) :
+PathFinder::PathFinder(const NewMap& map) :
     m_Map(map)
 {
 }
@@ -10,11 +10,11 @@ PathFinder::PathFinder(const Map& map) :
 PathFinder::~PathFinder()
 {}
 
-std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int endX, int endY, Entity* entity)
+std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int endX, int endY, Entity* entity) const
 {
     std::vector<Node> openNodes;
     std::vector<Node> closedNodes;
-    closedNodes.reserve(m_Map.getWidth() * m_Map.getHeight());
+    closedNodes.reserve(m_Map.Width() * m_Map.Height());
     Node firstNode(startX, startY, nullptr, 0, 0, 0, 0);
     openNodes.push_back(firstNode);
     while (openNodes.size() > 0) {
@@ -44,7 +44,7 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
     return std::vector<std::pair<int, int>>();
 }
 
-int PathFinder::findCurrentNode(std::vector<Node> openNodes)
+int PathFinder::findCurrentNode(std::vector<Node> openNodes) const
 {
     Node currentNode(0, 0, nullptr, 0, 0, 0, 0);
     int currentNodeIndex;
@@ -57,7 +57,7 @@ int PathFinder::findCurrentNode(std::vector<Node> openNodes)
     return currentNodeIndex;
 }
 
-std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Entity* entity, std::vector<Node>& closedNodes)
+std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Entity* entity, std::vector<Node>& closedNodes) const
 {
     std::vector<Node> neighbourNodes;
     std::vector<std::pair<int, int>> neighbourNodeCoords {
@@ -67,9 +67,9 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
         std::pair<int, int>(std::round(currentNode.m_pos.getX() - 1), std::round(currentNode.m_pos.getY()))
     };
     for (auto[x, y] : neighbourNodeCoords) {
-        if (x >= 0 && x < m_Map.getWidth() &&
-        y >= 0 && y < m_Map.getHeight() &&
-        m_Map.canEntityMoveAt(x, y, entity) &&
+        if (x >= 0 && x < m_Map.Width() &&
+        y >= 0 && y < m_Map.Height() &&
+        (*m_Map[x + y *m_Map.Height()])(entity) &&
         !containsNode(closedNodes, std::pair<int, int>(x, y))) {
             neighbourNodes.push_back(Node(x, y, closedNodes[closedNodes.size() - 1], startX, startY, endX, endY));
         }
@@ -77,12 +77,12 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
     return neighbourNodes;
 }
 
-bool PathFinder::containsNode(std::vector<Node> vector, Node nodeToSearch)
+bool PathFinder::containsNode(std::vector<Node> vector, Node nodeToSearch) const
 {
     return containsNode(vector, std::pair<int, int>(std::round(nodeToSearch.m_pos.getX()), std::round(nodeToSearch.m_pos.getY())));
 }
 
-bool PathFinder::containsNode(std::vector<Node> vector, std::pair<int, int> coords)
+bool PathFinder::containsNode(std::vector<Node> vector, std::pair<int, int> coords) const
 {
     for (Node node : vector) {
         if (std::round(node.m_pos.getX()) == coords.first && std::round(node.m_pos.getY()) == coords.second) {
@@ -92,7 +92,7 @@ bool PathFinder::containsNode(std::vector<Node> vector, std::pair<int, int> coor
     return false;
 }
 
-std::vector<std::pair<int, int>> PathFinder::getPath(int startX, int startY, Node currentNode)
+std::vector<std::pair<int, int>> PathFinder::getPath(int startX, int startY, Node currentNode) const
 {
     std::vector<std::pair<int, int>> path;
     while (std::round(currentNode.m_pos.getX()) != startX || std::round(currentNode.m_pos.getY()) != startY) {

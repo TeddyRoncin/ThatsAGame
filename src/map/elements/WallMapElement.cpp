@@ -21,10 +21,10 @@ const char* WallMapElement::getTexturePath() const
 
 const size_t WallMapElement::getWidth() const
 {
-    return 100;
+    return 200;
 }
 
 const size_t WallMapElement::getHeight() const
 {
-    return 100;
+    return 200;
 }
