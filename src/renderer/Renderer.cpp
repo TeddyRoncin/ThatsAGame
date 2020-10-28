@@ -57,7 +57,7 @@ void Renderer::AddTexture(const char* dir, size_t x, size_t y, size_t width, siz
 	m_Textures[layer].emplace_back(Texture(m_Renderer, dir, x, y, width, height));
 }
 
-void Renderer::AddMap(const NewMap& map)
+void Renderer::AddMap(const Map& map)
 {
 	for(size_t y(0); y < map.Height(); y++)
 	{

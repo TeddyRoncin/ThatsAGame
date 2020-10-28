@@ -4,7 +4,7 @@
 #include "entity/Entity.h"
 #include "entity/npc/ai/PathFinder.h"
 
-SimpleNpc::SimpleNpc(const NewMap& map) :
+SimpleNpc::SimpleNpc(const Map& map) :
     Npc("npc pathfinding Teddy", 0.0f, 400.0f, 200.0f, 200.0f, "assets/textures/test.png")
 {
     PathFinder pathFinder(map);

@@ -2,7 +2,7 @@
 
 #include "entity/npc/ai/PathFinder.h"
 
-PathFinder::PathFinder(const NewMap& map) :
+PathFinder::PathFinder(const Map& map) :
     m_Map(map)
 {
 }

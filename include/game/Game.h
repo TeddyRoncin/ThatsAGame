@@ -7,7 +7,7 @@
 #include "renderer/Renderer.h"
 #include "inputs/Inputs.h"
 
-#include "map/Maps.h"
+#include "map/Map.h"
 
 class Game : public Renderer, public Input
 {
@@ -17,7 +17,7 @@ public:
 
 	void loop();
 private:
-	NewMap map;
+	Map map;
 	Player m_Player;
 	std::vector<Npc*> m_Entities;
 };

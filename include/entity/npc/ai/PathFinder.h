@@ -1,18 +1,18 @@
 #pragma once
 
 #include "entity/npc/ai/Node.h"
-#include "map/Maps.h"
+#include "map/Map.h"
 
 class PathFinder
 {
 
 public:
-    PathFinder(const NewMap& map);
+    PathFinder(const Map& map);
     ~PathFinder();
     std::vector<std::pair<int, int>> find(int startX, int startY, int endX, int endY, Entity* entity) const;
 
 private:
-    const NewMap& m_Map;
+    const Map& m_Map;
 
 private:
     int findCurrentNode(std::vector<Node> openNodes) const;

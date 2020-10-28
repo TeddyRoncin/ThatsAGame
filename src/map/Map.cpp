@@ -1,85 +1,96 @@
 #include "pch.h"
 
 #include "map/Map.h"
+#include "map/elements/EmptyMapElement.h"
+#include "map/elements/WallMapElement.h"
+#include "bmploader/BMPFile.h"
+#include "bmploader/BMPImage.h"
 
-Map::Map(std::string name, int width, int height, std::vector<std::vector<MapElement*>> elements, std::string backgroundPath) :
-    m_Name(name),
-    m_Width(width),
-    m_Height(height),
-    m_Elements(elements),
-    m_BackgroundPath(backgroundPath)
-{
-}
+namespace pt = boost::property_tree;
 
-Map::Map(const Map& map)
-    :m_Name(map.m_Name),
-    m_Width(map.m_Width),
-    m_Height(map.m_Height),
-    m_BackgroundPath(map.m_BackgroundPath)
+Map::Map()
+	:m_CurrentMap(0)
 {
-    for (int x = 0; x < m_Width; x++) {
-        m_Elements.push_back(std::vector<MapElement*>());
-        for (int y = 0; y < m_Height; y++) {
-            m_Elements[x].push_back(map.m_Elements[x][y]);
-        }
-    }
-}
-
-Map::Map(Map&& map)
-    :m_Name(map.m_Name), m_Width(map.m_Width), m_Height(map.m_Height), m_BackgroundPath(map.m_BackgroundPath) 
-{
-    for (int x = 0; x < m_Width; x++) {
-        m_Elements.push_back(std::vector<MapElement*>());
-        for (int y = 0; y < m_Height; y++) {
-            m_Elements[x].push_back(map.m_Elements[x][y]);
-            map.m_Elements[x][y] = nullptr;
-        }
-    }
+	registerMaps();
+	loadMap(m_Maps[m_CurrentMap]);
 }
 
 Map::~Map()
 {
-    for (int x(0); x < m_Elements.size(); x++) {
-        for (int y(0); y < m_Elements[x].size(); y++) {
-            delete m_Elements[x][y];
-        }
-    }
+	for(auto elem : m_Elements)
+	{
+		delete elem;
+	}
 }
 
-std::string Map::getName() const
+MapElement* Map::operator[](size_t index) const
 {
-    return m_Name;
+	return m_Elements[index];
 }
 
-std::string Map::getBackgroundPath() const
+const size_t Map::Width() const
 {
-    return m_BackgroundPath;
+	return m_Width;
 }
 
-bool Map::canEntityMoveAt(int x, int y, Entity* entity) const
+const size_t Map::Height() const
 {
-    return m_Elements[x][y]->canEntityMoveOn(entity);
+	return m_Height;
 }
 
-MapElement* Map::getAt(int x, int y) const
+void Map::registerMaps()
 {
-    if (x < 0 || x >= m_Width || y < 0 || y >= m_Height) {
-        return nullptr;
-    }
-    return m_Elements[x][y];
+	pt::ptree registry;
+	pt::read_json("assets/maps/register.json", registry);
+	int number = registry.get<int>("mapNumber");
+	m_Maps.reserve(number);
+	for(pt::ptree::value_type map : registry.get_child("maps"))
+	{
+		m_Maps.emplace_back(map.second.data().c_str());
+	}
+	// for(size_t i(0); i < number; i++)
+	// {
+	// 	m_Maps.emplace_back(registry.get_child("maps"));
+	// }
 }
 
-int Map::getWidth() const
+void Map::loadMap(const char* name)
 {
-    return m_Width;
-}
+	pt::ptree maps;
+	std::string map("assets/maps/");  map += std::string(name) += std::string(".json");
+	pt::read_json(map, maps);
 
-int Map::getHeight() const
-{
-    return m_Height;
-}
+	m_Width = maps.get<int>("width");
+	m_Height = maps.get<int>("height");
 
-std::vector<std::vector<MapElement*>> Map::getMapElements() const
-{
-    return m_Elements;
+	m_Elements.reserve(m_Width * m_Height);
+
+	BMPImage pattern = BMPFile(maps.get<std::string>("mapPattern")).load();
+
+	if (pattern.getWidth() == 0 || pattern.getHeight() == 0) {
+		std::cerr << "Could not load image for map " << name << std::endl;
+		return;
+	}
+	if (m_Width != pattern.getWidth()) {
+		std::cerr << "Width of the map is not equal to the width given in the json" << std::endl;
+		return;
+	}
+	if (m_Height != pattern.getHeight()) {
+		std::cerr << "Height of the map is not equal to the height given in the json" << std::endl;
+		return;
+	}
+
+	for (size_t y(0); y < m_Height; y++) {
+		for (size_t x(0); x < m_Width; x++) {
+			RGBColor color = pattern.getRGBColor(x, y);
+			if ((int) color.R == 255 && (int) color.G == 255) {
+				m_Elements.emplace_back(new EmptyMapElement(/*maybe give it a size from the width and height of the map*/));
+			} else if (color.R == 0 && color.G == 0) {
+				m_Elements.emplace_back(new WallMapElement(/*same as the upon element*/));
+			} else {
+				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
+				return;
+			}
+		}
+	}
 }
