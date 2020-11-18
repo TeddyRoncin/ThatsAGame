@@ -75,5 +75,6 @@ void Texture::Bind(SDL_Renderer* renderer)
 	{
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_Rect.w, &m_Rect.h);
 	}
+	needBinding = false;
 }
 

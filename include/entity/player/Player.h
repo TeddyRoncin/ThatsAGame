@@ -1,10 +1,21 @@
 #pragma once
 
-#include "entity/Renderable.h"
+#include "event/EventListener.h"
+#include "renderer/texture/Texture.h"
 
-class Player : public Renderable
+class player : public EventListener
 {
 public:
-	Player(const char* name, float x, float y, float width, float height, const char* sprite);
-	virtual ~Player() override;
+	player(const char* _directory, float _x, float _y, float _width, float _height);
+	virtual ~player() override {}
+public:
+	virtual void handle() override;
+public:
+	void Render(SDL_Renderer* renderer);
+private:
+	Position<float> pos;
+	Dimension<float> dim;
+	const char* directory;
+private:
+	Texture texture;
 };
