@@ -11,13 +11,14 @@
 		{"\u001B":	"Quit"		}
 	],
 	"action" : {
-		"MoveUp": 		"0",
-		"MoveDown": 	"1",
-		"MoveRight": 	"2",
-		"MoveLeft": 	"3",
-		"Act": 			"4",
-		"Inventory": 	"5",
-		"Menu": 		"6",
-		"Quit":			"7"
+		"None": 		"0",
+		"MoveUp": 		"1",
+		"MoveDown": 	"2",
+		"MoveRight": 	"3",
+		"MoveLeft": 	"4",
+		"Act": 			"5",
+		"Inventory": 	"6",
+		"Menu": 		"7",
+		"Quit":			"8"
 	}
 }

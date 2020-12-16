@@ -10,7 +10,9 @@ public:
 
 public:
     virtual void handle() =0;
-    inline virtual void UpdateData(SDL_Event& event) { m_Action = EventBinding::GetAction(static_cast<SDL_KeyCode>(event.key.keysym.sym)); }
+    inline virtual void UpdateData(SDL_Event& event) {
+        m_Action = EventBinding::GetAction(static_cast<SDL_KeyCode>(event.key.keysym.sym));
+    }
 
 private:
     static SDL_Event m_Event;

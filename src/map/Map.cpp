@@ -48,10 +48,6 @@ void Map::registerMaps()
 	{
 		m_Maps.emplace_back(map.second.data().c_str());
 	}
-	// for(size_t i(0); i < number; i++)
-	// {
-	// 	m_Maps.emplace_back(registry.get_child("maps"));
-	// }
 }
 
 void Map::loadMap(const char* name)

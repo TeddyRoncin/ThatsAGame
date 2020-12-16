@@ -5,7 +5,7 @@
 
 EventListener::EventListener(EventListener* listener)
 {
-    memset(listener, 0, sizeof(Action));
+    memset(listener, Action::None, sizeof(Action));
     listeners.push_back(listener);
 }
 

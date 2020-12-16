@@ -1,6 +1,6 @@
 #pragma once
 
-enum Action { PlayerUp, PlayerDown, PlayerRight, PlayerLeft, PlayerAct, PlayerInventory, OpenMenu, Quit, None };
+enum Action { None, PlayerUp, PlayerDown, PlayerRight, PlayerLeft, PlayerAct, PlayerInventory, OpenMenu, Quit };
 
 class EventBinding
 {

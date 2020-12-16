@@ -11,13 +11,13 @@ Texture::Texture(const char* dir, SDL_Renderer* renderer)
 		m_Surface = IMG_Load(dir);
 		if(!m_Surface)
 		{
-			// std::cerr << "IMG_LoadError (for SDL_Surface): " << IMG_GetError() << std::endl;
+			std::cerr << "IMG_LoadError (for SDL_Surface): " << IMG_GetError() << std::endl;
 		}
 	} else {
 		m_Texture = IMG_LoadTexture(renderer, dir);
 		if(!m_Texture)
 		{
-			// std::cerr << "IMG_LoadTextureError : " << IMG_GetError() << std::endl;
+			std::cerr << "IMG_LoadTextureError : " << IMG_GetError() << std::endl;
 		}
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_Rect.w, &m_Rect.h);
 	}
@@ -28,7 +28,7 @@ Texture::Texture(const char* dir, size_t x, size_t y, size_t width, size_t heigh
 {
 	if(!m_Surface)
 	{
-		// std::cerr << "IMG_LoadError (for SDL_Surface): " << IMG_GetError() << std::endl;
+		std::cerr << "IMG_LoadError (for SDL_Surface): " << IMG_GetError() << std::endl;
 	}
 }
 
@@ -37,7 +37,7 @@ Texture::Texture(SDL_Renderer* renderer, const char* dir, size_t x, size_t y, si
 {
 	if(!m_Texture)
 	{
-		// std::cerr << "IMG_LoadTextureError : " << IMG_GetError() << std::endl;
+		std::cerr << "IMG_LoadTextureError : " << IMG_GetError() << std::endl;
 	}
 	if(width == 0 || height == 0)
 	{
@@ -77,4 +77,3 @@ void Texture::Bind(SDL_Renderer* renderer)
 	}
 	needBinding = false;
 }
-
