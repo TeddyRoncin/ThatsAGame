@@ -1,6 +1,6 @@
 #pragma once
 
-#include "map/Maps.h"
+#include "map/Map.h"
 #include "renderer/Renderer.h"
 #include "events/ApplicationEvent.h"
 
@@ -14,6 +14,6 @@ private:
 	bool CloseWindow(WindowCloseEvent& event);
 private:
 	Renderer m_Renderer;
-	NewMap test;
+	Map test;
 	bool m_Running;
 };

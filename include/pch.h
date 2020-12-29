@@ -22,6 +22,9 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <algorithm>
+#include <stdarg.h>
+
 // BOOST LIBRARY
 #define BOOST_BIND_GLOBAL_PLACEHOLDERS
 

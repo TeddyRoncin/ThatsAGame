@@ -1,9 +1,10 @@
 #include "pch.h"
 
 #include "renderer/Window.h"
+#include "map/MapManager.h"
 
 Window::Window(const char* name)
-	:m_Renderer(name), m_Running(true), test()
+	:m_Renderer(), m_Running(true), test(MapManager::getMap(name))
 {
 	m_Renderer.AddMap(test);
 }

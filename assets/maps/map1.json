@@ -2,8 +2,6 @@
     "name": "map_test",
     "width": 3,
     "height": 3,
-    "map": {
-        "mapPattern": "assets/maps/map1.bmp"
-    },
+    "mapPattern": "assets/maps/map1.bmp",
     "backgroundPath": "assets/textures/test.png"
 }

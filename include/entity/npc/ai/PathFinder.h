@@ -15,10 +15,10 @@ private:
     const Map& m_Map;
 
 private:
-    int findCurrentNode(std::vector<Node> openNodes);
-    std::vector<Node> getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Entity* entity, std::vector<Node>& closedNodes);
-    bool containsNode(std::vector<Node> vector, Node nodeToSearch);
-    bool containsNode(std::vector<Node> vector, std::pair<int, int> coords);
-    std::vector<std::pair<int, int>> getPath(int startX, int startY, Node currentNode);
+    int findCurrentNode(std::vector<Node> openNodes) const;
+    std::vector<Node> getNeighbourNodes(Node currentNode, int startX, int startY, int endX, int endY, Entity* entity, std::vector<Node>& closedNodes) const;
+    bool containsNode(std::vector<Node> vector, Node nodeToSearch) const;
+    bool containsNode(std::vector<Node> vector, std::pair<int, int> coords) const;
+    std::vector<std::pair<int, int>> getPath(int startX, int startY, Node currentNode) const;
 
 };
