@@ -79,10 +79,11 @@ void Map::loadMap(const char* name)
 	for (size_t y(0); y < m_Height; y++) {
 		for (size_t x(0); x < m_Width; x++) {
 			RGBColor color = pattern.getRGBColor(x, y);
-			if ((int) color.R == 255 && (int) color.G == 255) {
-				m_Elements.emplace_back(new EmptyMapElement(/*maybe give it a size from the width and height of the map*/));
+			std::cout << "color : r<" << (int)color.R << ">, g<" << (int)color.G << ">, b<" << (int)color.B << ">" << std::endl;
+			if (color.R == 255 && color.G == 255) {
+				m_Elements.emplace_back(new EmptyMapElement());
 			} else if (color.R == 0 && color.G == 0) {
-				m_Elements.emplace_back(new WallMapElement(/*same as the upon element*/));
+				m_Elements.emplace_back(new WallMapElement());
 			} else {
 				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 				return;

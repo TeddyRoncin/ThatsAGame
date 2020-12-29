@@ -18,12 +18,12 @@ void Application::handle()
 
 void Application::loop()
 {
-	player p("assets/img/player.png", 400.0f, 400.0f, 200.0f, 200.0f);
+	// player p("assets/img/player.png", 400.0f, 400.0f, 200.0f, 200.0f);
 	while(m_Action != Action::Quit)
 	{
 		UpdateListener();
 		UpdateRender();
-		RenderPlayer(p);
+		// RenderPlayer(p);
 		Present();
 	}
 }

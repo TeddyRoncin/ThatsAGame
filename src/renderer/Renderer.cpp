@@ -74,7 +74,7 @@ void Renderer::AddMap(const Map& map)
 
 void Renderer::RenderPlayer(Player& p)
 {
-	p.Render(m_Renderer);
+	// p.Render(m_Renderer);
 }
 
 void Renderer::RenderEntity(const Entity& ent)
