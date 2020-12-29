@@ -14,7 +14,7 @@ std::vector<std::pair<int, int>> PathFinder::find(int startX, int startY, int en
 {
     std::vector<Node> openNodes;
     std::vector<Node> closedNodes;
-    closedNodes.reserve(m_Map.getWidth() * m_Map.getHeight());
+    closedNodes.reserve(m_Map.Width() * m_Map.Height());
     Node firstNode(startX, startY, nullptr, 0, 0, 0, 0);
     openNodes.push_back(firstNode);
     while (openNodes.size() > 0) {
@@ -67,9 +67,9 @@ std::vector<Node> PathFinder::getNeighbourNodes(Node currentNode, int startX, in
         std::pair<int, int>(std::round(currentNode.m_pos.getX() - 1), std::round(currentNode.m_pos.getY()))
     };
     for (auto[x, y] : neighbourNodeCoords) {
-        if (x >= 0 && x < m_Map.getWidth() &&
-        y >= 0 && y < m_Map.getHeight() &&
-        m_Map.canEntityMoveAt(x, y, entity) &&
+        if (x >= 0 && x < m_Map.Width() &&
+        y >= 0 && y < m_Map.Height() &&
+        (*m_Map[x + y *m_Map.Height()])(entity) &&
         !containsNode(closedNodes, std::pair<int, int>(x, y))) {
             neighbourNodes.push_back(Node(x, y, closedNodes[closedNodes.size() - 1], startX, startY, endX, endY));
         }

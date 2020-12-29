@@ -2,7 +2,7 @@
 
 #include "map/Map.h"
 #include "renderer/Renderer.h"
-#include "events/ApplicationEvent.h"
+#include "event/ApplicationEvent.h"
 
 class Window
 {

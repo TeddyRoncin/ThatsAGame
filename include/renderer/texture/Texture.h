@@ -1,6 +1,5 @@
 #pragma once
 
-
 class Texture
 {
 public:
@@ -28,7 +27,6 @@ public:
 	*	move semantics constructor
 	*/
 	Texture(Texture&& texture);
-
 	/*
 	*	default copie constructor
 	*/

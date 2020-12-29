@@ -1,15 +1,15 @@
 #include "pch.h"
 
 #include "map/MapManager.h"
-#include "map/EmptyMapElement.h"
-#include "map/WallMapElement.h"
+#include "map/elements/EmptyMapElement.h"
+#include "map/elements/WallMapElement.h"
 #include "bmploader/BMPFile.h"
 #include "bmploader/BMPImage.h"
 
 namespace pt = boost::property_tree;
 namespace fs = std::filesystem;
 
-bool MapManager::loaded = false;
+/*bool MapManager::loaded = false;
 
 std::vector<Map> MapManager::maps { Map("", 0, 0, {}, "") };
 
@@ -80,5 +80,6 @@ void MapManager::loadMap(std::string fileName)
 			}
 		}
 	}
-	MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
+	//MapManager::maps.push_back(Map(name, width, height, mapElements, backgroundPath));
 }
+*/

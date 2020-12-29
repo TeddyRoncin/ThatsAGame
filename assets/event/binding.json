@@ -1,0 +1,24 @@
+{
+	"key": 
+	[
+		{"z": 		"MoveUp"	},
+		{"s": 		"MoveDown"	},
+		{"d": 		"MoveRight"	},
+		{"q": 		"MoveLeft"	},
+		{"\r": 		"Act"		},
+		{"e": 		"Inventory"	},
+		{"m":		"Menu"		},
+		{"\u001B":	"Quit"		}
+	],
+	"action" : {
+		"None": 		"0",
+		"MoveUp": 		"1",
+		"MoveDown": 	"2",
+		"MoveRight": 	"3",
+		"MoveLeft": 	"4",
+		"Act": 			"5",
+		"Inventory": 	"6",
+		"Menu": 		"7",
+		"Quit":			"8"
+	}
+}
