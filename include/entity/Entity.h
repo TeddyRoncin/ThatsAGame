@@ -11,5 +11,4 @@ public:
 public:
 	const char* m_name;
 	Position<float> m_pos;
-	EntityType type;
 };
