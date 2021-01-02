@@ -3,7 +3,7 @@
 #include "entity/Entity.h"
 #include "renderer/texture/Texture.h"
 
-class MapElement
+class MapElement : public Entity
 {
 
 public:

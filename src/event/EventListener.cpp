@@ -32,8 +32,3 @@ void EventListener::Update()
         }
     }
 }
-
-void UpdateListener()
-{
-    EventListener::Update();
-}
