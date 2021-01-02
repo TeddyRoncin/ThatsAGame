@@ -1,12 +1,16 @@
 #include "pch.h"
 
 #include "application/Application.h"
-#include "entity/player/Player.h"
+
+/**
+ * TODO: améliorer le renderer et peut être faire une \class Window
+ * pour get la taille de la fenetre plutot que de les mettre en dure
+ * comme ça !!!
+*/
 
 Application::Application()
-	:EventListener(this), Renderer(), map()
+	:EventListener(this), map()
 {
-	AddMap(map);
 }
 
 void Application::handle()
@@ -18,12 +22,8 @@ void Application::handle()
 
 void Application::loop()
 {
-	// player p("assets/img/player.png", 400.0f, 400.0f, 200.0f, 200.0f);
 	while(m_Action != Action::Quit)
 	{
 		UpdateListener();
-		UpdateRender();
-		// RenderPlayer(p);
-		Present();
 	}
 }

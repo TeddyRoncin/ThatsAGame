@@ -6,8 +6,8 @@
 #include "bmploader/BMPFile.h"
 #include "bmploader/BMPImage.h"
 
-namespace pt = boost::property_tree;
 
+namespace pt = boost::property_tree;
 Map::Map()
 	:m_CurrentMap(0)
 {

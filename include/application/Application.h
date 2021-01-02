@@ -1,6 +1,5 @@
 #pragma once
 
-#include "renderer/Renderer.h"
 #include "event/EventListener.h"
 
 #include "map/Map.h"
@@ -10,7 +9,7 @@
  * les entitées dans un vector de Entity (ex: std::vector<Entity*> entities)
 */
 
-class Application : public EventListener, protected Renderer
+class Application : public EventListener
 {
 public:
 	Application();
