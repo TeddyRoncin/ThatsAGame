@@ -6,8 +6,8 @@ public:
     Texture(char* _texturePath, Position<float> _position, Dimension<float> _size);
 
 public:
-    Position<float> ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize) const;
-    Dimension<float> ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize) const;
+    Position<int> ComputeActualPosition(Dimension<int> mapSize, Dimension<int> windowSize) const;
+    Dimension<int> ComputeActualSize(Dimension<int> mapSize, Dimension<int> windowSize) const;
 
 public:
     const char* texturePath;
