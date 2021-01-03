@@ -7,14 +7,14 @@ Texture::Texture(char* _texturePath, Position<float> _position, Dimension<float>
 {
 }
 
-Position<float> Texture::ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize) const
+Position<int> Texture::ComputeActualPosition(Dimension<int> mapSize, Dimension<int> windowSize) const
 {
-    return Position<float>(position.getX() * windowSize.getWidth() / mapSize.getWidth(),
+    return Position<int>(position.getX() * windowSize.getWidth() / mapSize.getWidth(),
                             position.getY() * windowSize.getHeight() / mapSize.getHeight());
 }
 
-Dimension<float> Texture::ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize) const
+Dimension<int> Texture::ComputeActualSize(Dimension<int> mapSize, Dimension<int> windowSize) const
 {
-    return Dimension<float>(size.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
+    return Dimension<int>(size.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
                             size.getHeight() * windowSize.getHeight() / mapSize.getHeight());
 }
