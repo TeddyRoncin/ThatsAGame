@@ -3,4 +3,4 @@
 enum ApplicationState
 {
     HOME, GAME
-}
+};
