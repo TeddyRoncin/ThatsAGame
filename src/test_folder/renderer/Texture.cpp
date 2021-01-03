@@ -7,7 +7,7 @@ Texture::Texture(char* texturePath, Dimension<float> position, Dimension<float> 
 {
 }
 
-char* Texture::GetTexturePath()
+const char* Texture::GetTexturePath()
 {
     return mTexturePath;
 }

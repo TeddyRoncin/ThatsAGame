@@ -4,7 +4,7 @@ class Texture
 {
 public:
     Texture(char* pTexturePath, Dimension<float> pPosition, Dimension<float> pSize);
-    char* GetTexturePath();
+    const char* GetTexturePath();
     Dimension<float> GetPosition();
     Dimension<float> GetSize();
     Dimension<float> ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize);
