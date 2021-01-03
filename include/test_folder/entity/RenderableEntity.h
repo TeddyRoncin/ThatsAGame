@@ -7,7 +7,8 @@
 class RenderableEntity: public Entity, public Renderable
 {
 public:
-	RenderableEntity(char* path, Position<float> position = {0, 0}, Dimension<float> dimension = {0, 0});
+	RenderableEntity(char* path, Position<float> position = {0, 0}, Dimension<float> dimension = {0, 0}, Layer priority = Layer::Ground);
+	Layer GetRenderPriorityLevel() const;
 private:
 	Layer m_RenderPriorityLevel;
 };
