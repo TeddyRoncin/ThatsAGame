@@ -12,8 +12,9 @@ Renderer::Renderer(ApplicationState* state, Map& map)
 void Renderer::Render()
 {
     switch (*mState) {
-        case ApplicationState::HOME: RenderHome();
-        case ApplicationState::GAME: RenderGame();
+        case ApplicationState::HOME: RenderHome(); break;
+        case ApplicationState::GAME: RenderGame(); break;
+        default: std::cerr << "Unknow application state : " << *mState << ". Skipping render for this frame" << std::endl;
     }
 }
 

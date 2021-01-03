@@ -14,7 +14,7 @@ public:
     void SetSize(Dimension<float> size);
 
 private:
-    char* mTexturePath;
+    const char* mTexturePath;
     Dimension<float> mPosition;
     Dimension<float> mSize;
 };

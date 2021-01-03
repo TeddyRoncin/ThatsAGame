@@ -3,7 +3,7 @@
 #include "test_folder/renderer/Texture.h"
 
 Texture::Texture(char* texturePath, Dimension<float> position, Dimension<float> size)
-    :mTexturePath(texturePath), mPosition(position), mSize(size)
+    : mTexturePath(texturePath), mPosition(position), mSize(size)
 {
 }
 
