@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "test_folder/renderer/Texture.h"
 
 Texture::Texture(char* texturePath, Dimension<float> position, Dimension<float> size)

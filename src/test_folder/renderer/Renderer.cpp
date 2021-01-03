@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "test_folder/renderer/Renderer.h"
-#include "entity/Entity.h"
+#include "test_folder/EnTT.h"
 #include "utils/Utils.h"
 #include "test_folder/renderer/Texture.h"
 

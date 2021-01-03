@@ -1,10 +1,11 @@
 #pragma once
 
 #include "EventBinding.h"
+#include "test_folder/renderer/Window.h"
 
 class EventListener : public virtual EventBinding
 {
-    friend void UpdateListener();
+    friend void Window::Render();
 public:
     Action m_Action;
 
@@ -25,5 +26,3 @@ protected:
     EventListener(EventListener* listener);
     virtual ~EventListener();
 };
-
-void UpdateListener();

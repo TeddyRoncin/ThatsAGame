@@ -1,5 +1,6 @@
-#include "test_folder/renderer/Window.h"
+#include "pch.h"
 
+#include "test_folder/renderer/Window.h"
 #include "event/EventListener.h"
 
 Window::Window(ApplicationState* state, Map& map)
