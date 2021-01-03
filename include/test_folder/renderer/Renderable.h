@@ -7,7 +7,7 @@ class Renderable
 public:
 	Renderable(char* path, Position<float> position, Dimension<float> size);
 
-	Texture GetTexture() const
+	virtual Texture GetTexture() const
 	{
 		return m_Texture;
 	}

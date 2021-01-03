@@ -6,4 +6,3 @@ RenderableEntity::RenderableEntity(char* path, Position<float> position, Dimensi
 	:Entity(position.getX(), position.getY()), Renderable(path, position, size)
 {
 }
-
