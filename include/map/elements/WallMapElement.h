@@ -6,5 +6,4 @@ class WallMapElement : public MapElement {
 public:
     WallMapElement();
     virtual ~WallMapElement() override;
-    virtual bool operator()(Entity* entity);
 };

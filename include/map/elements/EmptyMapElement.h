@@ -6,5 +6,4 @@ class EmptyMapElement : public MapElement {
 public:
     EmptyMapElement();
     virtual ~EmptyMapElement() override;
-    virtual bool operator()(Entity* entity);
 };
