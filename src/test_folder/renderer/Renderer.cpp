@@ -57,7 +57,7 @@ void Renderer::RenderGame() const
         return;
     }
     std::vector<RenderableEntity*> entities = m_Map->getEntities();
-    std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1.getZ() > entity2.getZ(); });
+    std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1->GetRenderPriorityLevel() > entity2->GetRenderPriorityLevel(); });
     for (RenderableEntity* entity : entities) {
         Texture texture = entity->GetTexture();
         SDL_Texture* sdlTexture = IMG_LoadTexture(m_Renderer, texture.texturePath);
