@@ -2,49 +2,19 @@
 
 #include "test_folder/renderer/Texture.h"
 
-Texture::Texture(char* texturePath, Dimension<float> position, Dimension<float> size)
-    : mTexturePath(texturePath), mPosition(position), mSize(size)
+Texture::Texture(char* _texturePath, Position<float> _position, Dimension<float> _size)
+    : texturePath(_texturePath), position(_position), size(_size)
 {
 }
 
-char* Texture::GetTexturePath()
+Position<float> Texture::ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize) const
 {
-    return mTexturePath;
+    return Position<float>(position.getX() * windowSize.getWidth() / mapSize.getWidth(),
+                            position.getY() * windowSize.getHeight() / mapSize.getHeight());
 }
 
-Dimension<float> Texture::GetPosition()
+Dimension<float> Texture::ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize) const
 {
-    return mPosition;
-}
-
-Dimension<float> Texture::GetSize()
-{
-    return mSize;
-}
-
-Dimension<float> Texture::ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize)
-{
-    return Dimension<float>(mPosition.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
-                            mPosition.getHeight() * windowSize.getHeight() / mapSize.getHeight());
-}
-
-Dimension<float> Texture::ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize)
-{
-    return Dimension<float>(mSize.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
-                            mSize.getHeight() * windowSize.getHeight() / mapSize.getHeight());
-}
-
-void Texture::SetTexturePath(char* texturePath)
-{
-    mTexturePath = texturePath;
-}
-
-void Texture::SetPosition(Dimension<float> position)
-{
-    mPosition = position;
-}
-
-void Texture::SetSize(Dimension<float> size)
-{
-    mSize = size;
+    return Dimension<float>(size.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
+                            size.getHeight() * windowSize.getHeight() / mapSize.getHeight());
 }
