@@ -56,7 +56,7 @@ void Renderer::RenderGame() const
     {
         return;
     }
-    std::vector<RenderableEntity*> entities = m_Map->getEntities();
+    std::vector<RenderableEntity*> entities = m_Map->GetEntities();
     std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1->GetRenderPriorityLevel() > entity2->GetRenderPriorityLevel(); });
     for (RenderableEntity* entity : entities) {
         Texture texture = entity->GetTexture();

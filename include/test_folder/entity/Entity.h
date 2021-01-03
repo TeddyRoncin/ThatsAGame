@@ -6,7 +6,7 @@ class Entity
 {
 public:
     Entity(float _x = 0.0f, float _y = 0.0f);
-    bool operator()(const Entity& e);
+    virtual bool operator()(const Entity& e);
 public:
     int GetID() const;
     // EntityType GetType() const;

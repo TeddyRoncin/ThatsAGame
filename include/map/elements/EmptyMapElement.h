@@ -4,6 +4,8 @@
 
 class EmptyMapElement : public MapElement {
 public:
-    EmptyMapElement();
+    EmptyMapElement(Position<float> position);
     virtual ~EmptyMapElement() override;
+
+    virtual bool operator()(const Entity& entity) override;
 };

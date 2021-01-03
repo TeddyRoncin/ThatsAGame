@@ -1,6 +1,6 @@
 #pragma once
 
-#include "map/elements/MapElement.h"
+#include "test_folder/entity/RenderableEntity.h"
 
 class Map
 {
@@ -8,7 +8,8 @@ public:
 	Map();
 	~Map();
 public:
-	MapElement* operator[](size_t index) const;
+	RenderableEntity* operator[](size_t index) const;
+	std::vector<RenderableEntity*> GetEntities() const;
 	const size_t Width() const;
 	const size_t Height() const;
 private:
@@ -17,7 +18,7 @@ private:
 private:
 	const char* name;
 	size_t m_Width, m_Height;
-	std::vector<MapElement*> m_Elements;
+	std::vector<RenderableEntity*> m_Entities;
 private:
 	int m_CurrentMap;
 	std::vector<const char*> m_Maps;

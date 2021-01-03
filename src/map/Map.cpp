@@ -6,8 +6,8 @@
 #include "bmploader/BMPFile.h"
 #include "bmploader/BMPImage.h"
 
-
 namespace pt = boost::property_tree;
+
 Map::Map()
 	:m_CurrentMap(0)
 {
@@ -17,15 +17,20 @@ Map::Map()
 
 Map::~Map()
 {
-	for(auto elem : m_Elements)
+	for(auto elem : m_Entities)
 	{
 		delete elem;
 	}
 }
 
-MapElement* Map::operator[](size_t index) const
+RenderableEntity* Map::operator[](size_t index) const
 {
-	return m_Elements[index];
+	return m_Entities[index];
+}
+
+std::vector<RenderableEntity*> Map::GetEntities() const
+{
+	return m_Entities;
 }
 
 const size_t Map::Width() const
@@ -59,7 +64,7 @@ void Map::loadMap(const char* name)
 	m_Width = maps.get<int>("width");
 	m_Height = maps.get<int>("height");
 
-	m_Elements.reserve(m_Width * m_Height);
+	m_Entities.reserve(m_Width * m_Height);
 
 	BMPImage pattern = BMPFile(maps.get<std::string>("mapPattern")).load();
 
@@ -81,9 +86,9 @@ void Map::loadMap(const char* name)
 			RGBColor color = pattern.getRGBColor(x, y);
 			std::cout << "color : r<" << (int)color.R << ">, g<" << (int)color.G << ">, b<" << (int)color.B << ">" << std::endl;
 			if (color.R == 255 && color.G == 255) {
-				m_Elements.emplace_back(new EmptyMapElement());
+				m_Entities.emplace_back(new EmptyMapElement({x, y}));
 			} else if (color.R == 0 && color.G == 0) {
-				m_Elements.emplace_back(new WallMapElement());
+				m_Entities.emplace_back(new WallMapElement({x, y}));
 			} else {
 				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 				return;

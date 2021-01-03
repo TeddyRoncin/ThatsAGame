@@ -2,14 +2,8 @@
 
 #include "application/Application.h"
 
-/**
- * TODO: améliorer le renderer et peut être faire une \class Window
- * pour get la taille de la fenetre plutot que de les mettre en dure
- * comme ça !!!
-*/
-
 Application::Application()
-	:EventListener(this), map()
+	:Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState, &map), m_CurrentState(ApplicationState::Game), map()
 {
 }
 
@@ -24,6 +18,6 @@ void Application::loop()
 {
 	while(m_Action != Action::Quit)
 	{
-		//UpdateListener();
+		m_Window.Render();
 	}
 }

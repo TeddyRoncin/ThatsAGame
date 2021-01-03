@@ -4,15 +4,12 @@
 #include "event/EventListener.h"
 
 Window::Window(ApplicationState* state, Map* map)
-    : m_Size(0, 0)
+    :m_Size(500, 500), m_Window(SDL_CreateWindow("Render Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_Size.getWidth(), m_Size.getHeight(), SDL_WindowFlags::SDL_WINDOW_RESIZABLE)), m_Renderer(state, m_Window, map)
 {
-    SetSize({ 500, 500 });
-    m_Window = SDL_CreateWindow("Render Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_Size.getWidth(), m_Size.getHeight(), SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
     if(!m_Window)
 	{
 		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
 	}
-    m_Renderer = Renderer(state, m_Window, map);
 }
 
 Window::~Window()

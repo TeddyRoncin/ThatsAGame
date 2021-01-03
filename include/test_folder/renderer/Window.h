@@ -14,7 +14,7 @@ public:
     void Render() const;
 
 private:
-    Renderer m_Renderer;
     Dimension<int> m_Size;
     SDL_Window* m_Window;
+    Renderer m_Renderer;
 };
