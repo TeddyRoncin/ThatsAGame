@@ -5,7 +5,7 @@
 class MapElement : public RenderableEntity
 {
 protected:
-    MapElement(char* path, Position<float> position, Dimension<float> size);
+    MapElement(const char* path, Position<float> position, Dimension<float> size);
 public:
     virtual ~MapElement();
 };

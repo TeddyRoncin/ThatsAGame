@@ -10,8 +10,8 @@ public:
 public:
 	RenderableEntity* operator[](size_t index) const;
 	std::vector<RenderableEntity*> GetEntities() const;
-	const size_t Width() const;
-	const size_t Height() const;
+	const int Width() const;
+	const int Height() const;
 private:
 	void registerMaps();
 	void loadMap(const char* mapName);

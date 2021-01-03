@@ -33,12 +33,12 @@ std::vector<RenderableEntity*> Map::GetEntities() const
 	return m_Entities;
 }
 
-const size_t Map::Width() const
+const int Map::Width() const
 {
 	return m_Width;
 }
 
-const size_t Map::Height() const
+const int Map::Height() const
 {
 	return m_Height;
 }
@@ -81,14 +81,14 @@ void Map::loadMap(const char* name)
 		return;
 	}
 
-	for (size_t y(0); y < m_Height; y++) {
-		for (size_t x(0); x < m_Width; x++) {
+	for (int y(0); y < m_Height; y++) {
+		for (int x(0); x < m_Width; x++) {
 			RGBColor color = pattern.getRGBColor(x, y);
 			std::cout << "color : r<" << (int)color.R << ">, g<" << (int)color.G << ">, b<" << (int)color.B << ">" << std::endl;
 			if (color.R == 255 && color.G == 255) {
-				m_Entities.emplace_back(new EmptyMapElement({x, y}));
+				m_Entities.emplace_back(new EmptyMapElement({static_cast<float>(x), static_cast<float>(y)}));
 			} else if (color.R == 0 && color.G == 0) {
-				m_Entities.emplace_back(new WallMapElement({x, y}));
+				m_Entities.emplace_back(new WallMapElement({ static_cast<float>(x), static_cast<float>(y)}));
 			} else {
 				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 				return;

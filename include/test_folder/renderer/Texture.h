@@ -3,7 +3,7 @@
 struct Texture
 {
 public:
-    Texture(char* _texturePath, Position<float> _position, Dimension<float> _size);
+    Texture(const char* _texturePath, Position<float> _position, Dimension<float> _size);
 
 public:
     Position<int> ComputeActualPosition(Dimension<int> mapSize, Dimension<int> windowSize) const;

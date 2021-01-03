@@ -31,6 +31,7 @@ void Window::AddMap(const Map* map)
 bool Window::IsFullScreen() const
 {
     // TODO : return true if fullscreen, else false
+    SDL_DisplayMode mode;
 }
 
 void Window::SetFullScreen(bool fullScreen) const

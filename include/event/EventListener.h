@@ -12,7 +12,8 @@ public:
 public:
     virtual void handle() =0;
     inline virtual void UpdateData(SDL_Event& event) {
-        m_Action = EventBinding::GetAction(static_cast<SDL_KeyCode>(event.key.keysym.sym));
+        if(event.type == SDL_EventType::SDL_KEYDOWN)
+            m_Action = EventBinding::GetAction(static_cast<SDL_KeyCode>(event.key.keysym.sym));
     }
 
 private:
