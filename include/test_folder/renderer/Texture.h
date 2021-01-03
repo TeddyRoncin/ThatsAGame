@@ -19,5 +19,4 @@ private:
     char* mTexturePath;
     Dimension<float> mPosition;
     Dimension<float> mSize;
-    Dimension<float> mMapSize;
 };
