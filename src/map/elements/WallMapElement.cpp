@@ -3,7 +3,7 @@
 #include "map/elements/WallMapElement.h"
 
 WallMapElement::WallMapElement(Position<float> position)
-    :MapElement("assets/textures", position, {1.0f, 1.0f})
+    :MapElement("assets/textures/wall_map_element.png", position, {1.0f, 1.0f})
 {}
 
 WallMapElement::~WallMapElement()

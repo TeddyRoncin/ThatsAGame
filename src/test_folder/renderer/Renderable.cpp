@@ -6,7 +6,8 @@ Renderable::Renderable(const char* path, Position<float> position, Dimension<flo
 	:m_Texture(path, position, size)
 {}
 
-Texture Renderable::GetTexture() const
+Texture Renderable::GetTexture()
 {
+	UpdateTexture(m_Texture);
 	return m_Texture;
 }

@@ -11,3 +11,9 @@ Layer RenderableEntity::GetRenderPriorityLevel() const
 {
 	return m_RenderPriorityLevel;
 }
+
+void RenderableEntity::UpdateTexture(Texture texture)
+{
+	texture.position = GetPosition();
+	texture.size = {1, 1};
+}

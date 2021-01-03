@@ -33,3 +33,8 @@ float Entity::GetY() const
 {
     return m_Position.getY();
 }
+
+Position<float> Entity::GetPosition() const
+{
+    return m_Position;
+}

@@ -12,6 +12,7 @@ public:
     // EntityType GetType() const;
     float GetX() const;
     float GetY() const;
+    Position<float> GetPosition() const;
 private:
     int m_ID;
     Position<float> m_Position;

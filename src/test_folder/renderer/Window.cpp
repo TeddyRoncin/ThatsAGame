@@ -10,6 +10,7 @@ Window::Window(ApplicationState* state, Map* map)
 	{
 		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
 	}
+    SetSize(m_Size);
 }
 
 Window::~Window()
