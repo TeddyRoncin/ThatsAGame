@@ -1,7 +1,5 @@
 #pragma once
 
-#include "utils/Utils.h"
-
 class Texture
 {
 public:
@@ -19,5 +17,4 @@ private:
     char* mTexturePath;
     Dimension<float> mPosition;
     Dimension<float> mSize;
-    Dimension<float> mMapSize;
 };
