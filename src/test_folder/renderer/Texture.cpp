@@ -2,7 +2,7 @@
 
 #include "test_folder/renderer/Texture.h"
 
-Texture::Texture(char* texturePath, Dimension<float> position, Dimension<float> size)
+Texture::Texture(char* texturePath, Position<float> position, Dimension<float> size)
     : mTexturePath(texturePath), mPosition(position), mSize(size)
 {
 }
@@ -12,7 +12,7 @@ const char* Texture::GetTexturePath()
     return mTexturePath;
 }
 
-Dimension<float> Texture::GetPosition()
+Position<float> Texture::GetPosition()
 {
     return mPosition;
 }
@@ -24,8 +24,8 @@ Dimension<float> Texture::GetSize()
 
 Dimension<float> Texture::ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize)
 {
-    return Dimension<float>(mPosition.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
-                            mPosition.getHeight() * windowSize.getHeight() / mapSize.getHeight());
+    return Dimension<float>(mPosition.getX() * windowSize.getWidth() / mapSize.getWidth(),
+                            mPosition.getY() * windowSize.getHeight() / mapSize.getHeight());
 }
 
 Dimension<float> Texture::ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize)
@@ -39,7 +39,7 @@ void Texture::SetTexturePath(char* texturePath)
     mTexturePath = texturePath;
 }
 
-void Texture::SetPosition(Dimension<float> position)
+void Texture::SetPosition(Position<float> position)
 {
     mPosition = position;
 }

@@ -10,6 +10,7 @@ public:
     void SetFullScreen(bool fullScreen);
     void Render();
 
-protected:
-    Renderer mRenderer;
+private:
+    Renderer m_Renderer;
+    Dimension<int> m_Size;
 };

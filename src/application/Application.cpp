@@ -24,6 +24,6 @@ void Application::loop()
 {
 	while(m_Action != Action::Quit)
 	{
-		UpdateListener();
+		// mWindow.Render();
 	}
 }

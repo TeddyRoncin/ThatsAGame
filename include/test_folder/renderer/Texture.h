@@ -3,18 +3,18 @@
 class Texture
 {
 public:
-    Texture(char* pTexturePath, Dimension<float> pPosition, Dimension<float> pSize);
+    Texture(char* pTexturePath, Position<float> pPosition, Dimension<float> pSize);
     const char* GetTexturePath();
-    Dimension<float> GetPosition();
+    Position<float> GetPosition();
     Dimension<float> GetSize();
     Dimension<float> ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize);
     Dimension<float> ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize);
     void SetTexturePath(char* texturePath);
-    void SetPosition(Dimension<float> position);
+    void SetPosition(Position<float> position);
     void SetSize(Dimension<float> size);
 
 private:
     const char* mTexturePath;
-    Dimension<float> mPosition;
+    Position<float> mPosition;
     Dimension<float> mSize;
 };

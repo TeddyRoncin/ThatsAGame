@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "test_folder/renderer/Renderer.h"
-#include "test_folder/EnTT.h"
+#include "test_folder/entity/Entity.h"
 #include "test_folder/renderer/Texture.h"
 
 Renderer::Renderer(ApplicationState* state, Map& map)
