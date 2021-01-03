@@ -5,10 +5,11 @@
 class Window
 {
 public:
-    Window(ApplicationState* state, Map& map);
-    bool IsFullScreen();
-    void SetFullScreen(bool fullScreen);
-    void Render();
+    Window(ApplicationState* state, Map* map = nullptr);
+    void AddMap(const Map* map);
+    bool IsFullScreen() const;
+    void SetFullScreen(bool fullScreen) const;
+    void Render() const;
 
 private:
     Renderer m_Renderer;

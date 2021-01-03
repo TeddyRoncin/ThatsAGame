@@ -5,7 +5,7 @@
 
 class EventListener : public virtual EventBinding
 {
-    friend void Window::Render();
+    friend void Window::Render() const;
 public:
     Action m_Action;
 

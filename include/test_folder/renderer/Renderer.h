@@ -7,15 +7,16 @@ class Renderer
 {
 
 public:
-    Renderer(ApplicationState* state, Map& map);
-    void Render();
+    Renderer(const ApplicationState* const state, const Map* map = nullptr);
+    void AddMap(const Map* map);
+    void Render() const;
 
 private:
-    void RenderHome();
-    void RenderGame();
+    void RenderHome() const;
+    void RenderGame() const;
 
 private:
-    const ApplicationState* const mState;
-    const Map mMap;
+    const ApplicationState* const m_State;
+    const Map* m_Map;
 
 };

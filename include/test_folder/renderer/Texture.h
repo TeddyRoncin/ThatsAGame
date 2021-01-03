@@ -1,20 +1,16 @@
 #pragma once
 
-class Texture
+struct Texture
 {
 public:
-    Texture(char* pTexturePath, Position<float> pPosition, Dimension<float> pSize);
-    const char* GetTexturePath();
-    Position<float> GetPosition();
-    Dimension<float> GetSize();
-    Dimension<float> ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize);
-    Dimension<float> ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize);
-    void SetTexturePath(char* texturePath);
-    void SetPosition(Position<float> position);
-    void SetSize(Dimension<float> size);
+    Texture(char* _texturePath, Position<float> _position, Dimension<float> _size);
 
-private:
-    const char* mTexturePath;
-    Position<float> mPosition;
-    Dimension<float> mSize;
+public:
+    Position<float> ComputeActualPosition(Dimension<float> mapSize, Dimension<float> windowSize) const;
+    Dimension<float> ComputeActualSize(Dimension<float> mapSize, Dimension<float> windowSize) const;
+
+public:
+    const char* texturePath;
+    Position<float> position;
+    Dimension<float> size;
 };

@@ -4,27 +4,36 @@
 #include "test_folder/entity/Entity.h"
 #include "test_folder/renderer/Texture.h"
 
-Renderer::Renderer(ApplicationState* state, Map& map)
-    : mState(state), mMap(map)
+Renderer::Renderer(const ApplicationState* const state, const Map* map)
+    : m_State(state), m_Map(map)
 {
 }
 
-void Renderer::Render()
+void Renderer::AddMap(const Map* map)
 {
-    switch (*mState) {
-        case ApplicationState::HOME: RenderHome(); break;
-        case ApplicationState::GAME: RenderGame(); break;
-        default: std::cerr << "Unknow application state : " << *mState << ". Skipping render for this frame" << std::endl;
+    m_Map = map;
+}
+
+void Renderer::Render() const
+{
+    switch (*m_State) {
+        case ApplicationState::Home: RenderHome(); break;
+        case ApplicationState::Game: RenderGame(); break;
+        default: std::cerr << "Unknow application state : " << *m_State << ". Skipping render for this frame" << std::endl;
     }
 }
 
-void Renderer::RenderHome()
+void Renderer::RenderHome() const
 {
 }
 
-void Renderer::RenderGame()
+void Renderer::RenderGame() const
 {
-    std::vector<Entity*> entities = mMap.getEntities();
+    if (m_Map == nullptr)
+    {
+        return;
+    }
+    std::vector<RenderableEntity*> entities = m_Map->getEntities();
     std::sort(entities.begin(), entities.end(), [](Entity entity1, Entity entity2) { return entity1.getZ() > entity2.getZ(); });
     for (Entity* entity : entities) {
         Texture texture = entity->getTexture();

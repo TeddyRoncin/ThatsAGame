@@ -3,22 +3,27 @@
 
 #include "event/EventListener.h"
 
-Window::Window(ApplicationState* state, Map& map)
-    :m_Renderer(state, map), m_Size(500, 500)
+Window::Window(ApplicationState* state, Map* map)
+    : m_Renderer(state, map), m_Size(500, 500)
 {
 }
 
-bool Window::IsFullScreen()
+void Window::AddMap(const Map* map)
+{
+    m_Renderer.AddMap(map);
+}
+
+bool Window::IsFullScreen() const
 {
     // TODO : return true if fullscreen, else false
 }
 
-void Window::SetFullScreen(bool fullScreen)
+void Window::SetFullScreen(bool fullScreen) const
 {
     // TODO : set window fullscreen if fullScreen is true, else un-fullscreen window
 }
 
-void Window::Render()
+void Window::Render() const
 {
     m_Renderer.Render();
     EventListener::Update();
