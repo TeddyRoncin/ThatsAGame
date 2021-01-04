@@ -1,21 +1,19 @@
 #pragma once
 
-#include "entity/Entity.h"
-
-struct Node : public Entity
+struct Node
 {
 public:
-    Node* m_ComeFrom;
-    int m_GCost;
-    int m_FCost;
+    Node* comeFrom;
+    float gCost;
+    float fCost;
+    Position<float> position;
 
 public:
-    Node(int posX, int posY, Node& comeFrom, int startX, int startY, int endX, int endY);
-    Node(int posX, int posY, int startX, int startY, int endX, int endY);
-    Node(int posX, int posY, Node* comeFrom, int startX, int startY, int endX, int endY);
+    Node(Position<float> _position, Position<float> end, float step);
+    Node(Position<float> _position, Node& _comeFrom, Position<float> end, float step);
+    Node(Position<float> _position, Node* _comeFrom, Position<float> end, float step);
     Node(const Node& node);
 
 private:
-    void computeFCost(int startX, int startY, int endX, int endY);
-
+    void computeFCost(Position<float> end, float step);
 };

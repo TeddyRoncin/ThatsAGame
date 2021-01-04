@@ -1,39 +1,42 @@
 #include "pch.h"
 
-#include "entity/npc/ai/Node.h"
+#include "test_folder/entity/ai/Node.h"
 
-Node::Node(int posX, int posY, Node& comeFrom, int startX, int startY, int endX, int endY) :
-Entity("node", posX, posY),
-m_ComeFrom(&comeFrom)
+Node::Node(Position<float> _position, Position<float> end, float step)
+    : position(position), comeFrom(nullptr)
 {
-    //std::cout << "le come from ds le constructeur ! (sans ptr) : " << m_ComeFrom << std::endl;
-    computeFCost(startX, startY, endX, endY);
+    computeFCost(end);
 }
 
-Node::Node(int posX, int posY, Node* comeFrom, int startX, int startY, int endX, int endY) :
-Entity("node", posX, posY),
-m_ComeFrom(comeFrom)
+Node::Node(Position<float> _position, Node& _comeFrom, Position<float> end, float step) :
+    comeFrom(&_comeFrom),
+    position(_position)
 {
-    //std::cout << "le come from ds le constructeur ! (avc ptr) : " << m_ComeFrom << std::endl;
-    computeFCost(startX, startY, endX, endY);
+    computeFCost(end, step);
+}
+
+Node::Node(Position<float> _position, Node* _comeFrom, Position<float> end, float step) :
+    comeFrom(_comeFrom),
+    position(_position)
+{
+    computeFCost(end, step);
 }
 
 Node::Node(const Node& node) :
-Entity("node", node.m_pos.getX(), node.m_pos.getY()),
-m_ComeFrom(node.m_ComeFrom),
-m_GCost(node.m_GCost),
-m_FCost(node.m_FCost)
+    comeFrom(node.comeFrom),
+    gCost(node.gCost),
+    fCost(node.fCost),
+    position(node.position)
 {
 }
 
-void Node::computeFCost(int startX, int startY, int endX, int endY)
+void Node::computeFCost(Position<float> end, float step)
 {
-    //std::cout << "le comeFrom : " << m_ComeFrom << std::endl;
-    if (m_ComeFrom == nullptr) {
-        m_GCost = 0;
-        m_FCost = 0;
+    if (comeFrom == nullptr) {
+        gCost = 0;
+        fCost = 0;
         return;
     }
-    m_GCost = m_ComeFrom->m_GCost + 1;
-    m_FCost = m_GCost + std::abs(std::round(m_pos.getX()) - endX) + std::abs(std::round(m_pos.getY()) - endY);
+    gCost = comeFrom->gCost + step;
+    fCost = gCost + std::abs(position.getX() - end.getX()) + std::abs(position.getY() - end.getY());
 }
