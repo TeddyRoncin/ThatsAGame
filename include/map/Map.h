@@ -12,7 +12,7 @@ public:
 	std::vector<RenderableEntity*> GetEntities() const;
 	const int Width() const;
 	const int Height() const;
-	const bool DoesStaticCollide(Entity* entity) const;
+	const bool DoesStaticCollide(const Entity* const entity) const {return false;};
 private:
 	void registerMaps();
 	void loadMap(const char* mapName);

@@ -8,18 +8,24 @@ class PathFinder
 
 public:
     PathFinder(const Map& map);
-    PathFinder(Map map)
     ~PathFinder();
-    std::vector<Position<float>> find(Position<float> start, Position<float> end, Entity* entity, int precision) const;
+    std::vector<Position<float>> find(const Entity* const entity, Position<float> end, int precision);
 
 private:
     const Map& m_Map;
+    std::vector<Node*> m_OpEnNoDeS;
+    std::vector<Node*> m_ClosedNodes;
+    Node m_CurrentNode;
+    float m_Step;
+    Position<float> m_End;
+    const Entity* m_Entity;
 
 private:
-    std::pair<int, Node> findCurrentNode(std::vector<Node> openNodes, float step) const;
-    std::vector<Node> getNeighbourNodes(Node currentNode, Position<float> end, Entity* entity, std::vector<Node>& closedNodes, float step) const;
-    bool containsNode(std::vector<Node> vector, Position<float> coords, float step) const;
-    bool containsNode(std::vector<Node> vector, Node nodeToSearch, float step) const;
-    std::vector<Position<float>> getPath(Position<float> start, Node currentNode) const;
+    int findCurrentNode();
+    void getNeighbourNodes(std::vector<Node*>& neighbourNodesDest);
+    bool containsNode(const std::vector<Node*>& vector, const Position<float>& coords) const;
+    bool containsNode(const std::vector<Node*>& vector, const Node& nodeToSearch) const;
+    void DestroyPointers();
+    std::vector<Position<float>> getPath();
 
 };

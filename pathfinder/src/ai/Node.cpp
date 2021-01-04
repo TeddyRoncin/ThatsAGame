@@ -3,7 +3,14 @@
 #include "test_folder/entity/ai/Node.h"
 
 Node::Node(const Position<float>& _position, const Position<float>& end, float step)
-    : position(_position), comeFrom(nullptr)
+    : position(position), comeFrom(nullptr)
+{
+    computeFCost(end, step);
+}
+
+Node::Node(const Position<float>& _position, const Node& _comeFrom, const Position<float>& end, float step) :
+    comeFrom(&_comeFrom),
+    position(_position)
 {
     computeFCost(end, step);
 }
@@ -23,14 +30,10 @@ Node::Node(const Node& node) :
 {
 }
 
-/*Node Node::operator=(const Node& node)
+Node Node::operator=(const Node& node)
 {
-    comeFrom = node.comeFrom;
-    gCost = node.gCost;
-    fCost = node.fCost;
-    position = node.position;
-    return *this;
-}*/
+    return node;
+}
 
 void Node::computeFCost(const Position<float>& end, float step)
 {
