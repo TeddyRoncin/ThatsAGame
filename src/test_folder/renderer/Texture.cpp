@@ -15,6 +15,6 @@ Position<int> Texture::ComputeActualPosition(Dimension<int> mapSize, Dimension<i
 
 Dimension<int> Texture::ComputeActualSize(Dimension<int> mapSize, Dimension<int> windowSize) const
 {
-    return Dimension<int>(size.getWidth() * windowSize.getWidth() / mapSize.getWidth(),
-                            size.getHeight() * windowSize.getHeight() / mapSize.getHeight());
+    return Dimension<int>(std::ceil(size.getWidth() * windowSize.getWidth() / mapSize.getWidth()),
+                            std::ceil(size.getHeight() * windowSize.getHeight() / mapSize.getHeight()));
 }

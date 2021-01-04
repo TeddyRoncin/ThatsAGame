@@ -23,6 +23,10 @@ Node::Node(const Node& node) :
 {
 }
 
+Node::~Node()
+{
+}
+
 /*Node Node::operator=(const Node& node)
 {
     comeFrom = node.comeFrom;
@@ -39,6 +43,6 @@ void Node::computeFCost(const Position<float>& end, float step)
         fCost = 0;
         return;
     }
-    gCost = comeFrom->gCost + step;
+    gCost = comeFrom->gCost + position.DistanceFrom(comeFrom->position);
     fCost = gCost + std::abs(position.getX() - end.getX()) + std::abs(position.getY() - end.getY());
 }

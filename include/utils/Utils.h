@@ -18,6 +18,11 @@ struct Position
 	T getX() const { return (position.first); }
 	T getY() const { return (position.second); }
 	std::pair<T, T> getPosition() const { return (position); }
+
+	T DistanceFrom(Position<T> otherPoint)
+	{
+		return std::sqrt(std::pow(getX() - otherPoint.getX(), 2) + std::pow(getY() - otherPoint.getY(), 2));
+	}
 };
 
 template<typename T>
