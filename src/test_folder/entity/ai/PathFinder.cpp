@@ -14,6 +14,7 @@ std::vector<Position<float>> PathFinder::find(const Entity* entity, Position<flo
 {
     //m_OpEnNoDeS.clear();
     //m_ClosedNodes.clear();
+    //jour
     m_Entity = entity;
     m_Step = std::max(m_Map.Width(), m_Map.Height()) / (float) precision;
     m_End = end;
