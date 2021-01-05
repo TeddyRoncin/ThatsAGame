@@ -5,9 +5,7 @@
 
 Entity::Entity(float _x, float _y)
     :m_ID(EntityManager::GetNewID(this)), m_Position(_x, _y)
-{
-    std::cout << "NewEntity: " << m_ID << std::endl;
-}
+{}
 
 bool Entity::operator()(const Entity& e)
 {

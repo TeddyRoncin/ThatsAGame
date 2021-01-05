@@ -84,7 +84,7 @@ void Map::loadMap(const char* name)
 	for (int y(0); y < m_Height; y++) {
 		for (int x(0); x < m_Width; x++) {
 			RGBColor color = pattern.getRGBColor(x, y);
-			std::cout << "color : r<" << (int)color.R << ">, g<" << (int)color.G << ">, b<" << (int)color.B << ">" << std::endl;
+			// std::cout << "color : r<" << (int)color.R << ">, g<" << (int)color.G << ">, b<" << (int)color.B << ">" << std::endl;
 			if (color.R == 255 && color.G == 255) {
 				m_Entities.emplace_back(new EmptyMapElement({static_cast<float>(x), static_cast<float>(y)}));
 			} else if (color.R == 0 && color.G == 0) {

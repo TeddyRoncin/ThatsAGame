@@ -1,7 +1,7 @@
 {
     "name": "title_screen",
-    "width": 3,
-    "height": 3,
+    "width": 10,
+    "height": 10,
     "mapPattern": "assets/maps/map1.bmp",
     "backgroundPath": "assets/textures/test.png"
 }
