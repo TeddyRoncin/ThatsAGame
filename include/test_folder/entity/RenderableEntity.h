@@ -9,9 +9,7 @@ class RenderableEntity: public Entity, public Renderable
 public:
 	RenderableEntity(const char* path, Position<float> position = {0, 0}, Dimension<float> dimension = {0, 0}, Layer priority = Layer::Ground);
 	Layer GetRenderPriorityLevel() const;
-
-protected:
-	virtual void UpdateTexture(Texture texture);
+	virtual Texture& GetTexture();
 
 private:
 	Layer m_RenderPriorityLevel;
