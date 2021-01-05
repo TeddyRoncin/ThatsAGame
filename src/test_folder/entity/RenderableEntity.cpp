@@ -16,5 +16,9 @@ Texture& RenderableEntity::GetTexture()
 {
 	m_Texture.position = GetPosition();
 	m_Texture.size = {1, 1};
+	/*if (m_Texture.needReloading){
+		std::cout << "bonjour !" << std::endl;
+	}*/
+	//m_Texture.needReloading = true;
 	return m_Texture;
 }

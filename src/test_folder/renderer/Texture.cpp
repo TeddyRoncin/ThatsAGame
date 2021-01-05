@@ -1,10 +1,18 @@
 #include "pch.h"
 
 #include "test_folder/renderer/Texture.h"
+#include "test_folder/renderer/TextureManager.h"
 
 Texture::Texture(const char* _texturePath, Position<float> _position, Dimension<float> _size)
     : texturePath(_texturePath), position(_position), size(_size)
 {
+    //std::cout << "Texture";
+    TextureManager::LoadTexture(texturePath);
+}
+
+Texture::~Texture()
+{
+    TextureManager::UnloadTexture(texturePath);
 }
 
 Position<int> Texture::ComputeActualPosition(Dimension<int> mapSize, Dimension<int> windowSize) const

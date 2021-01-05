@@ -5,13 +5,14 @@
 #include "test_folder/renderer/Texture.h"
 
 Renderer::Renderer(const ApplicationState* const state, SDL_Window* window, const Map* map)
-    : m_State(state), m_Map(map), m_WindowSize(0, 0)
+    : m_State(state), m_WindowSize(0, 0), m_Renderer(SDL_CreateRenderer(window,-1,0))
 {
-    m_Renderer = SDL_CreateRenderer(window,-1,0);
+    m_Map = map;
 	if(!m_Renderer)
 	{
 		std::cerr << "SDL_CreateRendererError: " << SDL_GetError() << std::endl;
 	}
+    TextureManager::Init(m_Renderer);
 }
 
 Renderer::~Renderer()
@@ -34,7 +35,7 @@ void Renderer::AddMap(const Map* map)
     m_Map = map;
 }
 
-void Renderer::Render() const
+void Renderer::Render()
 {
     SDL_SetRenderDrawColor(m_Renderer,0,0,0,255);
 	SDL_RenderClear(m_Renderer);
@@ -46,11 +47,11 @@ void Renderer::Render() const
     SDL_RenderPresent(m_Renderer);
 }
 
-void Renderer::RenderHome() const
+void Renderer::RenderHome()
 {
 }
 
-void Renderer::RenderGame() const
+void Renderer::RenderGame()
 {
     if (m_Map == nullptr)
     {
@@ -59,13 +60,13 @@ void Renderer::RenderGame() const
     std::vector<MapElement*> entities = m_Map->GetEntities();
     std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1->GetRenderPriorityLevel() > entity2->GetRenderPriorityLevel(); });
     for (RenderableEntity* entity : entities) {
-        Texture texture = entity->GetTexture();
-        SDL_Texture* sdlTexture = IMG_LoadTexture(m_Renderer, texture.texturePath);
+        Texture& texture = entity->GetTexture();
+        //std::cout << texture.texturePath << std::endl;
+        SDL_Texture* sdlTexture = TextureManager::GetTexture(texture.texturePath);
         auto[x, y] = texture.ComputeActualPosition({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getPosition();
         auto[width, height] = texture.ComputeActualSize({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getDimension();
         SDL_Rect dest = {x, y, width, height};
         SDL_RenderCopy(m_Renderer, sdlTexture, nullptr, &dest);
-        SDL_DestroyTexture(sdlTexture);
     }
     SDL_RenderPresent(m_Renderer);
 }

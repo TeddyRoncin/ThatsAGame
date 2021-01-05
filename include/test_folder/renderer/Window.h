@@ -11,7 +11,7 @@ public:
     void AddMap(const Map* map);
     bool IsFullScreen() const;
     void SetFullScreen(bool fullScreen) const;
-    void Render() const;
+    void Render();
 
 private:
     Dimension<int> m_Size;

@@ -17,7 +17,7 @@ public:
 public:
 	void loop();
 private:
-	Map map;
 	ApplicationState m_CurrentState;
 	Window m_Window;
+	Map map;
 };

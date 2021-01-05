@@ -40,7 +40,7 @@ void Window::SetFullScreen(bool fullScreen) const
     // TODO : set window fullscreen if fullScreen is true, else un-fullscreen window
 }
 
-void Window::Render() const
+void Window::Render()
 {
     m_Renderer.Render();
     EventListener::Update();

@@ -2,6 +2,7 @@
 
 #include "test_folder/application/ApplicationState.h"
 #include "map/Map.h"
+#include "test_folder/renderer/TextureManager.h"
 
 class Renderer
 {
@@ -12,15 +13,15 @@ public:
     Renderer operator=(const Renderer& renderer);
     void SetWindowSize(Dimension<int> newSize);
     void AddMap(const Map* map);
-    void Render() const;
+    void Render();
 
 private:
-    void RenderHome() const;
-    void RenderGame() const;
+    void RenderHome();
+    void RenderGame();
 
 private:
     const ApplicationState* const m_State;
-    const Map* m_Map;
     SDL_Renderer* m_Renderer;
+    const Map* m_Map;
     Dimension<int> m_WindowSize;
 };
