@@ -26,6 +26,17 @@ struct Position
 };
 
 template<typename T>
+std::ostream& operator<<(std::ostream& out, Position<T> position)
+{
+	if(!std::is_class<T>::value) {
+		out << "Position(" << position.getX() << ", " << position.getY() << ")\n";
+	} else {
+		out << "\n";
+	}
+	return out;
+}
+
+template<typename T>
 struct Dimension
 {
 	std::pair<T, T> dimension;

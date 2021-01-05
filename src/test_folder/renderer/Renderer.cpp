@@ -65,6 +65,7 @@ void Renderer::RenderGame() const
         auto[width, height] = texture.ComputeActualSize({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getDimension();
         SDL_Rect dest = {x, y, width, height};
         SDL_RenderCopy(m_Renderer, sdlTexture, nullptr, &dest);
+        SDL_DestroyTexture(sdlTexture);
     }
     SDL_RenderPresent(m_Renderer);
 }

@@ -12,10 +12,11 @@ PathFinder::~PathFinder()
 
 std::vector<Position<float>> PathFinder::find(const Entity* entity, Position<float> end, int precision)
 {
+    // std::cout << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() << "\n";
     m_OpEnNoDeS.clear();
     m_ClosedNodes.clear();
     m_Entity = entity;
-    m_Step = std::max(m_Map.Width(), m_Map.Height()) / (float) precision;
+    m_Step = std::max<float>(m_Map.Width(), m_Map.Height()) / precision;
     m_End = end;
     m_ClosedNodes.reserve(precision * precision);
     m_OpEnNoDeS.reserve(precision * precision);
@@ -28,6 +29,7 @@ std::vector<Position<float>> PathFinder::find(const Entity* entity, Position<flo
         if (std::abs(m_CurrentNode->position.getX() - m_End.getX()) < m_Step / 2 && std::abs(m_CurrentNode->position.getY() - m_End.getY()) < m_Step / 2) {
             auto path = getPath();
             DestroyPointers();
+            std::cout << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count() << "\n";
             return path;
         }
         std::vector<Node*> newNeighbourNodes;
@@ -48,6 +50,7 @@ std::vector<Position<float>> PathFinder::find(const Entity* entity, Position<flo
             }
         }
     }
+    std::cout << "mission failed !\n";
     DestroyPointers();
     return std::vector<Position<float>>();
 }
@@ -78,9 +81,13 @@ void PathFinder::getNeighbourNodes(std::vector<Node*>& neighbourNodesDest)
         { m_CurrentNode->position.getX() + m_Step, m_CurrentNode->position.getY() + m_Step },
     };
     for (Position<float> node : neighbourNodeCoords) {
+        if((abs(node.getX()) + abs(node.getY()) * m_Map.Width()) > (m_Map.Width() * m_Map.Height())) {
+            std::cout << "cuicui\n";
+        }
+        Entity& otherEntity = *m_Map[abs(node.getX()) + abs(node.getY()) * m_Map.Width()];
         if (node.getX() >= -m_Step / 2 && abs(node.getX() - m_Map.Width()) > m_Step / 2 &&
                 node.getY() >= -m_Step / 2 && abs(node.getY() - m_Map.Height()) > m_Step / 2 &&
-                !m_Map.DoesStaticCollide(m_Entity) &&
+                otherEntity(*m_Entity) &&
                 !containsNode(m_ClosedNodes, node)) {
             neighbourNodesDest.push_back(new Node(node, m_ClosedNodes[m_ClosedNodes.size() - 1], m_End, m_Step));
         }
