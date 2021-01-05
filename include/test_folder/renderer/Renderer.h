@@ -18,6 +18,8 @@ public:
 private:
     void RenderHome();
     void RenderGame();
+    template<typename T, typename std::enable_if<std::is_base_of<RenderableEntity, T>::value>::type* = nullptr>
+    void RenderEntities(std::vector<T*> entities);
 
 private:
     const ApplicationState* const m_State;

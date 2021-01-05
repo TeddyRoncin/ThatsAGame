@@ -57,16 +57,25 @@ void Renderer::RenderGame()
     {
         return;
     }
-    std::vector<MapElement*> entities = m_Map->GetEntities();
-    std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1->GetRenderPriorityLevel() > entity2->GetRenderPriorityLevel(); });
+    std::vector<MapElement*> mapElements = m_Map->GetMapElements();
+    //std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1->GetRenderPriorityLevel() > entity2->GetRenderPriorityLevel(); });
+    std::vector<MovableEntity*> movableEntities = m_Map->GetMovableEntities();
+    std::vector<Interactable*> interactables = m_Map->GetInteractables();
+    RenderEntities(mapElements);
+    RenderEntities(movableEntities);
+    RenderEntities(interactables);
+    SDL_RenderPresent(m_Renderer);
+}
+
+template<typename T, typename std::enable_if<std::is_base_of<RenderableEntity, T>::value>::type*>
+void Renderer::RenderEntities(std::vector<T*> entities)
+{
     for (RenderableEntity* entity : entities) {
         Texture& texture = entity->GetTexture();
-        //std::cout << texture.texturePath << std::endl;
         SDL_Texture* sdlTexture = TextureManager::GetTexture(texture.texturePath);
         auto[x, y] = texture.ComputeActualPosition({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getPosition();
         auto[width, height] = texture.ComputeActualSize({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getDimension();
         SDL_Rect dest = {x, y, width, height};
         SDL_RenderCopy(m_Renderer, sdlTexture, nullptr, &dest);
     }
-    SDL_RenderPresent(m_Renderer);
 }

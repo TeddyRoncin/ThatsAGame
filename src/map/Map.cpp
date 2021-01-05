@@ -29,9 +29,19 @@ MapElement* Map::operator[](size_t index) const
 	return m_Elements[index];
 }
 
-std::vector<MapElement*> Map::GetEntities() const
+const std::vector<MapElement*>& Map::GetMapElements() const
 {
 	return m_Elements;
+}
+
+const std::vector<MovableEntity*>& Map::GetMovableEntities() const
+{
+	return m_MovableEntities;
+}
+
+const std::vector<Interactable*>& Map::GetInteractables() const
+{
+	return m_Interactables;
 }
 
 const int Map::Width() const
