@@ -9,8 +9,8 @@ Texture::Texture(const char* _texturePath, Position<float> _position, Dimension<
 
 Position<int> Texture::ComputeActualPosition(Dimension<int> mapSize, Dimension<int> windowSize) const
 {
-    return Position<int>(position.getX() * windowSize.getWidth() / mapSize.getWidth(),
-                            position.getY() * windowSize.getHeight() / mapSize.getHeight());
+    return Position<int>(std::ceil(position.getX() * windowSize.getWidth() / mapSize.getWidth()),
+                            std::ceil(position.getY() * windowSize.getHeight() / mapSize.getHeight()));
 }
 
 Dimension<int> Texture::ComputeActualSize(Dimension<int> mapSize, Dimension<int> windowSize) const

@@ -2,7 +2,7 @@
 
 #include "test_folder/renderer/Renderer.h"
 
-class Window : public EventListener
+class Window
 {
 public:
     Window(ApplicationState* state, Map* map = nullptr);
@@ -12,7 +12,6 @@ public:
     bool IsFullScreen() const;
     void SetFullScreen(bool fullScreen) const;
     void Render() const;
-    virtual void handle();
 
 private:
     Dimension<int> m_Size;

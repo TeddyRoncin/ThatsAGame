@@ -45,8 +45,3 @@ void Window::Render() const
     m_Renderer.Render();
     EventListener::Update();
 }
-
-void Window::handle()
-{
-    //if (
-}
