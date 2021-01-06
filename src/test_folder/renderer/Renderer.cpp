@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "test_folder/renderer/Renderer.h"
-#include "test_folder/entity/RenderableEntity.h"
+#include "entity//RenderableEntity.h"
 #include "test_folder/renderer/Texture.h"
 
 Renderer::Renderer(const ApplicationState* const state, SDL_Window* window, const Map* map)

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "map/elements/MapElement.h"
-#include "test_folder/entity/MovableEntity.h"
-#include "test_folder/entity/Interactable.h"
+#include "entity//MovableEntity.h"
+#include "entity//Interactable.h"
 
 class Map
 {

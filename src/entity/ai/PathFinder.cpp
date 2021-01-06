@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "test_folder/entity/ai/PathFinder.h"
+#include "entity//ai/PathFinder.h"
 
 PathFinder::PathFinder(const Map& map) :
     m_Map(map), m_OpEnNoDeS(), m_ClosedNodes(), m_CurrentNode(nullptr), m_Step(0), m_End(0, 0), m_Entity(nullptr)

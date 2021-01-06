@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "test_folder/entity/EntityManager.h"
+#include "entity//EntityManager.h"
 
 std::map<int, Entity*> EntityManager::entities;
 

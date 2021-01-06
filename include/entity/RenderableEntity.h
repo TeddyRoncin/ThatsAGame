@@ -1,6 +1,6 @@
 #pragma once
 
-#include "test_folder/entity/Entity.h"
+#include "entity//Entity.h"
 #include "test_folder/renderer/Layer.h"
 #include "test_folder/renderer/Renderable.h"
 

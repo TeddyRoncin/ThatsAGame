@@ -1,6 +1,6 @@
 #pragma once
 
-// #include "test_folder/entity/EntityType.h"
+// #include "entity//EntityType.h"
 
 class Entity
 {
@@ -15,7 +15,7 @@ public:
     Position<float> GetPosition() const;
 private:
     int m_ID;
-    Position<float> m_Position;
 protected:
+    Position<float> m_Position;
     // const EntityType type;
 };

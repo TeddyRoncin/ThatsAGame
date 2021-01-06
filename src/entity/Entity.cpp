@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "test_folder/entity/Entity.h"
-#include "test_folder/entity/EntityManager.h"
+#include "entity//Entity.h"
+#include "entity//EntityManager.h"
 
 Entity::Entity(float _x, float _y)
     :m_ID(EntityManager::GetNewID(this)), m_Position(_x, _y)

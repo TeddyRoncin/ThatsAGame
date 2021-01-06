@@ -18,6 +18,9 @@ void Application::loop()
 {
 	while(m_Action != Action::Quit)
 	{
+		for (MapElement* me : map.GetMapElements()) {
+			me->Update();
+		}
 		m_Window.Render();
 	}
 }

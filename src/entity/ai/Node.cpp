@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "test_folder/entity/ai/Node.h"
+#include "entity//ai/Node.h"
 
 Node::Node(const Position<float>& _position, const Position<float>& end, float step)
     : position(_position), comeFrom(nullptr)
