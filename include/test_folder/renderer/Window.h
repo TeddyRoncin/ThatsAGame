@@ -12,6 +12,7 @@ public:
     bool IsFullScreen() const;
     void SetFullScreen(bool fullScreen) const;
     void Render();
+    void Quit();
 
 private:
     Dimension<int> m_Size;

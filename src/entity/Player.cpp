@@ -13,9 +13,9 @@ void Player::handle()
 {
     switch (m_Action)
     {
-        case Action::PlayerUp: m_Position.position.second -= 0.01f; return;
-        case Action::PlayerDown: m_Position.position.second += 0.01f; return;
-        case Action::PlayerLeft: m_Position.position.first -= 0.01f; return;
-        case Action::PlayerRight: m_Position.position.first += 0.01f; return;
+        case Action::PlayerUp: m_Position.position.second -= 0.1f; return;
+        case Action::PlayerDown: m_Position.position.second += 0.1f; return;
+        case Action::PlayerLeft: m_Position.position.first -= 0.1f; return;
+        case Action::PlayerRight: m_Position.position.first += 0.1f; return;
     }
 }

@@ -1,10 +1,12 @@
 #include "pch.h"
-#include "test_folder/renderer/Window.h"
 
+#include "test_folder/renderer/Window.h"
 #include "event/EventListener.h"
 
 Window::Window(ApplicationState* state, Map* map)
-    :m_Size(500, 500), m_Window(SDL_CreateWindow("Render Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_Size.getWidth(), m_Size.getHeight(), SDL_WindowFlags::SDL_WINDOW_RESIZABLE)), m_Renderer(state, m_Window, map)
+    : m_Size(500, 500),
+    m_Window(SDL_CreateWindow("Render Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_Size.getWidth(), m_Size.getHeight(), SDL_WindowFlags::SDL_WINDOW_RESIZABLE)),
+    m_Renderer(state, m_Window, map)
 {
     if(!m_Window)
 	{
@@ -15,7 +17,7 @@ Window::Window(ApplicationState* state, Map* map)
 
 Window::~Window()
 {
-    SDL_DestroyWindow(m_Window);
+    Quit();
 }
 
 void Window::SetSize(Dimension<int> newSize)
@@ -44,4 +46,10 @@ void Window::Render()
 {
     m_Renderer.Render();
     EventListener::Update();
+}
+
+void Window::Quit()
+{
+    m_Renderer.Destroy();
+    SDL_DestroyWindow(m_Window);
 }

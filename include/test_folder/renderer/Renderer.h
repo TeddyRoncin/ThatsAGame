@@ -1,6 +1,6 @@
 #pragma once
 
-#include "test_folder/application/ApplicationState.h"
+#include "application/ApplicationState.h"
 #include "map/Map.h"
 #include "test_folder/renderer/TextureManager.h"
 
@@ -14,6 +14,7 @@ public:
     void SetWindowSize(Dimension<int> newSize);
     void AddMap(const Map* map);
     void Render();
+    void Destroy();
 
 private:
     void RenderHome();

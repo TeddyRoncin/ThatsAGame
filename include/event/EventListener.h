@@ -7,19 +7,11 @@ class EventListener : public virtual EventBinding
 {
     friend void Window::Render();
 public:
-    Action m_Action;
+    //Action m_Action;
 
 public:
     virtual void handle() =0;
-    inline virtual void UpdateData(SDL_Event& event) {
-        m_Action = Action::None;
-        if(event.type == SDL_EventType::SDL_KEYDOWN)
-        {
-            m_Action = EventBinding::GetAction(static_cast<SDL_KeyCode>(event.key.keysym.sym));
-        } else if(event.type == SDL_EventType::SDL_MOUSEBUTTONDOWN) {
-            m_Action = EventBinding::GetAction(static_cast<int>(event.button.button));
-        }
-    }
+    virtual void UpdateData(SDL_Event& event);
 
 private:
     static SDL_Event m_Event;
@@ -31,4 +23,6 @@ private:
 protected:
     EventListener(EventListener* listener);
     virtual ~EventListener();
+    Action m_Action;
+    SDL_Event* m_CurrentEvent;
 };

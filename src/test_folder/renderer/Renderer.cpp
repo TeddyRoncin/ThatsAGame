@@ -17,7 +17,7 @@ Renderer::Renderer(const ApplicationState* const state, SDL_Window* window, cons
 
 Renderer::~Renderer()
 {
-    SDL_DestroyRenderer(m_Renderer);
+    Destroy();
 }
 
 Renderer Renderer::operator=(const Renderer& renderer)
@@ -28,6 +28,7 @@ Renderer Renderer::operator=(const Renderer& renderer)
 void Renderer::SetWindowSize(Dimension<int> newSize)
 {
     m_WindowSize = newSize;
+    std::cout << newSize.getWidth() << std::endl;
 }
 
 void Renderer::AddMap(const Map* map)
@@ -73,9 +74,15 @@ void Renderer::RenderEntities(std::vector<T*> entities)
     for (RenderableEntity* entity : entities) {
         Texture& texture = entity->GetTexture();
         SDL_Texture* sdlTexture = TextureManager::GetTexture(texture.texturePath);
-        auto[x, y] = texture.ComputeActualPosition({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getPosition();
-        auto[width, height] = texture.ComputeActualSize({m_Map->Width(), m_Map->Height()}, {m_WindowSize.getWidth(), m_WindowSize.getHeight()}).getDimension();
+        //std::cout << m_WindowSize.getWidth() << std::endl;
+        auto[x, y] = texture.ComputeActualPosition({m_Map->Width(), m_Map->Height()}, m_WindowSize).getPosition();
+        auto[width, height] = texture.ComputeActualSize({m_Map->Width(), m_Map->Height()}, m_WindowSize).getDimension();
         SDL_Rect dest = {x, y, width, height};
         SDL_RenderCopy(m_Renderer, sdlTexture, nullptr, &dest);
     }
+}
+
+void Renderer::Destroy()
+{
+    SDL_DestroyRenderer(m_Renderer);
 }

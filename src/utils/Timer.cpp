@@ -3,13 +3,13 @@
 #include "utils/Timer.h"
 
 Timer::Timer() :
-    m_FpsCap(60), m_StartTime(std::chrono::system_clock::now()), m_LastFrameTime(0)
+    m_FpsCap(60), m_StartTime(std::chrono::system_clock::now()), m_LastFrameTime(0), m_CurrentFrame(0)
 {
     computeFrameTime();
 }
 
 Timer::Timer(int fpsCap) :
-    m_FpsCap(fpsCap), m_StartTime(std::chrono::system_clock::now()), m_LastFrameTime(0)
+    m_FpsCap(fpsCap), m_StartTime(std::chrono::system_clock::now()), m_LastFrameTime(0), m_CurrentFrame(0)
 {
     computeFrameTime();
 }
@@ -26,18 +26,26 @@ void Timer::setFpsCap(int fpsCap)
 
 void Timer::waitForNextFrame()
 {
-    int currentTime = getCurrentTime();
-    int timeElapsed = currentTime - m_LastFrameTime;
+    long currentTime = getCurrentTime();
+    long timeElapsed = currentTime - m_LastFrameTime;
     int timeToWait = m_FrameTime - timeElapsed;
     std::this_thread::sleep_for(std::chrono::microseconds(timeToWait));
-    m_LastFrameTime = getCurrentTime();
+    currentTime = getCurrentTime();
+    m_FrameDurations[m_CurrentFrame % 10] = currentTime -  m_LastFrameTime;
+    m_LastFrameTime = currentTime;
+    m_CurrentFrame++;
 }
 
-float Timer::getFps() {
-    return 1.0 / (getCurrentTime() - m_LastFrameTime) * 1000000;
+float Timer::getFps()
+{
+    long last10FramesDuration = 0;
+    for (int i = 0; i < 10; i++) {
+        last10FramesDuration += m_FrameDurations[i];
+    }
+    return 1.0 / /*(getCurrentTime() - m_LastFrameTime)*/(last10FramesDuration / 10) * 1000000;
 }
 
-int Timer::getCurrentTime()
+long Timer::getCurrentTime()
 {
     return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - m_StartTime).count();
 }

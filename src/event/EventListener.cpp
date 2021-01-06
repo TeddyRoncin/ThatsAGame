@@ -4,6 +4,7 @@
 #include "event/EventBinding.h"
 
 EventListener::EventListener(EventListener* listener)
+    : m_Action(Action::None), m_CurrentEvent(nullptr)
 {
     memset(listener, Action::None, sizeof(Action));
     listeners.push_back(listener);
@@ -19,6 +20,22 @@ EventListener::~EventListener()
         listener = nullptr;
     }
     listeners.clear();
+}
+
+void EventListener::UpdateData(SDL_Event& event) {
+    m_CurrentEvent = &event;
+    m_Action = Action::None;
+    switch (event.type)
+    {
+        case SDL_EventType::SDL_KEYDOWN: m_Action = EventBinding::GetAction((SDL_KeyCode) event.key.keysym.sym); break;
+        case SDL_EventType::SDL_MOUSEBUTTONDOWN: m_Action = EventBinding::GetAction(event.button.button); break;
+    }
+    /*if(event.type == SDL_EventType::SDL_KEYDOWN)
+    {
+        m_Action = EventBinding::GetAction(static_cast<SDL_KeyCode>(event.key.keysym.sym));
+    } else if(event.type == SDL_EventType::SDL_MOUSEBUTTONDOWN) {
+        m_Action = EventBinding::GetAction(static_cast<int>(event.button.button));
+    }*/
 }
 
 void EventListener::Update()

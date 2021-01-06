@@ -14,9 +14,11 @@ public:
 private:
     int m_FpsCap;
     std::chrono::time_point<std::chrono::system_clock> m_StartTime;
-    int m_LastFrameTime;
+    long m_LastFrameTime;
     int m_FrameTime;
-    int getCurrentTime();
+    long getCurrentTime();
     void computeFrameTime();
+    long m_CurrentFrame;
+    long m_FrameDurations[10];
 
 };
