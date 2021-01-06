@@ -6,6 +6,7 @@
 #include "map/elements/WallMapElement.h"
 #include "bmploader/BMPFile.h"
 #include "bmploader/BMPImage.h"
+#include "entity/Player.h"
 
 namespace pt = boost::property_tree;
 
@@ -14,13 +15,22 @@ Map::Map()
 {
 	registerMaps();
 	loadMap(m_Maps[m_CurrentMap]);
+	m_MovableEntities.push_back(new Player({0, 0}));
 }
 
 Map::~Map()
 {
-	for(auto elem : m_Elements)
+	for(MapElement* elem : m_Elements)
 	{
 		delete elem;
+	}
+	for (MovableEntity* entity : m_MovableEntities)
+	{
+		delete entity;
+	}
+	for (Interactable* interactable : m_Interactables)
+	{
+		delete interactable;
 	}
 }
 
