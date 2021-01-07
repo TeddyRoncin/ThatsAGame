@@ -13,6 +13,9 @@ void Application::handle()
 	if(m_Action == Action::OpenMenu) {
 		std::cout << "Open Menu" << std::endl;
 	}
+	if(m_Action == Action::Quit) {
+		m_Running = false;
+	}
 	switch (m_CurrentEvent->type)
 	{
 		case SDL_EventType::SDL_QUIT:
@@ -30,7 +33,6 @@ void Application::handle()
 
 void Application::loop()
 {
-	//while(m_Action != Action::Quit)
 	Timer timer;
 	while (m_Running)
 	{
