@@ -2,7 +2,7 @@
 
 #include "application/ApplicationState.h"
 #include "map/Map.h"
-#include "test_folder/renderer/TextureManager.h"
+#include "renderer/TextureManager.h"
 
 class Renderer
 {

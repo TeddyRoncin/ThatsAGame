@@ -1,6 +1,6 @@
 #pragma once
 
-#include "test_folder/renderer/Renderer.h"
+#include "renderer/Renderer.h"
 
 class Window
 {

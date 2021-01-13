@@ -1,8 +1,8 @@
 #include "pch.h"
 
-#include "test_folder/renderer/Renderer.h"
+#include "renderer/Renderer.h"
 #include "entity//RenderableEntity.h"
-#include "test_folder/renderer/Texture.h"
+#include "renderer/Texture.h"
 
 Renderer::Renderer(const ApplicationState* const state, SDL_Window* window, const Map* map)
     : m_State(state), m_WindowSize(0, 0), m_Renderer(SDL_CreateRenderer(window,-1,0))

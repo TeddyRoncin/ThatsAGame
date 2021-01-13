@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "test_folder/renderer/Texture.h"
-#include "test_folder/renderer/TextureManager.h"
+#include "renderer/Texture.h"
+#include "renderer/TextureManager.h"
 
 Texture::Texture(const char* _texturePath, Position<float> _position, Dimension<float> _size)
     : texturePath(_texturePath), position(_position), size(_size)

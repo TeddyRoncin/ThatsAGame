@@ -1,6 +1,6 @@
 #pragma once
 
-#include "test_folder/renderer/Texture.h"
+#include "renderer/Texture.h"
 
 class Renderable
 {

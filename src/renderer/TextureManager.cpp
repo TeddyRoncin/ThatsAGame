@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "test_folder/renderer/TextureManager.h"
+#include "renderer/TextureManager.h"
 
 std::map<const char*, std::pair<SDL_Texture*, int>> TextureManager::m_Textures = {};
 SDL_Renderer* TextureManager::m_Renderer = nullptr;
