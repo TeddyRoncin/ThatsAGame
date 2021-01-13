@@ -10,8 +10,13 @@ Application::Application()
 
 void Application::handle()
 {
-	if(m_Action == Action::OpenMenu) {
-		std::cout << "Open Menu" << std::endl;
+
+	switch (m_Action)
+	{
+		case Action::OpenMenu:
+			std::cout << "Open Menu" << std::endl;
+		case Action::Quit:
+			m_Running = false;
 	}
 	if(m_Action == Action::Quit) {
 		m_Running = false;
@@ -23,8 +28,7 @@ void Application::handle()
 			m_Running = false;
 			return;
 		case SDL_EventType::SDL_WINDOWEVENT:
-			if (m_CurrentEvent->window.type == SDL_WINDOWEVENT_RESIZED) {
-				std::cout << "boujour !" << std::endl;
+			if (m_CurrentEvent->window.event == SDL_WINDOWEVENT_RESIZED) {
 				m_Window.SetSize({m_CurrentEvent->window.data1, m_CurrentEvent->window.data2});
 				return;
 			}
