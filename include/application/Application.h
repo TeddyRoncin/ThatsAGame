@@ -4,9 +4,9 @@
 
 #include "map/Map.h"
 
-#include "test_folder/renderer/Context.h"
+#include "renderer/Context.h"
 #include "application//ApplicationState.h"
-#include "test_folder/renderer/Window.h"
+#include "renderer/Window.h"
 
 class Application : public Context, public EventListener
 {

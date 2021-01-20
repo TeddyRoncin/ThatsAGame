@@ -1,8 +1,8 @@
 #pragma once
 
 #include "entity//Entity.h"
-#include "test_folder/renderer/Layer.h"
-#include "test_folder/renderer/Renderable.h"
+#include "renderer/Layer.h"
+#include "renderer/Renderable.h"
 
 class RenderableEntity: public Entity, public Renderable
 {
