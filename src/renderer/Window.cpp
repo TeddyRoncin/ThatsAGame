@@ -3,10 +3,10 @@
 #include "renderer/Window.h"
 #include "event/EventListener.h"
 
-Window::Window(ApplicationState* state, Map* map)
+Window::Window(ApplicationState* state)
     : m_Size(500, 500),
     m_Window(SDL_CreateWindow("Render Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_Size.getWidth(), m_Size.getHeight(), SDL_WindowFlags::SDL_WINDOW_RESIZABLE)),
-    m_Renderer(state, m_Window, map)
+    m_Renderer(state, m_Window)
 {
     if(!m_Window)
 	{
@@ -24,11 +24,6 @@ void Window::SetSize(Dimension<int> newSize)
 {
     m_Size = newSize;
     m_Renderer.SetWindowSize(newSize);
-}
-
-void Window::AddMap(const Map* map)
-{
-    m_Renderer.AddMap(map);
 }
 
 bool Window::IsFullScreen() const
@@ -50,6 +45,6 @@ void Window::Render()
 
 void Window::Quit()
 {
-    m_Renderer.Destroy();
+    m_Renderer.~Renderer();
     SDL_DestroyWindow(m_Window);
 }

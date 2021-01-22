@@ -1,30 +1,25 @@
 #pragma once
 
 #include "application/ApplicationState.h"
-#include "map/Map.h"
 #include "renderer/TextureManager.h"
 
 class Renderer
 {
 
 public:
-    Renderer(const ApplicationState* const state, SDL_Window* window, const Map* map = nullptr);
+    Renderer(const ApplicationState* const state, SDL_Window* window);
     ~Renderer();
-    Renderer operator=(const Renderer& renderer);
     void SetWindowSize(Dimension<int> newSize);
-    void AddMap(const Map* map);
     void Render();
-    void Destroy();
 
 private:
     void RenderHome();
     void RenderGame();
-    template<typename T, typename std::enable_if<std::is_base_of<RenderableEntity, T>::value>::type* = nullptr>
-    void RenderEntities(std::vector<T*> entities);
+
+    void RenderTextures();
 
 private:
     const ApplicationState* const m_State;
     SDL_Renderer* m_Renderer;
-    const Map* m_Map;
     Dimension<int> m_WindowSize;
 };

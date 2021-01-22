@@ -1,13 +1,10 @@
 #include "pch.h"
 
 #include "renderer/Renderer.h"
-#include "entity//RenderableEntity.h"
-#include "renderer/Texture.h"
 
-Renderer::Renderer(const ApplicationState* const state, SDL_Window* window, const Map* map)
+Renderer::Renderer(const ApplicationState* const state, SDL_Window* window)
     : m_State(state), m_WindowSize(0, 0), m_Renderer(SDL_CreateRenderer(window,-1,0))
 {
-    m_Map = map;
 	if(!m_Renderer)
 	{
 		std::cerr << "SDL_CreateRendererError: " << SDL_GetError() << std::endl;
@@ -17,23 +14,14 @@ Renderer::Renderer(const ApplicationState* const state, SDL_Window* window, cons
 
 Renderer::~Renderer()
 {
-    Destroy();
-}
-
-Renderer Renderer::operator=(const Renderer& renderer)
-{
-    return renderer;
+    TextureManager::Destroy();
+    SDL_DestroyRenderer(m_Renderer);
 }
 
 void Renderer::SetWindowSize(Dimension<int> newSize)
 {
     m_WindowSize = newSize;
     std::cout << newSize.getWidth() << std::endl;
-}
-
-void Renderer::AddMap(const Map* map)
-{
-    m_Map = map;
 }
 
 void Renderer::Render()
@@ -54,35 +42,17 @@ void Renderer::RenderHome()
 
 void Renderer::RenderGame()
 {
-    if (m_Map == nullptr)
-    {
-        return;
-    }
-    std::vector<MapElement*> mapElements = m_Map->GetMapElements();
-    //std::sort(entities.begin(), entities.end(), [](RenderableEntity* entity1, RenderableEntity* entity2) { return entity1->GetRenderPriorityLevel() > entity2->GetRenderPriorityLevel(); });
-    std::vector<MovableEntity*> movableEntities = m_Map->GetMovableEntities();
-    std::vector<Interactable*> interactables = m_Map->GetInteractables();
-    RenderEntities(mapElements);
-    RenderEntities(movableEntities);
-    RenderEntities(interactables);
+    RenderTextures();
     SDL_RenderPresent(m_Renderer);
 }
 
-template<typename T, typename std::enable_if<std::is_base_of<RenderableEntity, T>::value>::type*>
-void Renderer::RenderEntities(std::vector<T*> entities)
+void Renderer::RenderTextures()
 {
-    for (RenderableEntity* entity : entities) {
-        Texture& texture = entity->GetTexture();
-        SDL_Texture* sdlTexture = TextureManager::GetTexture(texture.texturePath);
-        //std::cout << m_WindowSize.getWidth() << std::endl;
-        auto[x, y] = texture.ComputeActualPosition({m_Map->Width(), m_Map->Height()}, m_WindowSize).getPosition();
-        auto[width, height] = texture.ComputeActualSize({m_Map->Width(), m_Map->Height()}, m_WindowSize).getDimension();
-        SDL_Rect dest = {x, y, width, height};
-        SDL_RenderCopy(m_Renderer, sdlTexture, nullptr, &dest);
+    auto& textures = TextureManager::GetTextures();
+    for(auto& textureinfo : textures) {
+        auto[x, y] = textureinfo.second.ComputeActualPosition({30, 30}, m_WindowSize).getPosition();
+        auto[width, height] = textureinfo.second.ComputeActualSize({30, 30}, m_WindowSize).getDimension();
+        SDL_Rect distrect{x, y, width, height};
+        SDL_RenderCopy(m_Renderer, textureinfo.second.texture, nullptr, &distrect);
     }
-}
-
-void Renderer::Destroy()
-{
-    SDL_DestroyRenderer(m_Renderer);
 }

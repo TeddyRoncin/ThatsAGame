@@ -4,7 +4,7 @@
 #include "utils/Timer.h"
 
 Application::Application()
-	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState, &map), m_CurrentState(ApplicationState::Game), map(), m_Running(true)
+	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), map(), m_Running(true)
 {
 }
 
@@ -17,6 +17,9 @@ void Application::handle()
 			std::cout << "Open Menu" << std::endl;
 		case Action::Quit:
 			m_Running = false;
+	}
+	if(m_Action == Action::Quit) {
+		m_Running = false;
 	}
 	switch (m_CurrentEvent->type)
 	{
