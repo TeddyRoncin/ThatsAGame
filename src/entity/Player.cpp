@@ -11,11 +11,13 @@ Player::Player(Position<float> position)
 
 void Player::handle()
 {
+    Position<float> lastPos = m_Position;
     switch (m_Action)
     {
         case Action::PlayerUp: m_Position.position.second -= 0.1f; return;
         case Action::PlayerDown: m_Position.position.second += 0.1f; return;
         case Action::PlayerLeft: m_Position.position.first -= 0.1f; return;
         case Action::PlayerRight: m_Position.position.first += 0.1f; return;
+        
     }
 }

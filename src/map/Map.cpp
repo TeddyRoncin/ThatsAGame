@@ -15,7 +15,7 @@ Map::Map()
 {
 	registerMaps();
 	loadMap(m_Maps[m_CurrentMap]);
-	m_MovableEntities.push_back(new Player({0, 0}));
+	m_MovableEntities.push_back(new Player({0, 0}));//, [this](MovableEntity* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}));
 }
 
 Map::~Map()
