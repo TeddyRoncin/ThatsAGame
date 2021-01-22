@@ -5,10 +5,9 @@
 class Window
 {
 public:
-    Window(ApplicationState* state, Map* map = nullptr);
+    Window(ApplicationState* state);
     ~Window();
     void SetSize(Dimension<int> newSize);
-    void AddMap(const Map* map);
     bool IsFullScreen() const;
     void SetFullScreen(bool fullScreen) const;
     void Render();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "entity//RenderableEntity.h"
+#include "entity/RenderableEntity.h"
 
 class MapElement : public RenderableEntity
 {

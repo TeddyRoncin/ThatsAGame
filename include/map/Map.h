@@ -1,8 +1,8 @@
 #pragma once
 
 #include "map/elements/MapElement.h"
-#include "entity//MovableEntity.h"
-#include "entity//Interactable.h"
+#include "entity/MovableEntity.h"
+#include "entity/Interactable.h"
 
 class Map
 {
@@ -11,9 +11,6 @@ public:
 	~Map();
 public:
 	MapElement* operator[](size_t index) const;
-	const std::vector<MapElement*>& GetMapElements() const;
-	const std::vector<MovableEntity*>& GetMovableEntities() const;
-	const std::vector<Interactable*>& GetInteractables() const;
 	const int Width() const;
 	const int Height() const;
 	const int size() const;

@@ -39,21 +39,6 @@ MapElement* Map::operator[](size_t index) const
 	return m_Elements[index];
 }
 
-const std::vector<MapElement*>& Map::GetMapElements() const
-{
-	return m_Elements;
-}
-
-const std::vector<MovableEntity*>& Map::GetMovableEntities() const
-{
-	return m_MovableEntities;
-}
-
-const std::vector<Interactable*>& Map::GetInteractables() const
-{
-	return m_Interactables;
-}
-
 const int Map::Width() const
 {
 	return m_Width;
@@ -84,7 +69,7 @@ void Map::registerMaps()
 void Map::loadMap(const char* name)
 {
 	pt::ptree maps;
-	std::string map("assets/maps/");  map += std::string(name) += std::string(".json");
+	std::string map("assets/maps/"); map += std::string(name) += std::string(".json");
 	pt::read_json(map, maps);
 
 	m_Width = maps.get<int>("width");

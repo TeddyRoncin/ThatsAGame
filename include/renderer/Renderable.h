@@ -1,14 +1,12 @@
 #pragma once
 
-#include "renderer/Texture.h"
+#include "renderer/TextureManager.h"
 
 class Renderable
 {
 public:
-	Renderable(const char* path, Position<float> position, Dimension<float> size);
-	virtual Texture& GetTexture();
-
-protected:
-	Texture m_Texture;
-
+	Renderable(const char* path, const Position<float>* position, const Dimension<float>* size);
+	~Renderable();
+private:
+	int m_RendererID;
 };

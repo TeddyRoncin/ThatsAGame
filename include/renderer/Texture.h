@@ -3,7 +3,7 @@
 struct Texture
 {
 public:
-    Texture(const char* _texturePath, Position<float> _position, Dimension<float> _size);
+    Texture(const Position<float>* _position, const Dimension<float>* _size, SDL_Texture* _texture, const char* path);
     ~Texture();
 
 public:
@@ -11,7 +11,8 @@ public:
     Dimension<int> ComputeActualSize(Dimension<int> mapSize, Dimension<int> windowSize) const;
 
 public:
-    const char* const texturePath;
-    Position<float> position;
-    Dimension<float> size;
+    SDL_Texture* texture;
+    const char* texture_path;
+    const Position<float>* position;
+    const Dimension<float>* size;
 };

@@ -5,7 +5,7 @@
 #include "map/Map.h"
 
 #include "renderer/Context.h"
-#include "application//ApplicationState.h"
+#include "application/ApplicationState.h"
 #include "renderer/Window.h"
 
 class Application : public Context, public EventListener
