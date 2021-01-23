@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "renderer/Renderer.h"
+#include "map/Map.h"
 
 Renderer::Renderer(const ApplicationState* const state, SDL_Window* window)
     : m_State(state), m_WindowSize(0, 0), m_Renderer(SDL_CreateRenderer(window,-1,0))
@@ -50,8 +51,8 @@ void Renderer::RenderTextures()
 {
     auto& textures = TextureManager::GetTextures();
     for(auto& textureinfo : textures) {
-        auto[x, y] = textureinfo.second.ComputeActualPosition({30, 30}, m_WindowSize).getPosition();
-        auto[width, height] = textureinfo.second.ComputeActualSize({30, 30}, m_WindowSize).getDimension();
+        auto[x, y] = textureinfo.second.ComputeActualPosition({Map::Width(), Map::Height()}, m_WindowSize).getPosition();
+        auto[width, height] = textureinfo.second.ComputeActualSize({Map::Width(), Map::Height()}, m_WindowSize).getDimension();
         SDL_Rect distrect{x, y, width, height};
         SDL_RenderCopy(m_Renderer, textureinfo.second.texture, nullptr, &distrect);
     }

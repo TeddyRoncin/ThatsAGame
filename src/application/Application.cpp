@@ -24,7 +24,6 @@ void Application::handle()
 	switch (m_CurrentEvent->type)
 	{
 		case SDL_EventType::SDL_QUIT:
-			m_Window.Quit();
 			m_Running = false;
 			return;
 		case SDL_EventType::SDL_WINDOWEVENT:

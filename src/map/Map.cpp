@@ -9,6 +9,9 @@
 #include "entity/Player.h"
 
 namespace pt = boost::property_tree;
+const char* Map::m_Name(nullptr);
+size_t Map::m_Width(0);
+size_t Map::m_Height(0);
 
 Map::Map()
 	:m_CurrentMap(0)
@@ -39,17 +42,22 @@ MapElement* Map::operator[](size_t index) const
 	return m_Elements[index];
 }
 
-const int Map::Width() const
+const char* const Map::Name()
+{
+	return m_Name;
+}
+
+const int Map::Width()
 {
 	return m_Width;
 }
 
-const int Map::Height() const
+const int Map::Height()
 {
 	return m_Height;
 }
 
-const int Map::size() const
+const int Map::size()
 {
 	return m_Width * m_Height;
 }

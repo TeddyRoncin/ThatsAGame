@@ -17,7 +17,8 @@ Window::Window(ApplicationState* state)
 
 Window::~Window()
 {
-    Quit();
+    m_Renderer.~Renderer();
+    SDL_DestroyWindow(m_Window);
 }
 
 void Window::SetSize(Dimension<int> newSize)
@@ -41,10 +42,4 @@ void Window::Render()
 {
     m_Renderer.Render();
     EventListener::Update();
-}
-
-void Window::Quit()
-{
-    m_Renderer.~Renderer();
-    SDL_DestroyWindow(m_Window);
 }
