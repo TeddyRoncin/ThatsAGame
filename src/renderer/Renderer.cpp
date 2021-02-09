@@ -22,7 +22,6 @@ Renderer::~Renderer()
 void Renderer::SetWindowSize(Dimension<int> newSize)
 {
     m_WindowSize = newSize;
-    std::cout << newSize.getWidth() << std::endl;
 }
 
 void Renderer::Render()
@@ -50,10 +49,23 @@ void Renderer::RenderGame()
 void Renderer::RenderTextures()
 {
     auto& textures = TextureManager::GetTextures();
+    Position<int> offset {0, 0};
+    int delta = m_WindowSize.getWidth() / Map::Width() - m_WindowSize.getHeight() / Map::Height();
+    Dimension<int> renderSize = m_WindowSize;
+    if (delta < 0)
+    {
+        renderSize.dimension.second = (float) m_WindowSize.getWidth() / Map::Width() * Map::Height();
+        offset.position.second = (m_WindowSize.getHeight() - renderSize.dimension.second) >> 1;
+    }
+    else
+    {
+        renderSize.dimension.first = (float) m_WindowSize.getHeight() / Map::Height() * Map::Width();
+        offset.position.first = (m_WindowSize.getWidth() - renderSize.dimension.first) >> 1;
+    }
     for(auto& textureinfo : textures) {
-        auto[x, y] = textureinfo.second.ComputeActualPosition({Map::Width(), Map::Height()}, m_WindowSize).getPosition();
-        auto[width, height] = textureinfo.second.ComputeActualSize({Map::Width(), Map::Height()}, m_WindowSize).getDimension();
-        SDL_Rect distrect{x, y, width, height};
+        auto[x, y] = textureinfo.second.ComputeActualPosition({Map::Width(), Map::Height()}, renderSize).getPosition();
+        auto[width, height] = textureinfo.second.ComputeActualSize({Map::Width(), Map::Height()}, renderSize).getDimension();
+        SDL_Rect distrect{x + offset.getX(), y + offset.getY(), width, height};
         SDL_RenderCopy(m_Renderer, textureinfo.second.texture, nullptr, &distrect);
     }
 }

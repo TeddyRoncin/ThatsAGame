@@ -36,11 +36,12 @@ void Application::handle()
 
 void Application::loop()
 {
-	Timer timer;
+	Timer::Init(60);
 	while (m_Running)
 	{
 		m_Window.Render();
-		//std::cout << timer.getFps() << std::endl;
-		timer.waitForNextFrame();
+		Timer::getFps();
+		//std::cout << Timer::getFps() << std::endl;
+		Timer::waitForNextFrame();
 	}
 }

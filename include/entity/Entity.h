@@ -1,6 +1,6 @@
 #pragma once
 
-// #include "entity//EntityType.h"
+// #include "entity/EntityType.h"
 
 class Entity
 {

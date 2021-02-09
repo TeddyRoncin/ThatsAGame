@@ -55,3 +55,14 @@ struct Dimension
 	T getHeight() const { return (dimension.second); }
 	std::pair<T, T> getDimension() const { return (dimension); }
 };
+
+template<typename T>
+std::ostream& operator<<(std::ostream& out, Dimension<T> dimension)
+{
+	if(!std::is_class<T>::value) {
+		out << "Dimension(" << dimension.getWidth() << ", " << dimension.getHeight() << ")\n";
+	} else {
+		out << "\n";
+	}
+	return out;
+}
