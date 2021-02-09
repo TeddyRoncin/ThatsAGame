@@ -4,10 +4,14 @@
 #include "entity/EntityManager.h"
 
 Entity::Entity(float _x, float _y)
-    :m_ID(EntityManager::GetNewID(this)), m_Position(_x, _y)
+    :m_ID(EntityManager::GetNewID(this)), m_Position(_x, _y), type(EntityType::Entity)
 {}
 
-bool Entity::operator()(const Entity& e)
+Entity::~Entity()
+{
+}
+
+bool Entity::operator()(Entity& e)
 {
     return true;
 }
@@ -17,10 +21,10 @@ int Entity::GetID() const
     return m_ID;
 }
 
-// EntityType Entity::GetType() const
-// {
-//     return type;
-// }
+EntityType Entity::GetType() const
+{
+    return type;
+}
 
 float Entity::GetX() const
 {

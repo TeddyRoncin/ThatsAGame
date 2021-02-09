@@ -8,6 +8,7 @@ class RenderableEntity: public Entity, public Renderable
 {
 public:
 	RenderableEntity(const char* path, Position<float> position = {0, 0}, Dimension<float> dimension = {0, 0}, Layer priority = Layer::Ground);
+	virtual ~RenderableEntity() override;
 	Layer GetRenderPriorityLevel() const;
 
 private:

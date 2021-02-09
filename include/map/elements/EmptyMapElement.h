@@ -7,5 +7,5 @@ public:
     EmptyMapElement(Position<float> position);
     virtual ~EmptyMapElement() override;
 
-    virtual bool operator()(const Entity& entity) override;
+    virtual bool operator()(Entity& entity) override;
 };

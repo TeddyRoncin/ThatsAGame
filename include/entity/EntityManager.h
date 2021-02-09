@@ -7,6 +7,6 @@ class EntityManager
 public:
     static int GetNewID(Entity* entt);
     static Entity* GetEntity(int a);
-private:
+protected:
     static std::map<int, Entity*> entities;
 };

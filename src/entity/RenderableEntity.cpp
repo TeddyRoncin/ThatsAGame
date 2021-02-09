@@ -7,6 +7,10 @@ RenderableEntity::RenderableEntity(const char* path, Position<float> position, D
 {
 }
 
+RenderableEntity::~RenderableEntity()
+{
+}
+
 Layer RenderableEntity::GetRenderPriorityLevel() const
 {
 	return m_RenderPriorityLevel;

@@ -4,5 +4,7 @@
 
 class Interactable : public RenderableEntity
 {
-
+public:
+	Interactable();
+	virtual ~Interactable();
 };
