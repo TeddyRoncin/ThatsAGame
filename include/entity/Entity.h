@@ -6,6 +6,7 @@ class Entity
 {
 public:
     Entity(float _x = 0.0f, float _y = 0.0f);
+    virtual ~Entity();
     virtual bool operator()(Entity& e);
 public:
     int GetID() const;
