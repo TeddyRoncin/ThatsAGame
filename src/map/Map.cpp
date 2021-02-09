@@ -30,7 +30,7 @@ Map::~Map()
 	{
 		delete elem;
 	}
-	for (MovableEntity* entity : m_MovableElements)
+	for (MovableElement* entity : m_MovableElements)
 	{
 		delete entity;
 	}

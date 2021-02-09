@@ -2,8 +2,8 @@
 
 enum Layer
 {
-    Background,
-    Underground,
-    Ground,
-    Sky
+    MapElementEntity,
+    InteractableEntity,
+    MovableEntity,
+    LayerCount
 };

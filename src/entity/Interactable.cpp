@@ -2,7 +2,7 @@
 #include "entity/Interactable.h"
 
 Interactable::Interactable()
-	:RenderableEntity("")
+	:RenderableEntity("", Layer::InteractableEntity)
 {
 }
 

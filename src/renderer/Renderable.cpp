@@ -2,10 +2,10 @@
 
 #include "renderer/Renderable.h"
 
-Renderable::Renderable(const char* path, const Position<float>* position, const Dimension<float>* size)
+Renderable::Renderable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer)
 	:m_RendererID(0)
 {
-	m_RendererID = TextureManager::CreateTexture(position, size, path);
+	m_RendererID = TextureManager::CreateTexture(position, size, path, layer);
 }
 
 Renderable::~Renderable()

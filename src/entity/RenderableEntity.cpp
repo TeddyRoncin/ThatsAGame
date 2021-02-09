@@ -2,8 +2,8 @@
 
 #include "entity/RenderableEntity.h"
 
-RenderableEntity::RenderableEntity(const char* path, Position<float> position, Dimension<float> size, Layer priority)
-	:Entity(position.getX(), position.getY()), Renderable(path, &m_Position, &m_Size), m_Size(size), m_RenderPriorityLevel(priority)
+RenderableEntity::RenderableEntity(const char* path, Layer priority, Position<float> position, Dimension<float> size)
+	:Entity(position.getX(), position.getY()), Renderable(path, &m_Position, &m_Size, priority), m_Size(size), m_RenderPriorityLevel(priority)
 {
 }
 

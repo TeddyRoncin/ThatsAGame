@@ -14,7 +14,7 @@ class TextureManager
 public:
     static void Init(SDL_Renderer* renderer);
     static void Destroy();
-    static int CreateTexture(const Position<float>* position, const Dimension<float>* size, const char* texture);
+    static int CreateTexture(const Position<float>* position, const Dimension<float>* size, const char* texture, Layer layer);
     static void DeleteTexture(int id);
 
     static const std::map<int, Texture>& GetTextures();
