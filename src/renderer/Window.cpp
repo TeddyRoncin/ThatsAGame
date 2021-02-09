@@ -29,13 +29,16 @@ void Window::SetSize(Dimension<int> newSize)
 
 bool Window::IsFullScreen() const
 {
-    // TODO : return true if fullscreen, else false
-    SDL_DisplayMode mode;
+    // TODO : verify the test
+    return (SDL_GetWindowFlags(m_Window) & SDL_WINDOW_FULLSCREEN);
 }
 
 void Window::SetFullScreen(bool fullScreen) const
 {
-    // TODO : set window fullscreen if fullScreen is true, else un-fullscreen window
+    // TODO : verify the trigger happends when we really intend to do it
+    bool IsFullscreen = SDL_GetWindowFlags(m_Window) & SDL_WINDOW_FULLSCREEN;
+    SDL_SetWindowFullscreen(m_Window, (IsFullscreen && fullScreen) ? 0 : SDL_WINDOW_FULLSCREEN);
+    SDL_ShowCursor(IsFullscreen);
 }
 
 void Window::Render()

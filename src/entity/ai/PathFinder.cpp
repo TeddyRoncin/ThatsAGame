@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "entity//ai/PathFinder.h"
+#include "entity/ai/PathFinder.h"
 
 PathFinder::PathFinder(const Map& map) :
     m_Map(map), m_OpEnNoDeS(), m_ClosedNodes(), m_CurrentNode(nullptr), m_Step(0), m_End(0, 0), m_Entity(nullptr)
@@ -81,7 +81,7 @@ void PathFinder::getNeighbourNodes(std::vector<Node*>& neighbourNodesDest)
         Entity& otherEntity = *m_Map[static_cast<int>(node.getX()) + static_cast<int>(node.getY()) * m_Map.Width()];
         if (node.getX() >= -m_Step / 2 && abs(node.getX() - m_Map.Width()) > m_Step / 2 &&
                 node.getY() >= -m_Step / 2 && abs(node.getY() - m_Map.Height()) > m_Step / 2 &&
-                otherEntity(*m_Entity) &&
+                otherEntity(*const_cast<Entity*>(m_Entity)) &&
                 !containsNode(m_ClosedNodes, node)) {
             neighbourNodesDest.push_back(new Node(node, m_ClosedNodes[m_ClosedNodes.size() - 1], m_End, m_Step));
         }

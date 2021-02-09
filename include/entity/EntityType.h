@@ -2,25 +2,10 @@
 
 #include <iostream>
 
-#define BIT(x) (1 << x)
-
 enum class EntityType {
     None,
-    Entity = BIT(0),
-    Renderable = BIT(1)
+    Entity,
+    MapElement
 };
 
-std::ostream& operator<<(std::ostream& out, EntityType type)
-{
-    switch (type)
-    {
-    default:
-    case EntityType::None:
-        out << "EmptyEntity";
-        break;
-
-    case EntityType::Entity:
-        out << "Simple Entity !\n";
-        break;
-    }
-}
+std::ostream& operator<<(std::ostream& out, EntityType type);

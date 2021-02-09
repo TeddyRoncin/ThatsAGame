@@ -1,5 +1,7 @@
 #pragma once
 
+#include "map/elements/MapElementType.h"
+
 #include "entity/RenderableEntity.h"
 
 class MapElement : public RenderableEntity

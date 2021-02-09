@@ -1,14 +1,17 @@
 #include "pch.h"
 
 #include "map/Map.h"
-#include "map/elements/MapElementType.h"
+
 #include "map/elements/EmptyMapElement.h"
 #include "map/elements/WallMapElement.h"
+
 #include "bmploader/BMPFile.h"
 #include "bmploader/BMPImage.h"
+
 #include "entity/Player.h"
 
 namespace pt = boost::property_tree;
+
 const char* Map::m_Name(nullptr);
 size_t Map::m_Width(0);
 size_t Map::m_Height(0);
@@ -18,7 +21,7 @@ Map::Map()
 {
 	registerMaps();
 	loadMap(m_Maps[m_CurrentMap]);
-	m_MovableEntities.push_back(new Player({0, 0}));//, [this](MovableEntity* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}));
+	// m_MovableElements.push_back(new Player({0, 0}));//, [this](MovableEntity* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}));
 }
 
 Map::~Map()
@@ -27,11 +30,11 @@ Map::~Map()
 	{
 		delete elem;
 	}
-	for (MovableEntity* entity : m_MovableEntities)
+	for (MovableEntity* entity : m_MovableElements)
 	{
 		delete entity;
 	}
-	for (Interactable* interactable : m_Interactables)
+	for (Interactable* interactable : m_InteractableElements)
 	{
 		delete interactable;
 	}
@@ -40,6 +43,17 @@ Map::~Map()
 MapElement* Map::operator[](size_t index) const
 {
 	return m_Elements[index];
+}
+
+void Map::Tick()
+{
+	for(auto movable : m_MovableElements) {
+		auto[x, y] = movable->GetPosition().getPosition();
+		(*movable)(*m_Elements[x + y * m_Width]);
+		for(auto interactable : m_InteractableElements) {
+			(*movable)(*interactable);
+		}
+	}
 }
 
 const char* const Map::Name()
@@ -102,7 +116,7 @@ void Map::loadMap(const char* name)
 
 	for (int y(0); y < m_Height; y++) {
 		for (int x(0); x < m_Width; x++) {
-			// rgb : MapElement MovableEntities InteractableEntities
+			// rgb : MapElement MovableElements InteractableElements
 			RGBColor color = pattern.getRGBColor(x, y);
 
 			// MapElement
@@ -111,13 +125,17 @@ void Map::loadMap(const char* name)
 			} else if (color.R == static_cast<int>(MapElementType::WallMapElement)) {
 				m_Elements.emplace_back(new WallMapElement({ static_cast<float>(x), static_cast<float>(y)}));
 			} else {
+				std::cerr << "Color(" << static_cast<int>(color.R) << ", " << static_cast<int>(color.G) << ", " << static_cast<int>(color.B) << ")\n";
 				std::cerr << "Element unknow on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
-				return;
+				// return;
 			}
 
-			// MoveableEntities
+			// MoveableElements
+			if(color.G == static_cast<int>(MovableElementType::Player)) {
+				m_MovableElements.push_back(new Player({static_cast<float>(x), static_cast<float>(y)}));
+			}
 
-			// InteractableEntities
+			// InteractableElements
 
 		}
 	}

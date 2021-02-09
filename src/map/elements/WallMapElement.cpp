@@ -9,7 +9,7 @@ WallMapElement::WallMapElement(Position<float> position)
 WallMapElement::~WallMapElement()
 {}
 
-bool WallMapElement::operator()(const Entity& entity)
+bool WallMapElement::operator()(Entity& entity)
 {
     return false;
 }

@@ -1,10 +1,12 @@
 #pragma once
 
 #include "map/elements/MapElement.h"
-#include "entity/MovableEntity.h"
-#include "entity/Interactable.h"
+#include "map/elements/MovableElement.h"
+#include "map/elements/InteractableElement.h"
 
-class Map
+#include "entity/EntityManager.h"
+
+class Map : public EntityManager
 {
 public:
 	static const char* const Name();
@@ -16,6 +18,7 @@ public:
 	~Map();
 public:
 	MapElement* operator[](size_t index) const;
+	void Tick();
 private:
 	void registerMaps();
 	void loadMap(const char* mapName);
@@ -24,8 +27,8 @@ private:
 	static size_t m_Width, m_Height;
 private:
 	std::vector<MapElement*> m_Elements;
-	std::vector<MovableEntity*> m_MovableEntities;
-	std::vector<Interactable*> m_Interactables;
+	std::vector<MovableElement*> m_MovableElements;
+	std::vector<InteractableElement*> m_InteractableElements;
 private:
 	int m_CurrentMap;
 	std::vector<const char*> m_Maps;
