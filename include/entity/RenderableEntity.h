@@ -11,6 +11,8 @@ public:
 	virtual ~RenderableEntity() override;
 	Layer GetRenderPriorityLevel() const;
 
+	Dimension<float> GetSize() const;
+
 private:
 	Dimension<float> m_Size;
 	Layer m_RenderPriorityLevel;

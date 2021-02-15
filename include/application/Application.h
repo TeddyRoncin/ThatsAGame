@@ -1,12 +1,10 @@
 #pragma once
 
-#include "event/EventListener.h"
-
-#include "map/Map.h"
-
 #include "renderer/Context.h"
+#include "event/EventListener.h"
 #include "application/ApplicationState.h"
 #include "renderer/Window.h"
+#include "map/Map.h"
 
 class Application : public Context, public EventListener
 {
@@ -19,6 +17,6 @@ public:
 private:
 	ApplicationState m_CurrentState;
 	Window m_Window;
-	Map map;
+	Map m_Map;
 	bool m_Running;
 };

@@ -1,7 +1,6 @@
 #include "pch.h"
 
 #include "renderer/Window.h"
-#include "event/EventListener.h"
 
 Window::Window(ApplicationState* state)
     : m_Size(500, 500),
@@ -44,5 +43,4 @@ void Window::SetFullScreen(bool fullScreen) const
 void Window::Render()
 {
     m_Renderer.Render();
-    EventListener::Update();
 }

@@ -4,22 +4,20 @@
 #include "utils/Timer.h"
 
 Application::Application()
-	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), map(), m_Running(true)
+	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), m_Map(), m_Running(true)
 {
 }
 
 void Application::handle()
 {
-
 	switch (m_Action)
 	{
 		case Action::OpenMenu:
 			std::cout << "Open Menu" << std::endl;
+			break;
 		case Action::Quit:
 			m_Running = false;
-	}
-	if(m_Action == Action::Quit) {
-		m_Running = false;
+			return;
 	}
 	switch (m_CurrentEvent->type)
 	{
@@ -39,6 +37,8 @@ void Application::loop()
 	Timer::Init(60);
 	while (m_Running)
 	{
+		EventListener::Update();
+		m_Map.Tick();
 		m_Window.Render();
 		Timer::getFps();
 		//std::cout << Timer::getFps() << std::endl;

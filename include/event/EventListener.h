@@ -1,13 +1,14 @@
 #pragma once
 
 #include "EventBinding.h"
-#include "renderer/Window.h"
+
+class Application;
 
 class EventListener : public virtual EventBinding
 {
-    friend void Window::Render();
+    friend Application;
 public:
-    //Action m_Action;
+    // Action m_Action;
 
 public:
     virtual void handle() =0;

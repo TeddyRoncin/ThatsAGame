@@ -49,7 +49,11 @@ void Map::Tick()
 {
 	for(auto movable : m_MovableElements) {
 		auto[x, y] = movable->GetPosition().getPosition();
-		(*movable)(*m_Elements[x + y * m_Width]);
+		auto[width, height] = movable->GetSize().getDimension();
+		(*movable)(*m_Elements[static_cast<int>(x) + static_cast<int>(y) * m_Width]);
+		(*movable)(*m_Elements[static_cast<int>(x + width) + static_cast<int>(y) * m_Width]);
+		(*movable)(*m_Elements[static_cast<int>(x) + static_cast<int>(y + height) * m_Width]);
+		(*movable)(*m_Elements[static_cast<int>(x + width) + static_cast<int>(y + height) * m_Width]);
 		for(auto interactable : m_InteractableElements) {
 			(*movable)(*interactable);
 		}

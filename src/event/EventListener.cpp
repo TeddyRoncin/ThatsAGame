@@ -28,7 +28,7 @@ void EventListener::UpdateData(SDL_Event& event) {
     switch (event.type)
     {
         case SDL_EventType::SDL_KEYDOWN: m_Action = EventBinding::GetAction((SDL_KeyCode) event.key.keysym.sym); break;
-        case SDL_EventType::SDL_MOUSEBUTTONDOWN: m_Action = EventBinding::GetAction(event.button.button); break;
+        // case SDL_EventType::SDL_MOUSEBUTTONDOWN: m_Action = EventBinding::GetAction(event.button.button); break;
     }
     /*if(event.type == SDL_EventType::SDL_KEYDOWN)
     {
