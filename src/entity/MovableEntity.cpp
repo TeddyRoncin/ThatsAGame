@@ -4,7 +4,7 @@
 #include "renderer/Layer.h"
 
 MovableEntity::MovableEntity(const char* path, Position<float> position, Dimension<float> dimension)
-    : RenderableEntity(path, Layer::MovableEntity, position, dimension)
+	: RenderableEntity(path, Layer::MovableElements, position, dimension)
 {
 }
 

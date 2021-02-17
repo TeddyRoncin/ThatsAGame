@@ -30,7 +30,7 @@ Map::~Map()
 	{
 		delete elem;
 	}
-	for (MovableElement* entity : m_MovableElements)
+	for (MovableEntity* entity : m_MovableElements)
 	{
 		delete entity;
 	}
@@ -135,7 +135,7 @@ void Map::loadMap(const char* name)
 			}
 
 			// MoveableElements
-			if(color.G == static_cast<int>(MovableElementType::Player)) {
+			if(color.G == static_cast<int>(255)) {
 				m_MovableElements.push_back(new Player({static_cast<float>(x), static_cast<float>(y)}));
 			}
 

@@ -2,10 +2,8 @@
 
 enum class MapElementType {
 	MapElement = -1,
+	EmptyMapElement = 255,
 	WallMapElement = 0,
-	EmptyMapElement = 255
-};
-
-enum class MovableElementType {
-	Player = 255
+	MovableMapElement = 2,
+	InteractableMapElement = 3
 };

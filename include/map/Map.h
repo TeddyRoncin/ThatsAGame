@@ -1,10 +1,10 @@
 #pragma once
 
 #include "map/elements/MapElement.h"
-#include "map/elements/MovableElement.h"
 #include "map/elements/InteractableElement.h"
 
 #include "entity/EntityManager.h"
+#include "entity/MovableEntity.h"
 
 class Map : public EntityManager
 {
@@ -27,7 +27,7 @@ private:
 	static size_t m_Width, m_Height;
 private:
 	std::vector<MapElement*> m_Elements;
-	std::vector<MovableElement*> m_MovableElements;
+	std::vector<MovableEntity*> m_MovableElements;
 	std::vector<InteractableElement*> m_InteractableElements;
 private:
 	int m_CurrentMap;

@@ -2,5 +2,5 @@
 
 enum ApplicationState
 {
-    Home, Game
+	Home, Game
 };
