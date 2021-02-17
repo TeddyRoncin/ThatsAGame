@@ -41,7 +41,6 @@ void Application::loop()
 		m_Map.Tick();
 		m_Window.Render();
 		Timer::getFps();
-		//std::cout << Timer::getFps() << std::endl;
 		Timer::waitForNextFrame();
 	}
 }

@@ -13,7 +13,6 @@ public:
 	Node(const Position<float>& _position, const Node* _comeFrom, const Position<float>& end, float step);
 	Node(const Node& node);
 	~Node();
-	//Node operator=(const Node& node);
 
 private:
 	void computeFCost(const Position<float>& end, float step);

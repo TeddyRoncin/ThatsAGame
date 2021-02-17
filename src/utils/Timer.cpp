@@ -34,8 +34,6 @@ void Timer::waitForNextFrame()
 	long currentTime = getCurrentTime();
 	long timeElapsed = currentTime - m_LastFrameTime;
 	int timeToWait = m_FrameTime - timeElapsed;
-	//std::cout << timeElapsed << std::endl;
-	//std::cout << timeToWait << std::endl;
 	std::this_thread::sleep_for(std::chrono::microseconds(timeToWait));
 	currentTime = getCurrentTime();
 	m_FrameDurations[m_CurrentFrame % 10] = currentTime - m_LastFrameTime;

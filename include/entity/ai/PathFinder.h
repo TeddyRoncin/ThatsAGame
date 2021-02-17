@@ -1,6 +1,6 @@
 #pragma once
 
-#include "entity//ai/Node.h"
+#include "entity/ai/Node.h"
 #include "map/Map.h"
 
 class PathFinder

@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "entity//ai/Node.h"
+#include "entity/ai/Node.h"
 
 Node::Node(const Position<float>& _position, const Position<float>& end, float step)
 	: position(_position), comeFrom(nullptr)
@@ -26,15 +26,6 @@ Node::Node(const Node& node) :
 Node::~Node()
 {
 }
-
-/*Node Node::operator=(const Node& node)
-{
-	comeFrom = node.comeFrom;
-	gCost = node.gCost;
-	fCost = node.fCost;
-	position = node.position;
-	return *this;
-}*/
 
 void Node::computeFCost(const Position<float>& end, float step)
 {
