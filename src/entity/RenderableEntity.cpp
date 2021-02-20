@@ -15,3 +15,8 @@ Layer RenderableEntity::GetRenderPriorityLevel() const
 {
 	return m_RenderPriorityLevel;
 }
+
+Dimension<float> RenderableEntity::GetSize() const
+{
+	return m_Size;
+}

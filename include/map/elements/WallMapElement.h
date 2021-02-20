@@ -4,8 +4,8 @@
 
 class WallMapElement : public MapElement {
 public:
-    WallMapElement(Position<float> position);
-    virtual ~WallMapElement() override;
+	WallMapElement(Position<float> position);
+	virtual ~WallMapElement() override;
 
-    virtual bool operator()(Entity& entity) override;
+	virtual bool operator()(Entity& entity) override;
 };

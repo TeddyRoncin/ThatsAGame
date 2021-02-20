@@ -3,9 +3,9 @@
 #include "map/elements/EmptyMapElement.h"
 
 EmptyMapElement::EmptyMapElement(Position<float> position)
-    :MapElement("assets/textures/empty_map_element.png", position, {1.0f, 1.0f})
+	:MapElement("assets/textures/empty_map_element.png", position, {1.0f, 1.0f})
 {
-    Entity::type = EntityType::MapElement;
+	MapElement::mapElementType = MapElementType::EmptyMapElement;
 }
 
 EmptyMapElement::~EmptyMapElement()
@@ -13,5 +13,5 @@ EmptyMapElement::~EmptyMapElement()
 
 bool EmptyMapElement::operator()(Entity& entity)
 {
-    return true;
+	return true;
 }

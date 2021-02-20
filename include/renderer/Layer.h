@@ -2,8 +2,8 @@
 
 enum Layer
 {
-    MapElementEntity,
-    InteractableEntity,
-    MovableEntity,
-    LayerCount
+	MapElements,
+	InteractableElements,
+	MovableElements,
+	LayerCount
 };

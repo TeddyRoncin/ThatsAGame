@@ -8,18 +8,18 @@
 class Input
 {
 public:
-    Input();
-    ~Input();
+	Input();
+	~Input();
 
-    void eventUpdate(SDL_Event events); //where events are updated
+	void eventUpdate(SDL_Event events); //where events are updated
 
-    bool isQuitting();
+	bool isQuitting();
 
-    KeyboardInput m_keys; //in public so we can check them easely
-    MouseInput m_mouse;
-    WindowsInput m_window;
+	KeyboardInput m_keys; //in public so we can check them easely
+	MouseInput m_mouse;
+	WindowsInput m_window;
 
 private:
-    bool m_quit;
+	bool m_quit;
 };
 

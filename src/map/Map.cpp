@@ -9,6 +9,7 @@
 #include "bmploader/BMPImage.h"
 
 #include "entity/Player.h"
+#include "entity/EntityId.h"
 
 namespace pt = boost::property_tree;
 
@@ -30,7 +31,7 @@ Map::~Map()
 	{
 		delete elem;
 	}
-	for (MovableElement* entity : m_MovableElements)
+	for (MovableEntity* entity : m_MovableElements)
 	{
 		delete entity;
 	}
@@ -49,7 +50,11 @@ void Map::Tick()
 {
 	for(auto movable : m_MovableElements) {
 		auto[x, y] = movable->GetPosition().getPosition();
-		(*movable)(*m_Elements[x + y * m_Width]);
+		auto[width, height] = movable->GetSize().getDimension();
+		(*movable)(*m_Elements[static_cast<int>(x) + static_cast<int>(y) * m_Width]);
+		(*movable)(*m_Elements[static_cast<int>(x + width) + static_cast<int>(y) * m_Width]);
+		(*movable)(*m_Elements[static_cast<int>(x) + static_cast<int>(y + height) * m_Width]);
+		(*movable)(*m_Elements[static_cast<int>(x + width) + static_cast<int>(y + height) * m_Width]);
 		for(auto interactable : m_InteractableElements) {
 			(*movable)(*interactable);
 		}
@@ -122,10 +127,10 @@ void Map::loadMap(const char* name)
 			// MapElement : Red value
 			switch (color.R)
 			{
-				case static_cast<int>(MapElementType::EmptyMapElement):
+				case GET_COLOR_OF_MAP_ELEMENT(static_cast<int>(EntityId::EmptyMapElement)):
 					m_Elements.emplace_back(new EmptyMapElement({static_cast<float>(x), static_cast<float>(y)}));
 					break;
-				case static_cast<int>(MapElementType::WallMapElement):
+				case GET_COLOR_OF_MAP_ELEMENT(static_cast<int>(EntityId::WallMapElement)):
 					m_Elements.emplace_back(new WallMapElement({static_cast<float>(x), static_cast<float>(y)}));
 					break;
 				default:
@@ -146,7 +151,7 @@ void Map::loadMap(const char* name)
 			// MovableElements : Green value
 			switch (color.G)
 			{
-				case static_cast<int>(MovableElementType::Player):
+				case GET_COLOR_OF_MOVABLE_ENTITY(static_cast<int>(EntityId::Player)):
 					m_MovableElements.push_back(new Player({static_cast<float>(x), static_cast<float>(y)}));
 					break;
 				default:
@@ -154,17 +159,20 @@ void Map::loadMap(const char* name)
 					std::cerr << "MovableEntity unknown on map " << name << " at position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 					// return; ?
 			}
-			if(color.G == static_cast<int>(MovableElementType::Player)) {
+
+			// MoveableElements
+			/*if(color.G == static_cast<int>(255)) {
 				m_MovableElements.push_back(new Player({static_cast<float>(x), static_cast<float>(y)}));
-			}
+			}*/
 
-			auto lambda = [this](Player* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}
-			;std::sort(1.0, 1.0 + 1,
-        // Lambda expression begins
-        [](float a, float b) {
-            return (std::abs(a) < std::abs(b));})
-			// InteractableElements : Blue value
+			//auto lambda = [this](Player* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}
+			/*;std::sort(1.0, 1.0 + 1,
+			// Lambda expression begins
+			[](float a, float b) {
+				return (std::abs(a) < std::abs(b));})
+				// InteractableElements : Blue value
 
+			}*/
 		}
 	}
 }

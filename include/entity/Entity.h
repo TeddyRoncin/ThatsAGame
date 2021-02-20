@@ -5,18 +5,18 @@
 class Entity
 {
 public:
-    Entity(float _x = 0.0f, float _y = 0.0f);
-    virtual ~Entity();
-    virtual bool operator()(Entity& e);
+	Entity(float _x = 0.0f, float _y = 0.0f);
+	virtual ~Entity();
+	virtual bool operator()(Entity& e);
 public:
-    int GetID() const;
-    EntityType GetType() const;
-    float GetX() const;
-    float GetY() const;
-    Position<float> GetPosition() const;
+	int GetID() const;
+	EntityType GetType() const;
+	float GetX() const;
+	float GetY() const;
+	Position<float> GetPosition() const;
 private:
-    int m_ID;
+	int m_ID;
 protected:
-    Position<float> m_Position;
-    EntityType type;
+	Position<float> m_Position;
+	EntityType type;
 };

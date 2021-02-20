@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "application/Application.h"
 
-#include "entity//ai/PathFinder.h"
+#include "entity/ai/PathFinder.h"
 
 int main(int argc, char* argv[])
 {
