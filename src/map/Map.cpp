@@ -51,10 +51,13 @@ void Map::Tick()
 	for(auto movable : m_MovableElements) {
 		auto[x, y] = movable->GetPosition().getPosition();
 		auto[width, height] = movable->GetSize().getDimension();
-		(*movable)(*m_Elements[static_cast<int>(x) + static_cast<int>(y) * m_Width]);
-		(*movable)(*m_Elements[static_cast<int>(x + width) + static_cast<int>(y) * m_Width]);
-		(*movable)(*m_Elements[static_cast<int>(x) + static_cast<int>(y + height) * m_Width]);
-		(*movable)(*m_Elements[static_cast<int>(x + width) + static_cast<int>(y + height) * m_Width]);
+		for (int i = static_cast<int>(std::round(x * 10)) / 10; i <= std::floor(x + width); i++)
+		{
+			for (int j = static_cast<int>(std::round(y * 10)) / 10; j <= std::floor(y + height); j++)
+			{
+				(*movable)(*m_Elements[i + j * m_Width]);
+			}
+		}
 		for(auto interactable : m_InteractableElements) {
 			(*movable)(*interactable);
 		}
@@ -139,8 +142,8 @@ void Map::loadMap(const char* name)
 					break;
 				default:
 					std::cerr << "Color(" << static_cast<int>(color.R) << ", " << static_cast<int>(color.G) << ", " << static_cast<int>(color.B) << ")\n";
-					std::cerr << "Element unknown on map " << std::string(name) << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
-					// return; ?
+					std::cerr << "MapElement unknown on map " << std::string(name) << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
+					return;
 			}
 
 			// MovableElements : Green value
@@ -154,7 +157,7 @@ void Map::loadMap(const char* name)
 				default:
 					std::cerr << "Color(" << static_cast<int>(color.R) << ", " << static_cast<int>(color.G) << ", " << static_cast<int>(color.B) << ")\n";
 					std::cerr << "MovableEntity unknown on map " << std::string(name) << " at position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
-					// return; ?
+					return;
 			}
 		}
 	}

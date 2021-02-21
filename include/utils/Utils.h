@@ -29,9 +29,7 @@ template<typename T>
 std::ostream& operator<<(std::ostream& out, Position<T> position)
 {
 	if(!std::is_class<T>::value) {
-		out << "Position(" << position.getX() << ", " << position.getY() << ")\n";
-	} else {
-		out << "\n";
+		out << "Position(" << position.getX() << ", " << position.getY() << ")";
 	}
 	return out;
 }
@@ -66,9 +64,7 @@ template<typename T>
 std::ostream& operator<<(std::ostream& out, Dimension<T> dimension)
 {
 	if(!std::is_class<T>::value) {
-		out << "Dimension(" << dimension.getWidth() << ", " << dimension.getHeight() << ")\n";
-	} else {
-		out << "\n";
+		out << "Dimension(" << dimension.getWidth() << ", " << dimension.getHeight() << ")";
 	}
 	return out;
 }
