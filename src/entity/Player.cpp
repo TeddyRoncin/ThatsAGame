@@ -3,7 +3,7 @@
 #include "entity/Player.h"
 
 Player::Player(Position<float> position)
-	:EventListener(this), MovableEntity("assets/textures/player.png", position, {0.5f, 1.0f}), m_LastPos(position)
+	:EventListener(this), MovableEntity("assets/textures/player.png", {position.getX() + 3, position.getY() + 3}, {0.5f, 1.0f}), m_LastPos(position)
 {
 }
 

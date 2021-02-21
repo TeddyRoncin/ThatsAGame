@@ -17,6 +17,7 @@ public:
 private:
 	static SDL_Event m_Event;
 	static std::vector<EventListener*> listeners;
+	static std::vector<SDL_Keycode> keyPressed;
 
 private:
 	static void Update();
