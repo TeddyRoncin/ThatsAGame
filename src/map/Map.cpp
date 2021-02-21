@@ -58,6 +58,7 @@ void Map::Tick()
 		for(auto interactable : m_InteractableElements) {
 			(*movable)(*interactable);
 		}
+		movable->Tick();
 	}
 }
 
@@ -127,6 +128,9 @@ void Map::loadMap(const char* name)
 			// MapElement : Red value
 			switch (color.R)
 			{
+				case GET_COLOR_OF_MAP_ELEMENT(static_cast<int>(EntityId::None)):
+					std::cerr << "Cannot have an empty space in map elements grid" << std::endl;
+					break;
 				case GET_COLOR_OF_MAP_ELEMENT(static_cast<int>(EntityId::EmptyMapElement)):
 					m_Elements.emplace_back(new EmptyMapElement({static_cast<float>(x), static_cast<float>(y)}));
 					break;
@@ -135,44 +139,23 @@ void Map::loadMap(const char* name)
 					break;
 				default:
 					std::cerr << "Color(" << static_cast<int>(color.R) << ", " << static_cast<int>(color.G) << ", " << static_cast<int>(color.B) << ")\n";
-					std::cerr << "Element unknown on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
+					std::cerr << "Element unknown on map " << std::string(name) << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 					// return; ?
 			}
-			/*if (color.R == static_cast<int>(MapElementType::EmptyMapElement)) {
-				m_Elements.emplace_back(new EmptyMapElement({static_cast<float>(x), static_cast<float>(y)}));
-			} else if (color.R == static_cast<int>(MapElementType::WallMapElement)) {
-				m_Elements.emplace_back(new WallMapElement({ static_cast<float>(x), static_cast<float>(y)}));
-			} else {
-				std::cerr << "Color(" << static_cast<int>(color.R) << ", " << static_cast<int>(color.G) << ", " << static_cast<int>(color.B) << ")\n";
-				std::cerr << "Element unknown on map " << name << " at tile position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
-				// return;
-			}*/
 
 			// MovableElements : Green value
 			switch (color.G)
 			{
+				case GET_COLOR_OF_MOVABLE_ENTITY(static_cast<int>(EntityId::None)):
+					break;
 				case GET_COLOR_OF_MOVABLE_ENTITY(static_cast<int>(EntityId::Player)):
 					m_MovableElements.push_back(new Player({static_cast<float>(x), static_cast<float>(y)}));
 					break;
 				default:
 					std::cerr << "Color(" << static_cast<int>(color.R) << ", " << static_cast<int>(color.G) << ", " << static_cast<int>(color.B) << ")\n";
-					std::cerr << "MovableEntity unknown on map " << name << " at position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
+					std::cerr << "MovableEntity unknown on map " << std::string(name) << " at position (" << x << ", " << y << "). Skipping loading for this map" << std::endl;
 					// return; ?
 			}
-
-			// MoveableElements
-			/*if(color.G == static_cast<int>(255)) {
-				m_MovableElements.push_back(new Player({static_cast<float>(x), static_cast<float>(y)}));
-			}*/
-
-			//auto lambda = [this](Player* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}
-			/*;std::sort(1.0, 1.0 + 1,
-			// Lambda expression begins
-			[](float a, float b) {
-				return (std::abs(a) < std::abs(b));})
-				// InteractableElements : Blue value
-
-			}*/
 		}
 	}
 }

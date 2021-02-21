@@ -9,6 +9,9 @@ public:
 	Player(Position<float> position);
 	virtual void handle();
 	virtual bool operator()(Entity& entity) override;
+	virtual void Tick() override;
+private:
+	void UpdateLastPos();
 private:
 	Position<float> m_LastPos;
 };

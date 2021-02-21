@@ -37,6 +37,12 @@ std::ostream& operator<<(std::ostream& out, Position<T> position)
 }
 
 template<typename T>
+bool operator==(Position<T> pos1, Position<T> pos2)
+{
+	return pos1.getX() == pos2.getX() && pos1.getY() == pos2.getY();
+}
+
+template<typename T>
 struct Dimension
 {
 	std::pair<T, T> dimension;
@@ -65,4 +71,10 @@ std::ostream& operator<<(std::ostream& out, Dimension<T> dimension)
 		out << "\n";
 	}
 	return out;
+}
+
+template<typename T>
+bool operator==(Dimension<T> dim1, Dimension<T> dim2)
+{
+	return dim1.getX() == dim2.getX() && dim1.getY() == dim2.getY();
 }

@@ -10,8 +10,9 @@
 
 enum class EntityId {
 	MapElement = -1,
+	None = 0,
 	EmptyMapElement = MAP_ELEMENT_COLOR(255U),
-	WallMapElement = MAP_ELEMENT_COLOR(0U),
+	WallMapElement = MAP_ELEMENT_COLOR(100U),
 	Player = MOVABLE_ENTITY_COLOR(255U),
 
 };

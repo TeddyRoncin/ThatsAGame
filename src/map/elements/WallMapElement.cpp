@@ -5,7 +5,6 @@
 WallMapElement::WallMapElement(Position<float> position)
 	:MapElement("assets/textures/wall_map_element.png", position, {1.0f, 1.0f})
 {
-	MapElement::mapElementType = MapElementType::WallMapElement;
 }
 
 WallMapElement::~WallMapElement()
