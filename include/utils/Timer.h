@@ -17,7 +17,12 @@ private:
 	static int m_FrameTime;
 	static long getCurrentTime();
 	static void computeFrameTime();
+	static void Sleep(int timeToWait);
+	static int GetAverageMinSleepDuration();
 	static long m_CurrentFrame;
-	static long m_FrameDurations[10];
+	static const int FRAME_DURATION_BATCH = 10;
+	static const int MIN_SLEEP_DURATION_BATCH = 10;
+	static long m_FrameDurations[FRAME_DURATION_BATCH];
+	static int m_MinSleepDurations[MIN_SLEEP_DURATION_BATCH];
 
 };
