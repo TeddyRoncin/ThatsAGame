@@ -9,4 +9,5 @@ public:
 	virtual ~Renderable();
 private:
 	int m_RendererID;
+	Layer m_Layer;
 };

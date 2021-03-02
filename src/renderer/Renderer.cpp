@@ -62,14 +62,10 @@ void Renderer::RenderTextures()
 		renderSize.dimension.first = (float) m_WindowSize.getHeight() / Map::Height() * Map::Width();
 		offset.position.first = (m_WindowSize.getWidth() - renderSize.dimension.first) >> 1;
 	}
-	for (int layer = 0; layer < Layer::LayerCount; layer++)
+	for(auto& layer : textures)
 	{
-		for(auto& textureinfo : textures)
+		for(auto& textureinfo : layer)
 		{
-			if  (textureinfo.second.layer != layer)
-			{
-				continue;
-			}
 			auto[x, y] = textureinfo.second.ComputeActualPosition({Map::Width(), Map::Height()}, renderSize).getPosition();
 			auto[width, height] = textureinfo.second.ComputeActualSize({Map::Width(), Map::Height()}, renderSize).getDimension();
 			SDL_Rect distrect{x + offset.getX(), y + offset.getY(), width, height};
