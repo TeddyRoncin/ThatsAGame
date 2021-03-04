@@ -3,8 +3,13 @@
 #include "renderer/Texture.h"
 #include "renderer/TextureManager.h"
 
-Texture::Texture(const Position<float>* _position, const Dimension<float>* _size, SDL_Texture* _texture, const char* _path, const Layer _layer)
-	:position(_position), size(_size), texture(_texture), texture_path(_path), layer(_layer)
+Texture::Texture(const Position<float>* _position, const Dimension<float>* _size, bool _drawOnTheFly)
+	:position(_position), size(_size), drawOnTheFly(_drawOnTheFly), texture(nullptr)
+{
+}
+
+Texture::Texture(const Position<float>* _position, const Dimension<float>* _size, SDL_Texture* _texture, const char* _path)
+	:position(_position), size(_size), texture(_texture), texture_path(_path), drawOnTheFly(false)
 {
 }
 

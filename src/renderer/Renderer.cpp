@@ -66,10 +66,17 @@ void Renderer::RenderTextures()
 	{
 		for(auto& textureinfo : layer)
 		{
-			auto[x, y] = textureinfo.second.ComputeActualPosition({Map::Width(), Map::Height()}, renderSize).getPosition();
-			auto[width, height] = textureinfo.second.ComputeActualSize({Map::Width(), Map::Height()}, renderSize).getDimension();
-			SDL_Rect distrect{x + offset.getX(), y + offset.getY(), width, height};
-			SDL_RenderCopy(m_Renderer, textureinfo.second.texture, nullptr, &distrect);
+			if (textureinfo.second->drawOnTheFly)
+			{
+				textureinfo.second->Draw(m_Renderer);
+			}
+			else
+			{
+				auto[x, y] = textureinfo.second->ComputeActualPosition({Map::Width(), Map::Height()}, renderSize).getPosition();
+				auto[width, height] = textureinfo.second->ComputeActualSize({Map::Width(), Map::Height()}, renderSize).getDimension();
+				SDL_Rect distrect{x + offset.getX(), y + offset.getY(), width, height};
+				SDL_RenderCopy(m_Renderer, textureinfo.second->texture, nullptr, &distrect);
+			}
 		}
 	}
 }
