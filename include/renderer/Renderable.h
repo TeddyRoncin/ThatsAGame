@@ -5,10 +5,9 @@
 class Renderable
 {
 public:
-	Renderable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer);
-	Renderable(Texture* texture, Layer layer);
+	Renderable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer, void* _texture_info = nullptr);
 	virtual ~Renderable();
-private:
+protected:
 	int m_RendererID;
 	Layer m_Layer;
 };
