@@ -11,5 +11,6 @@ public:
 public:
 	CollisionBox(int x, int y, int width, int height);
 public:
-	bool doesCollide(CollisionBox& other);
+	bool doesCollide(CollisionBox& other) const;
+	bool doesCollide(int x, int y) const;
 };

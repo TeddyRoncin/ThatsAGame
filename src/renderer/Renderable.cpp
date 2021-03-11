@@ -2,6 +2,10 @@
 
 #include "renderer/Renderable.h"
 
+Renderable::Renderable()
+{
+}
+
 Renderable::Renderable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer, void* _texture_info)
 	:m_RendererID(0), m_Layer(layer)
 {

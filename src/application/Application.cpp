@@ -3,6 +3,7 @@
 #include "application/Application.h"
 #include "utils/Timer.h"
 #include "ui/Text.h"
+#include "ui/Button.h"
 
 Application::Application()
 	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), m_Map(), m_Running(true)
@@ -35,15 +36,17 @@ void Application::handle()
 
 void Application::loop()
 {
-	
-	// Text text(Position<int>{0, 0}, Dimension<int>{100, 30}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 24));
+	Position<int> position{0, 0};
+	Dimension<int> size{100, 30};
+	//Text text(Position<int>{0, 0}, Dimension<int>{100, 30}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 24));
+	Button button(position, size, SDL_BUTTON_LMASK);
 	Timer::Init(60);
 	while (m_Running)
 	{
 		EventListener::Update();
 		m_Map.Tick();
 		m_Window.Render();
-		// text.SetText(std::to_string(Timer::getFps()));
+		//text.SetText(std::to_string(Timer::getFps()));
 		Timer::waitForNextFrame();
 	}
 }
