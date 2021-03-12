@@ -5,7 +5,7 @@
 class UI
 {
 public:
-    UI(Position<int> position, Dimension<int> size);
+    UI(Position<int>& position, Dimension<int>& size);
 
 protected:
     Position<int> m_Position;

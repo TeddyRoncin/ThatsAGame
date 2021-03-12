@@ -4,10 +4,11 @@
 #include "renderer/Renderable.h"
 #include "renderer/Texture.h"
 
-class Text : public UI, Renderable, Texture
+class Text : public UI, Renderable
 {
 public:
     Text(Position<int> position, Dimension<int> dimension, std::string text, TTF_Font* font);
+    Text(Position<int>& position, Dimension<int>& dimension, std::string& text, TTF_Font* font);
     ~Text();
 
 public:
