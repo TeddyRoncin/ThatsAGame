@@ -1,8 +1,6 @@
 #pragma once
 
-#include "renderer/Renderable.h"
-
-typedef unsigned long long size_t;
+#include "renderer/Layer.h"
 
 struct SpriteSheetInfo
 {
@@ -10,15 +8,14 @@ struct SpriteSheetInfo
 	int xoffset, yoffset;
 	int currentIndex;
 	std::map<std::string, std::vector<int>> animationList;
-	int frameNumber;
 
-	void addAnimation(std::string name, std::vector<int> indicies);
+	SpriteSheetInfo addAnimation(std::string name, std::vector<int> indicies);
 };
 
-class Animable : public Renderable
+class Animable
 {
 public:
-	Animable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer, SpriteSheetInfo info);
+	Animable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer, const SpriteSheetInfo& info);
 	virtual ~Animable();
 public:
 	void setAnimation(std::string name);
@@ -26,11 +23,6 @@ public:
 private:
 	SpriteSheetInfo m_Info;
 	std::string m_AnimationState;
-};
-
-class TestAnimation : public Animable
-{
-public:
-	TestAnimation(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer, SpriteSheetInfo info);
-	virtual ~TestAnimation();
+	int m_RendererID;
+	Layer m_Layer;
 };

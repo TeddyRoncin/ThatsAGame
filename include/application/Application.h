@@ -6,7 +6,7 @@
 #include "renderer/Window.h"
 #include "map/Map.h"
 
-class Application : public Context, public EventListener
+class Application : public Context, public virtual EventListener
 {
 public:
 	Application();

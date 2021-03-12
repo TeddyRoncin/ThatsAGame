@@ -3,6 +3,7 @@
 #include "application/Application.h"
 #include "utils/Timer.h"
 #include "ui/Text.h"
+#include "entity/TestAnimable.h"
 
 Application::Application()
 	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), m_Map(), m_Running(true)
@@ -33,9 +34,20 @@ void Application::handle()
 	}
 }
 
+/**
+ * struct SpriteSheetInfo
+{
+	int currentFrame;
+	int xoffset, yoffset;
+	int currentIndex;
+	std::map<std::string, std::vector<int>> animationList;
+
+	SpriteSheetInfo addAnimation(std::string name, std::vector<int> indicies);
+};
+*/
+
 void Application::loop()
 {
-	
 	// Text text(Position<int>{0, 0}, Dimension<int>{100, 30}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 24));
 	Timer::Init(60);
 	while (m_Running)

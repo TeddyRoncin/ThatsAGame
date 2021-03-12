@@ -15,4 +15,5 @@ EventBinding::EventBinding()
 			actionBinding.emplace(static_cast<SDL_KeyCode>(keycode.first[0]), static_cast<Action>(root.get<int>(std::string("action.") + keycode.second.data())));
 		}
 	}
+	root.clear();
 }

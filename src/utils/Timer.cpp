@@ -75,7 +75,7 @@ void Timer::computeFrameTime()
 
 int Timer::GetAverageMinSleepDuration()
 {
-	long last10MinSleepDuration = 0;
+	long last10MinSleepDuration = 1;
 	for (int i = 0; i < MIN_SLEEP_DURATION_BATCH; i++) {
 		last10MinSleepDuration += m_MinSleepDurations[i];
 	}

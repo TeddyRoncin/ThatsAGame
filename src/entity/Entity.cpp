@@ -41,6 +41,6 @@ Position<float> Entity::GetPosition() const
 	return m_Position;
 }
 
-void Entity::Tick()
+void Entity::Tick(float dt)
 {
 }

@@ -3,8 +3,9 @@
 #include "entity/Player.h"
 
 Player::Player(Position<float> position)
-	:EventListener(this), MovableEntity("assets/textures/player.png", {position.getX(), position.getY()}, {1.0f, 2.0f}), m_LastPos({-1.0f, -1.0f})
+	:EventListener(this), MovableEntity("assets/textures/player.png", SpriteSheetInfo{0, 8, 16, 0, {}}.addAnimation("stay", {0, 1}), {position.getX(), position.getY()}, {1.0f, 2.0f}), m_LastPos({-1.0f, -1.0f})
 {
+	setAnimation("stay");
 }
 
 void Player::handle()
@@ -31,7 +32,13 @@ bool Player::operator()(Entity& e)
 	return false;
 }
 
-void Player::Tick()
+void Player::Tick(float dt)
 {
+	static int time(0);
+	time++;
 	m_LastPos = {-1.0f, -1.0f};
+	if(time > 100) {
+		updateTexture();
+		time = 0;
+	}
 }

@@ -14,7 +14,7 @@ public:
 	float GetX() const;
 	float GetY() const;
 	Position<float> GetPosition() const;
-	virtual void Tick();
+	virtual void Tick(float dt = 0.0f);
 private:
 	int m_ID;
 protected:
