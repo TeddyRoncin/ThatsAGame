@@ -4,10 +4,11 @@
 
 struct SpriteSheetInfo
 {
-	int currentFrame;
+	int currentFrame[2];
 	int xoffset, yoffset;
 	int currentIndex;
-	std::map<std::string, std::vector<int>> animationList;
+	std::map<std::string, int> animationIndex;
+	std::map<int, std::vector<int>> animationList;
 
 	SpriteSheetInfo addAnimation(std::string name, std::vector<int> indicies);
 };
@@ -19,10 +20,10 @@ public:
 	virtual ~Animable();
 public:
 	void setAnimation(std::string name);
-	void updateTexture(/*float dt*/);
+	void updateTexture();
 private:
 	SpriteSheetInfo m_Info;
-	std::string m_AnimationState;
+	int m_AnimationState;
 	int m_RendererID;
 	Layer m_Layer;
 };

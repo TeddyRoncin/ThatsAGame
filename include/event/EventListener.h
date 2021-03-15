@@ -13,12 +13,12 @@ public:
 public:
 	virtual void handle() =0;
 	virtual void UpdateData(SDL_Event& event);
+	static bool GetKeyState(SDL_Scancode scancode);
 
 private:
 	static SDL_Event m_Event;
 	static std::vector<EventListener*> listeners;
-	static std::vector<SDL_Keycode> keyPressed;
-
+	static const Uint8* keyPressed;
 private:
 	static void Update();
 

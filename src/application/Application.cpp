@@ -3,11 +3,7 @@
 #include "application/Application.h"
 #include "utils/Timer.h"
 #include "ui/Text.h"
-<<<<<<< HEAD
-#include "entity/TestAnimable.h"
-=======
 #include "ui/Button.h"
->>>>>>> 648b2cebfb055d5a025eae5fa90d36a0aafca069
 
 Application::Application()
 	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), m_Map(), m_Running(true)

@@ -35,8 +35,8 @@ SDL_Rect* Texture::ComputeActualSrcRect() const
 		TextureInfo* info = (TextureInfo*)texture_info;
 		src_rect.w = info->offsetx;
 		src_rect.h = info->offsety;
-		src_rect.y = 0;
-		src_rect.x = info->current_frame * info->offsetx;
+		src_rect.x = info->current_frame[1] * info->offsetx;
+		src_rect.y = info->current_frame[0] * info->offsety;
 		return &src_rect;
 	} else {
 		return nullptr;

@@ -4,7 +4,7 @@
 
 struct TextureInfo
 {
-	int current_frame;
+	int current_frame[2];
 	int offsetx, offsety;
 };
 
