@@ -6,6 +6,7 @@
 
 class Text : public UI, Renderable
 {
+
 public:
     Text(Position<int> position, Dimension<int> dimension, std::string text, TTF_Font* font);
     Text(Position<int>& position, Dimension<int>& dimension, std::string& text, TTF_Font* font);
@@ -27,4 +28,16 @@ protected:
     std::string m_Text;
     TTF_Font* m_Font;
     bool m_Update;
+
+private:
+    std::vector<CharacterData> characters;
+
+};
+
+struct CharacterData
+{
+    int width;      // The width of the character, in pixels
+    int height;     // The height of the character, in pixels
+    int xOffset;    // The x offset of the character
+    int yOffset;
 };
