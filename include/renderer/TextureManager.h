@@ -15,6 +15,7 @@ public:
 	static void Init(SDL_Renderer* renderer);
 	static void Destroy();
 	static int CreateTexture(const Position<float>* position, const Dimension<float>* size, const char* texture, Layer layer, void* _texture_info = nullptr);
+	static int CreateTexture(const Position<float>* position, const Dimension<float>* dimension, Layer layer);
 	static void DeleteTexture(int id, Layer layer);
 
 	static Texture* GetTexture(int id, Layer layer);

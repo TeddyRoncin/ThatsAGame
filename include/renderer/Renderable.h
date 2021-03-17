@@ -5,6 +5,7 @@
 class Renderable
 {
 public:
+	Renderable(const Position<float>* position, const Dimension<float>* size, Layer layer);
 	Renderable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer);
 	virtual ~Renderable();
 protected:

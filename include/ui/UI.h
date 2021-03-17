@@ -1,13 +1,11 @@
 #pragma once
 
-#include "pch.h"
-
 class UI
 {
 public:
-    UI(Position<int>& position, Dimension<int>& size);
+    UI(Position<float>& position, Dimension<float>& size);
 
 protected:
-    Position<int> m_Position;
-    Dimension<int> m_Size;
+    Position<float> m_Position;
+    Dimension<float> m_Size;
 };

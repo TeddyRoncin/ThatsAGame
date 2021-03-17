@@ -12,6 +12,7 @@ Window::Window(ApplicationState* state)
 		std::cerr << "SDL_CreateWindowError : " << SDL_GetError() << std::endl;
 	}
 	SetSize(m_Size);
+	std::cout << SDL_GetPixelFormatName(SDL_GetWindowPixelFormat(m_Window)) << std::endl;
 }
 
 Window::~Window()

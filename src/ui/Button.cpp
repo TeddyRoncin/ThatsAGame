@@ -2,7 +2,7 @@
 
 #include "ui/Button.h"
 
-Button::Button(Position<int>& position, Dimension<int>& size, int buttons)
+Button::Button(Position<float>& position, Dimension<float>& size, int buttons)
     : UI(position, size), EventListener(this), m_Buttons(buttons),
     m_CollisionBox(m_Position.getX(), m_Position.getY(), m_Size.getWidth(), m_Size.getHeight())
 {
