@@ -65,6 +65,6 @@ void EventListener::Update()
 				listener->UpdateData(event);
 				listener->handle();
 			}
-		}		
+		}
 	}
 }

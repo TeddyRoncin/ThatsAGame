@@ -34,18 +34,6 @@ void Application::handle()
 	}
 }
 
-/**
- * struct SpriteSheetInfo
-{
-	int currentFrame;
-	int xoffset, yoffset;
-	int currentIndex;
-	std::map<std::string, std::vector<int>> animationList;
-
-	SpriteSheetInfo addAnimation(std::string name, std::vector<int> indicies);
-};
-*/
-
 void Application::loop()
 {
 	Position<int> position{0, 0};
