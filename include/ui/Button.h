@@ -7,7 +7,7 @@
 class Button : public UI, EventListener
 {
 public:
-    Button(Position<int>& position, Dimension<int>& size, int buttons);
+    Button(Position<float>& position, Dimension<float>& size, int buttons);
     virtual void handle();
 
 private:

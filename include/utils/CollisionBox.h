@@ -3,14 +3,14 @@
 struct CollisionBox
 {
 public:
-	const int m_X;
-	const int m_Y;
-	const int m_Width;
-	const int m_Height;
+	const float m_X;
+	const float m_Y;
+	const float m_Width;
+	const float m_Height;
 
 public:
-	CollisionBox(int x, int y, int width, int height);
+	CollisionBox(float x, float y, float width, float height);
 public:
 	bool doesCollide(CollisionBox& other) const;
-	bool doesCollide(int x, int y) const;
+	bool doesCollide(float x, float y) const;
 };

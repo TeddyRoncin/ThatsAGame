@@ -15,11 +15,13 @@ public:
 	static void Init(SDL_Renderer* renderer);
 	static void Destroy();
 	static int CreateTexture(const Position<float>* position, const Dimension<float>* size, const char* texture, Layer layer, void* _texture_info = nullptr);
+	static int CreateTexture(const Position<float>* position, const Dimension<float>* dimension, Layer layer);
 	static void DeleteTexture(int id, Layer layer);
 
-	static const std::array<std::map<int, Texture*>, Layer::LayerCount>& GetTextures();
+	static Texture* GetTexture(int id, Layer layer);
+	static const std::array<std::map<int, Texture>, Layer::LayerCount>& GetTextures();
 private:
-	static std::array<std::map<int, Texture*>, Layer::LayerCount> m_Textures;
+	static std::array<std::map<int, Texture>, Layer::LayerCount> m_Textures;
 	static std::map<const char*, std::pair<SDL_Texture*, int>> m_SDLTextures;
 	static SDL_Renderer* m_Renderer;
 };

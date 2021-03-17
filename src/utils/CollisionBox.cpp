@@ -2,7 +2,7 @@
 
 #include "utils/CollisionBox.h"
 
-CollisionBox::CollisionBox(int x, int y, int width, int height)
+CollisionBox::CollisionBox(float x, float y, float width, float height)
 	:m_X(x), m_Y(y), m_Width(width), m_Height(height)
 {
 }
@@ -13,7 +13,7 @@ bool CollisionBox::doesCollide(CollisionBox& other) const
 			((m_Y >= other.m_Y && m_Y < other.m_Y + other.m_Height) || (other.m_Y >= m_Y && other.m_Y < m_Y + m_Height));
 }
 
-bool CollisionBox::doesCollide(int x, int y) const
+bool CollisionBox::doesCollide(float x, float y) const
 {
 	return x >= m_X && x < m_X + m_Width && y >= m_Y && y < m_Y + m_Height;
 }

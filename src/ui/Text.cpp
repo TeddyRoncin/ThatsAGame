@@ -1,16 +1,20 @@
 #include "pch.h"
 #include "ui/Text.h"
 
-Text::Text(Position<int> position, Dimension<int> size, std::string text, TTF_Font* font)
-    : UI(position, size), Renderable(),
-      m_Text(text), m_Font(font), m_Update(true)
+Text::Text(Position<float> position, Dimension<float> size, std::string text, TTF_Font* font)
+    : UI(position, size), Renderable(&m_Position, &m_Size, Layer::UI),
+      m_Text(text), m_Font(font)
 {
+    m_Texture = TextureManager::GetTexture(m_RendererID, m_Layer);
+    UpdateTexture();
 }
 
-Text::Text(Position<int>& position, Dimension<int>& size, std::string& text, TTF_Font* font)
-    : UI(position, size), Renderable(),
-      m_Text(text), m_Font(font), m_Update(true)
+Text::Text(Position<float>& position, Dimension<float>& size, std::string& text, TTF_Font* font)
+    : UI(position, size), Renderable(&m_Position, &m_Size, Layer::UI),
+      m_Text(text), m_Font(font)
 {
+    m_Texture = TextureManager::GetTexture(m_RendererID, m_Layer);
+    UpdateTexture();
 }
 
 Text::~Text()
@@ -18,33 +22,32 @@ Text::~Text()
     TTF_CloseFont(m_Font);
 }
 
-void Text::Draw(SDL_Renderer* renderer)
+void Text::UpdateTexture()
 {
-    /*if (m_Update)
+    if (m_Texture->texture != nullptr)
     {
-        UpdateTexture(renderer);
-    }
-    SDL_Rect pos {m_Position.getX(), m_Position.getY(), m_Size.getWidth(), m_Size.getHeight()};
-    SDL_RenderCopy(renderer, texture, NULL, &pos);*/
-}
-
-void Text::UpdateTexture(SDL_Renderer* renderer)
-{
-    /*if (texture != nullptr)
-    {
-        SDL_DestroyTexture(texture);
+        SDL_DestroyTexture(m_Texture->texture);
     }
     SDL_Surface* surf = TTF_RenderText_Solid(m_Font, m_Text.c_str(), SDL_Color {0, 0, 0, 0});
-    texture = SDL_CreateTextureFromSurface(renderer, surf);
-    SDL_FreeSurface(surf);*/
+    void* pixels;
+    int pitch;
+    SDL_LockTexture(m_Texture->texture, nullptr, &pixels, &pitch);
+    SDL_ConvertPixels(surf->w, surf->h,
+               surf->format->format,
+               surf->pixels, surf->pitch,
+               SDL_PIXELFORMAT_RGB888,
+               pixels, pitch);
+    SDL_UnlockTexture(m_Texture->texture);
+    //SDL_UpdateTexture(m_Texture->texture, nullptr, surf->pixels, surf->pitch);
+    SDL_FreeSurface(surf);
 }
 
-const Position<int>& Text::GetPosition() const
+const Position<float>& Text::GetPosition() const
 {
     return m_Position;
 }
 
-const Dimension<int>& Text::GetSize() const
+const Dimension<float>& Text::GetSize() const
 {
     return m_Size;
 }
@@ -59,26 +62,26 @@ const TTF_Font* Text::GetFont() const
     return m_Font;
 }
 
-void Text::SetPosition(const Position<int>& pos)
+void Text::SetPosition(const Position<float>& pos)
 {
     m_Position = pos;
 }
 
-void Text::SetSize(const Dimension<int>& size)
+void Text::SetSize(const Dimension<float>& size)
 {
     m_Size = size;
 }
 
 void Text::SetText(const std::string& text)
 {
+    UpdateTexture();
     m_Text = text;
-    m_Update = true;
 }
 
 void Text::SetFont(TTF_Font* font)
 {
+    UpdateTexture();
     TTF_CloseFont(m_Font);
     m_Font = font;
-    m_Update = true;
 }
 

@@ -2,7 +2,7 @@
 
 #include "renderer/TextureManager.h"
 
-std::array<std::map<int, Texture*>, Layer::LayerCount> TextureManager::m_Textures = {};
+std::array<std::map<int, Texture>, Layer::LayerCount> TextureManager::m_Textures = {};
 std::map<const char*, std::pair<SDL_Texture*, int>> TextureManager::m_SDLTextures = {};
 SDL_Renderer* TextureManager::m_Renderer = nullptr;
 
@@ -28,22 +28,32 @@ int TextureManager::CreateTexture(const Position<float>* position, const Dimensi
 		if(!temp) {
 			std::cerr << "error loading texture : " << IMG_GetError() << std::endl;
 		}
-		m_Textures[layer].emplace(current_id, new Texture(position, dimension, temp, _texture_info));
+		m_Textures[layer].emplace(current_id, Texture(position, dimension, temp, _texture_info));
 		m_SDLTextures.emplace(texture_path, std::make_pair(temp, 1) );
 		temp = nullptr;
 	}
 	else
 	{
-		m_Textures[layer].emplace(current_id, new Texture(position, dimension, texture->second.first, _texture_info));
+		m_Textures[layer].emplace(current_id, Texture(position, dimension, texture->second.first, _texture_info));
 		texture->second.second += 1;
 	}
 	return current_id;
 }
 
+int TextureManager::CreateTexture(const Position<float>* position, const Dimension<float>* dimension, Layer layer)
+{
+	int current_id(RendererIDFactory());
+	std::cout << SDL_GetError() << std::endl;
+	SDL_Texture* texture = SDL_CreateTexture(m_Renderer, SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGB888, SDL_TextureAccess::SDL_TEXTUREACCESS_STREAMING, (int) dimension->getWidth(), (int) dimension->getHeight());
+	std::cout << texture << std::endl;
+	std::cout << SDL_GetError() << std::endl;
+	m_Textures[layer].emplace(current_id, Texture(position, dimension, texture, nullptr));
+	return current_id;
+}
+
 void TextureManager::DeleteTexture(int id, Layer layer)
 {
-	const char* path = m_Textures[layer].at(id)->texture_path;
-	delete m_Textures[layer][id];
+	const char* path = m_Textures[layer].at(id).texture_path;
 	m_Textures[layer].erase(id);
 	auto texture = m_SDLTextures.find(path);
 	if (texture != m_SDLTextures.end())
@@ -59,7 +69,12 @@ void TextureManager::DeleteTexture(int id, Layer layer)
 	}
 }
 
-const std::array<std::map<int, Texture*>, Layer::LayerCount>& TextureManager::GetTextures()
+Texture* TextureManager::GetTexture(int id, Layer layer)
+{
+	return &m_Textures[layer].at(id);
+}
+
+const std::array<std::map<int, Texture>, Layer::LayerCount>& TextureManager::GetTextures()
 {
 	return m_Textures;
 }
