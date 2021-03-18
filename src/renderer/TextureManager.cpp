@@ -43,10 +43,7 @@ int TextureManager::CreateTexture(const Position<float>* position, const Dimensi
 int TextureManager::CreateTexture(const Position<float>* position, const Dimension<float>* dimension, Layer layer)
 {
 	int current_id(RendererIDFactory());
-	std::cout << SDL_GetError() << std::endl;
-	SDL_Texture* texture = SDL_CreateTexture(m_Renderer, SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGB888, SDL_TextureAccess::SDL_TEXTUREACCESS_STREAMING, (int) dimension->getWidth(), (int) dimension->getHeight());
-	std::cout << texture << std::endl;
-	std::cout << SDL_GetError() << std::endl;
+	SDL_Texture* texture = SDL_CreateTexture(m_Renderer, SDL_PixelFormatEnum::SDL_PIXELFORMAT_ARGB32, SDL_TextureAccess::SDL_TEXTUREACCESS_TARGET, (int) dimension->getWidth(), (int) dimension->getHeight());
 	m_Textures[layer].emplace(current_id, Texture(position, dimension, texture, nullptr));
 	return current_id;
 }
