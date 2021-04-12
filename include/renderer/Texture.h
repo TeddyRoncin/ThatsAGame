@@ -11,7 +11,7 @@ struct TextureInfo
 struct Texture
 {
 public:
-	Texture(const Position<float>* _position, const Dimension<float>* _size, SDL_Texture* _texture, void* _texture_info = nullptr);
+	Texture(const Position<float>* _position, const Dimension<float>* _size, SDL_Texture* _texture, const char* texture_path = "", void* _texture_info = nullptr);
 	~Texture();
 
 public:

@@ -67,15 +67,24 @@ void Renderer::RenderTextures()
 	{
 		for(auto& textureinfo : layer)
 		{
-			/*if (i == Layer::UI) {
-				std::cout << "il est la ! " << textureinfo.second.texture << std::endl;
-			}*/
 			auto[x, y] = textureinfo.second.ComputeActualPosition({Map::Width(), Map::Height()}, renderSize).getPosition();
 			auto[width, height] = textureinfo.second.ComputeActualSize({Map::Width(), Map::Height()}, renderSize).getDimension();
-			SDL_Rect distrect{x + offset.getX(), y + offset.getY(), width, height};
-			SDL_Rect* srcrect = textureinfo.second.ComputeActualSrcRect();
-			SDL_RenderCopy(m_Renderer, textureinfo.second.texture, srcrect, &distrect);
+			DrawTexture(textureinfo.second, x + offset.getX(), y + offset.getY(), width, height);
 		}
 		i++;
 	}
+	auto& uiTextures = TextureManager::GetUITextures();
+	for (auto texture : uiTextures)
+	{
+		auto[x, y] = (std::pair<int, int>) texture.second.position->position;
+		auto[width, height] = (std::pair<int, int>) texture.second.size->dimension;
+		DrawTexture(texture.second, x + offset.getX(), y + offset.getY(), width, height);
+	}
+}
+
+void Renderer::DrawTexture(const Texture& texture, int x, int y, int width, int height)
+{
+	SDL_Rect distrect{x, y, width, height};
+	SDL_Rect* srcrect = texture.ComputeActualSrcRect();
+	SDL_RenderCopy(m_Renderer, texture.texture, srcrect, &distrect);
 }

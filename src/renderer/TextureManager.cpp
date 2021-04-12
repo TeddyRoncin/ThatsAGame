@@ -5,6 +5,7 @@
 
 std::array<std::map<int, Texture>, Layer::LayerCount> TextureManager::m_Textures = {};
 std::map<const char*, std::pair<SDL_Texture*, int>> TextureManager::m_SDLTextures = {};
+std::map<int, Texture> TextureManager::m_UITextures = {};
 SDL_Renderer* TextureManager::m_Renderer = nullptr;
 
 void TextureManager::Init(SDL_Renderer* renderer)
@@ -17,6 +18,17 @@ void TextureManager::Destroy()
 	m_Textures[Layer::MapElements].clear();
 	m_Textures[Layer::InteractableElements].clear();
 	m_Textures[Layer::MovableElements].clear();
+	for (auto[path, texture] : m_SDLTextures)
+	{
+		SDL_DestroyTexture(texture.first);
+	}
+	m_SDLTextures.clear();
+	for (auto[id, texture] : m_UITextures)
+	{
+		SDL_DestroyTexture(texture.texture);
+	}
+	m_UITextures.clear();
+	m_Renderer = nullptr;
 }
 
 int TextureManager::CreateTexture(const Position<float>* position, const Dimension<float>* dimension, const char* texture_path, Layer layer, void* _texture_info)
@@ -29,23 +41,15 @@ int TextureManager::CreateTexture(const Position<float>* position, const Dimensi
 		if(!temp) {
 			std::cerr << "error loading texture : " << IMG_GetError() << std::endl;
 		}
-		m_Textures[layer].emplace(current_id, Texture(position, dimension, temp, _texture_info));
+		m_Textures[layer].emplace(current_id, Texture(position, dimension, temp, texture_path, _texture_info));
 		m_SDLTextures.emplace(texture_path, std::make_pair(temp, 1) );
 		temp = nullptr;
 	}
 	else
 	{
-		m_Textures[layer].emplace(current_id, Texture(position, dimension, texture->second.first, _texture_info));
+		m_Textures[layer].emplace(current_id, Texture(position, dimension, texture->second.first, texture_path, _texture_info));
 		texture->second.second += 1;
 	}
-	return current_id;
-}
-
-int TextureManager::CreateTexture(const Position<float>* position, const Dimension<float>* dimension, Layer layer)
-{
-	int current_id(RendererIDFactory());
-	SDL_Texture* texture = SDL_CreateTexture(m_Renderer, SDL_PixelFormatEnum::SDL_PIXELFORMAT_ARGB32, SDL_TextureAccess::SDL_TEXTUREACCESS_TARGET, (int) dimension->getWidth(), (int) dimension->getHeight());
-	m_Textures[layer].emplace(current_id, Texture(position, dimension, texture, nullptr));
 	return current_id;
 }
 
@@ -67,12 +71,47 @@ void TextureManager::DeleteTexture(int id, Layer layer)
 	}
 }
 
+int TextureManager::CreateUIText(const Position<float>* position, const Dimension<float>* size, TTF_Font* font, const char* text)
+{
+	int current_id(RendererIDFactory());
+	SDL_Surface* surf = TTF_RenderText_Blended(font, text, SDL_Color {0, 0, 20, 0});
+	m_UITextures.emplace(current_id, Texture(position, size, SDL_CreateTextureFromSurface(m_Renderer, surf)));
+	SDL_FreeSurface(surf);
+	return current_id;
+}
+
+void TextureManager::UpdateUIText(int id, TTF_Font* font, const char* text)
+{
+	int current_id(RendererIDFactory());
+	SDL_Surface* surf = TTF_RenderText_Blended(font, text, SDL_Color {0, 0, 20, 0});
+	Texture& texture = m_UITextures.at(id);
+	SDL_DestroyTexture(texture.texture);
+	texture.texture = SDL_CreateTextureFromSurface(m_Renderer, surf);
+	SDL_FreeSurface(surf);
+}
+
+void TextureManager::DeleteUI(int id)
+{
+	SDL_DestroyTexture(m_UITextures.at(id).texture);
+	m_UITextures.erase(id);
+}
+
 Texture* TextureManager::GetTexture(int id, Layer layer)
 {
 	return &m_Textures[layer].at(id);
 }
 
+Texture* TextureManager::GetUITexture(int id)
+{
+	return &m_UITextures.at(id);
+}
+
 const std::array<std::map<int, Texture>, Layer::LayerCount>& TextureManager::GetTextures()
 {
 	return m_Textures;
+}
+
+const std::map<int, Texture>& TextureManager::GetUITextures()
+{
+	return m_UITextures;
 }

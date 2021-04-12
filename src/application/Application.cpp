@@ -37,14 +37,14 @@ void Application::handle()
 
 void Application::loop()
 {
-	Text text(Position<float>{0, 0}, Dimension<float>{5, 5}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 10));
+	Text text(Position<float>{0, 0}, Dimension<float>{100, 100}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 500));
 	Timer::Init(60);
 	while (m_Running)
 	{
 		EventListener::Update();
 		m_Map.Tick();
 		m_Window.Render();
-		// text.SetText(std::to_string(Timer::getFps()));
+		text.SetText(std::to_string(Timer::getFps()));
 		Timer::waitForNextFrame();
 	}
 }

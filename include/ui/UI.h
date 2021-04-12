@@ -3,7 +3,7 @@
 class UI
 {
 public:
-    UI(Position<float>& position, Dimension<float>& size);
+    UI(const Position<float>& position, const Dimension<float>& size);
 
 protected:
     Position<float> m_Position;

@@ -8,8 +8,7 @@ class Text : public UI
 {
 
 public:
-    Text(Position<float> position, Dimension<float> dimension, std::string text, TTF_Font* font);
-    Text(Position<float>& position, Dimension<float>& dimension, std::string& text, TTF_Font* font);
+    Text(const Position<float>& position, const Dimension<float>& dimension, const std::string& text, TTF_Font* font);
     ~Text();
 
 public:
