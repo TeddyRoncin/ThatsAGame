@@ -50,8 +50,8 @@ void Application::handle()
 void Application::loop()
 {
 	Position<float> position{0, 0};
-	Dimension<float> size{100, 30};
-	Text text(Position<float>{0, 0}, Dimension<float>{100, 100}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 666));
+	Dimension<float> size{10, 10};
+	Text text(position, size, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 666));
 	Button button(position, size, SDL_BUTTON_LMASK);
 	Timer::Init(60);
 	while (m_Running)

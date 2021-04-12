@@ -24,11 +24,11 @@ Text::~Text()
 
 void Text::UpdateTexture()
 {
-    if (m_Texture->texture != nullptr)
+    /*if (m_Texture->texture != nullptr)
     {
         SDL_DestroyTexture(m_Texture->texture);
-    }
-    SDL_Surface* surf = TTF_RenderText_Solid(m_Font, m_Text.c_str(), SDL_Color {0, 0, 0, 0});
+    }*/
+    SDL_Surface* surf = TTF_RenderText_Solid(m_Font, m_Text.c_str(), SDL_Color {0, 255, 0, 255});
     void* pixels;
     int pitch;
     SDL_LockTexture(m_Texture->texture, nullptr, &pixels, &pitch);

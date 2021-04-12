@@ -51,7 +51,7 @@ void Player::Tick(float dt)
 		setAnimation("idle");
 	}
 
-	if(time > 40) {
+	if(time > 20) {
 		updateTexture();
 		time = 0;
 	}

@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "renderer/TextureManager.h"
+#include "map/Map.h"
 
 std::array<std::map<int, Texture>, Layer::LayerCount> TextureManager::m_Textures = {};
 std::map<const char*, std::pair<SDL_Texture*, int>> TextureManager::m_SDLTextures = {};
@@ -43,11 +44,13 @@ int TextureManager::CreateTexture(const Position<float>* position, const Dimensi
 int TextureManager::CreateTexture(const Position<float>* position, const Dimension<float>* dimension, Layer layer)
 {
 	int current_id(RendererIDFactory());
-	std::cout << SDL_GetError() << std::endl;
-	SDL_Texture* texture = SDL_CreateTexture(m_Renderer, SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGB888, SDL_TextureAccess::SDL_TEXTUREACCESS_STREAMING, (int) dimension->getWidth(), (int) dimension->getHeight());
-	std::cout << texture << std::endl;
-	std::cout << SDL_GetError() << std::endl;
-	m_Textures[layer].emplace(current_id, Texture(position, dimension, texture, nullptr));
+	Texture texture(position, dimension, nullptr, nullptr);
+	auto[width, height] = texture.ComputeActualSize({Map::Width(), Map::Height()}, {500, 500}).dimension;
+	SDL_Texture* sdlTexture = SDL_CreateTexture(m_Renderer, SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGB24,
+												SDL_TextureAccess::SDL_TEXTUREACCESS_STREAMING, width, height);
+	texture.texture = sdlTexture;
+	m_Textures[layer].emplace(current_id, texture);
+	
 	return current_id;
 }
 
