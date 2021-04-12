@@ -1,10 +1,10 @@
 #pragma once
 
 #include "ui/UI.h"
-#include "renderer/Renderable.h"
+#include "renderer/Layer.h"
 #include "renderer/Texture.h"
 
-class Text : public UI, Renderable
+class Text : public UI
 {
 
 public:
@@ -26,8 +26,8 @@ protected:
     void UpdateTexture();
     std::string m_Text;
     TTF_Font* m_Font;
-
-private:
+    Layer m_Layer;
+    int m_RendererID;
     Texture* m_Texture;
 
 };

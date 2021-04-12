@@ -7,6 +7,7 @@ class Window
 public:
 	Window(ApplicationState* state);
 	~Window();
+	Dimension<int> GetSize() const;
 	void SetSize(Dimension<int> newSize);
 	bool IsFullScreen() const;
 	void SetFullScreen(bool fullScreen) const;

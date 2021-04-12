@@ -1,20 +1,28 @@
 #include "pch.h"
 #include "ui/Text.h"
 
+#include "renderer/TextureManager.h"
+
 Text::Text(Position<float> position, Dimension<float> size, std::string text, TTF_Font* font)
-    : UI(position, size), Renderable(&m_Position, &m_Size, Layer::UI),
-      m_Text(text), m_Font(font)
+    : UI(position, size), m_Text(text), m_Font(font), m_Layer(Layer::UI), m_RendererID(0), m_Texture(nullptr)
 {
+    SDL_Surface* texte = TTF_RenderText_Blended(m_Font, m_Text.c_str(), SDL_Color {0, 0, 20, 0});
+    m_Size.dimension.first = texte->w;
+    m_Size.dimension.second = texte->h;
+    m_RendererID = TextureManager::CreateTexture(&m_Position, &m_Size, m_Layer);
     m_Texture = TextureManager::GetTexture(m_RendererID, m_Layer);
-    UpdateTexture();
+    SDL_UpdateTexture(m_Texture->texture, nullptr, texte->pixels, texte->pitch);
 }
 
 Text::Text(Position<float>& position, Dimension<float>& size, std::string& text, TTF_Font* font)
-    : UI(position, size), Renderable(&m_Position, &m_Size, Layer::UI),
-      m_Text(text), m_Font(font)
+    : UI(position, size), m_Text(text), m_Font(font), m_Layer(Layer::UI), m_RendererID(0), m_Texture(nullptr)
 {
+    SDL_Surface* texte = TTF_RenderText_Blended(m_Font, m_Text.c_str(), SDL_Color {0, 0, 20, 0});
+    m_Size.dimension.first = texte->w;
+    m_Size.dimension.second = texte->h;
+    m_RendererID = TextureManager::CreateTexture(&m_Position, &m_Size, m_Layer);
     m_Texture = TextureManager::GetTexture(m_RendererID, m_Layer);
-    UpdateTexture();
+    SDL_UpdateTexture(m_Texture->texture, nullptr, texte->pixels, texte->pitch);
 }
 
 Text::~Text()
@@ -24,22 +32,12 @@ Text::~Text()
 
 void Text::UpdateTexture()
 {
-    /*if (m_Texture->texture != nullptr)
-    {
-        SDL_DestroyTexture(m_Texture->texture);
-    }*/
-    SDL_Surface* surf = TTF_RenderText_Solid(m_Font, m_Text.c_str(), SDL_Color {0, 255, 0, 255});
-    void* pixels;
-    int pitch;
-    SDL_LockTexture(m_Texture->texture, nullptr, &pixels, &pitch);
-    SDL_ConvertPixels(surf->w, surf->h,
-               surf->format->format,
-               surf->pixels, surf->pitch,
-               SDL_PIXELFORMAT_RGB888,
-               pixels, pitch);
-    SDL_UnlockTexture(m_Texture->texture);
-    //SDL_UpdateTexture(m_Texture->texture, nullptr, surf->pixels, surf->pitch);
-    SDL_FreeSurface(surf);
+    /* prepare surface formating */
+    // SDL_PixelFormat* format = SDL_AllocFormat(SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGBA32);
+    // SDL_Surface* texte = TTF_RenderText_Blended(m_Font, m_Text.c_str(), SDL_Color {0, 0, 0, 255});
+    // texte = SDL_ConvertSurface(texte, format, 0);
+    // SDL_FreeFormat(format);
+    // SDL_UpdateTexture(m_Texture->texture, nullptr, texte->pixels, texte->pitch);
 }
 
 const Position<float>& Text::GetPosition() const
@@ -74,13 +72,13 @@ void Text::SetSize(const Dimension<float>& size)
 
 void Text::SetText(const std::string& text)
 {
-    UpdateTexture();
+    // UpdateTexture();
     m_Text = text;
 }
 
 void Text::SetFont(TTF_Font* font)
 {
-    UpdateTexture();
+    // UpdateTexture();
     TTF_CloseFont(m_Font);
     m_Font = font;
 }

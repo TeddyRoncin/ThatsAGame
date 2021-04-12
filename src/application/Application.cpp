@@ -35,31 +35,16 @@ void Application::handle()
 	}
 }
 
-/**
- * struct SpriteSheetInfo
-{
-	int currentFrame;
-	int xoffset, yoffset;
-	int currentIndex;
-	std::map<std::string, std::vector<int>> animationList;
-
-	SpriteSheetInfo addAnimation(std::string name, std::vector<int> indicies);
-};
-*/
-
 void Application::loop()
 {
-	Position<float> position{0, 0};
-	Dimension<float> size{10, 10};
-	Text text(position, size, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 666));
-	Button button(position, size, SDL_BUTTON_LMASK);
+	Text text(Position<float>{0, 0}, Dimension<float>{5, 5}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 10));
 	Timer::Init(60);
 	while (m_Running)
 	{
 		EventListener::Update();
 		m_Map.Tick();
 		m_Window.Render();
-		text.SetText(std::to_string(Timer::getFps()));
+		// text.SetText(std::to_string(Timer::getFps()));
 		Timer::waitForNextFrame();
 	}
 }
