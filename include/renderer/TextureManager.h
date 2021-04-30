@@ -19,6 +19,8 @@ public:
 
 	static int CreateUIText(const Position<float>* position, const Dimension<float>* size, TTF_Font* font, const char* text);
 	static void UpdateUIText(int id, TTF_Font* font, const char* text);
+	static int CreateUIScreen(const Position<float>* position, const Dimension<float>* size);
+	static void UpdateUIScreen(int id, SDL_Surface* surface);
 	static void DeleteUI(int id);
 
 	static Texture* GetTexture(int id, Layer layer);

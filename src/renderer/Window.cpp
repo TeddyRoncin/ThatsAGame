@@ -39,7 +39,7 @@ bool Window::IsFullScreen() const
 
 void Window::SetFullScreen(bool fullScreen) const
 {
-	// TODO : verify the trigger happends when we really intend to do it
+	// TODO : verify the trigger happens when we really intend to do it
 	bool IsFullscreen = SDL_GetWindowFlags(m_Window) & SDL_WINDOW_FULLSCREEN;
 	SDL_SetWindowFullscreen(m_Window, (IsFullscreen && fullScreen) ? 0 : SDL_WINDOW_FULLSCREEN);
 	SDL_ShowCursor(IsFullscreen);

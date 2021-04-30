@@ -7,10 +7,11 @@
 class Button : public UI, EventListener
 {
 public:
-    Button(Position<float>& position, Dimension<float>& size, int buttons);
+    Button(const Position<float>& position, const Dimension<float>& size, int buttons, std::function<void (SDL_Event* event)> callback);
     virtual void handle();
 
 private:
     int m_Buttons;
     CollisionBox m_CollisionBox;
+    std::function<void (SDL_Event*)> m_Callback;
 };

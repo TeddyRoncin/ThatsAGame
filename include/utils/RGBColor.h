@@ -2,9 +2,15 @@
 
 struct RGBColor
 {
-	Uint8 R, G, B;
+	Uint8 R, G, B, A;
+
+	RGBColor();
+	RGBColor(int intColor);
+	RGBColor(int r, int g, int b);
+	RGBColor(int r, int g, int b, int a);
 
 	bool operator==(RGBColor color);
+	int ToRGBInt();
 };
 
-RGBColor getPixelColor(SDL_Surface* surface, size_t x, size_t y);
+std::ostream& operator<<(std::ostream& stream, RGBColor& color);

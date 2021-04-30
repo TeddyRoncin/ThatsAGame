@@ -24,9 +24,6 @@ void Timer::Init(int fpsCap)
 	m_StartTime = std::chrono::system_clock::now();
 	m_LastFrameTime = 0;
 	m_CurrentFrame = 0;
-	for (int i = 0; i < MIN_SLEEP_DURATION_BATCH; i++) {
-		m_MinSleepDurations[i] = 1;
-	}
 	computeFrameTime();
 }
 
@@ -59,6 +56,10 @@ void Timer::Sleep(int timeToWait)
 	std::chrono::time_point start = std::chrono::system_clock::now();
 	std::this_thread::sleep_for(std::chrono::microseconds(fixedTimeToWait));
 	m_MinSleepDurations[m_CurrentFrame % MIN_SLEEP_DURATION_BATCH] = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count() - fixedTimeToWait;
+	if (m_MinSleepDurations[m_CurrentFrame % MIN_SLEEP_DURATION_BATCH] < 0)
+	{
+		m_MinSleepDurations[m_CurrentFrame % MIN_SLEEP_DURATION_BATCH] = 1;
+	}
 }
 
 float Timer::getFps()
@@ -66,7 +67,7 @@ float Timer::getFps()
 	long last10FramesDuration = 0;
 	for (int i = 0; i < FRAME_DURATION_BATCH; i++) {
 		last10FramesDuration += m_FrameDurations[i];
-		std::cout << m_FrameDurations[i] << std::endl;
+		//std::cout << m_FrameDurations[i] << std::endl;
 	}
 	return 1.0 / (last10FramesDuration / FRAME_DURATION_BATCH) * 1000000;
 }
@@ -87,6 +88,6 @@ int Timer::GetAverageMinSleepDuration()
 	for (int i = 0; i < MIN_SLEEP_DURATION_BATCH; i++) {
 		last10MinSleepDuration += m_MinSleepDurations[i];
 	}
-	std::cout << last10MinSleepDuration << std::endl;
+	//std::cout << last10MinSleepDuration << std::endl;
 	return last10MinSleepDuration / MIN_SLEEP_DURATION_BATCH;
 }

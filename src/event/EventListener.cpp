@@ -16,11 +16,7 @@ const Uint8* EventListener::keyPressed = nullptr;
 
 EventListener::~EventListener()
 {
-	for(EventListener* listener : listeners)
-	{
-		listener = nullptr;
-	}
-	listeners.clear();
+	listeners.erase(std::find(listeners.begin(), listeners.end(), this));
 }
 
 void EventListener::UpdateData(SDL_Event& event) {

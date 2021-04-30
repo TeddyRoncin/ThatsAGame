@@ -71,11 +71,12 @@ void TextureManager::DeleteTexture(int id, Layer layer)
 	}
 }
 
+
 int TextureManager::CreateUIText(const Position<float>* position, const Dimension<float>* size, TTF_Font* font, const char* text)
 {
 	int current_id(RendererIDFactory());
 	SDL_Surface* surf = TTF_RenderText_Blended(font, text, SDL_Color {0, 0, 20, 0});
-	m_UITextures.emplace(current_id, Texture(position, size, SDL_CreateTextureFromSurface(m_Renderer, surf)));
+	m_UITextures.emplace(current_id, Texture(position, size, nullptr));
 	SDL_FreeSurface(surf);
 	return current_id;
 }
@@ -88,6 +89,21 @@ void TextureManager::UpdateUIText(int id, TTF_Font* font, const char* text)
 	SDL_DestroyTexture(texture.texture);
 	texture.texture = SDL_CreateTextureFromSurface(m_Renderer, surf);
 	SDL_FreeSurface(surf);
+}
+
+int TextureManager::CreateUIScreen(const Position<float>* position, const Dimension<float>* size)
+{
+	int current_id(RendererIDFactory());
+	m_UITextures.emplace(current_id, Texture(position, size, SDL_CreateTextureFromSurface(m_Renderer, nullptr)));
+	return current_id;
+}
+
+void TextureManager::UpdateUIScreen(int id, SDL_Surface* surface)
+{
+	Texture& texture = m_UITextures.at(id);
+	SDL_DestroyTexture(texture.texture);
+	texture.texture = SDL_CreateTextureFromSurface(m_Renderer, surface);
+	std::cout << surface << std::endl;
 }
 
 void TextureManager::DeleteUI(int id)

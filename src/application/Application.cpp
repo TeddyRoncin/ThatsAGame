@@ -5,10 +5,17 @@
 #include "ui/Text.h"
 #include "entity/TestAnimable.h"
 #include "ui/Button.h"
+#include "ui/screen/ScreenManager.h"
 
 Application::Application()
 	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), m_Map(), m_Running(true)
 {
+	ScreenManager::Init();
+}
+
+Application::~Application()
+{
+	ScreenManager::Destroy();
 }
 
 void Application::handle()
@@ -37,14 +44,16 @@ void Application::handle()
 
 void Application::loop()
 {
-	Text text(Position<float>{0, 0}, Dimension<float>{100, 100}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 500));
+	//Text text(Position<float>{0, 0}, Dimension<float>{100, 100}, "Hello World !", TTF_OpenFont("assets/font/arial/arial.ttf", 500));
 	Timer::Init(60);
+	ScreenManager::AddDemoScreen();
 	while (m_Running)
 	{
 		EventListener::Update();
 		m_Map.Tick();
+		ScreenManager::Update();
 		m_Window.Render();
-		text.SetText(std::to_string(Timer::getFps()));
+		//text.SetText(std::to_string(Timer::getFps()));
 		Timer::waitForNextFrame();
 	}
 }
