@@ -7,6 +7,7 @@ class DemoScreen : public Screen
 {
 public:
     DemoScreen(int screenID);
+    virtual ~DemoScreen() = default;
     virtual void Draw();
 
 private:

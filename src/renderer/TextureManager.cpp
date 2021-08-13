@@ -103,7 +103,6 @@ void TextureManager::UpdateUIScreen(int id, SDL_Surface* surface)
 	Texture& texture = m_UITextures.at(id);
 	SDL_DestroyTexture(texture.texture);
 	texture.texture = SDL_CreateTextureFromSurface(m_Renderer, surface);
-	std::cout << surface << std::endl;
 }
 
 void TextureManager::DeleteUI(int id)

@@ -8,7 +8,7 @@ class Screen : public UI
 {
 public:
     Screen(int screenID, const Position<int>& position, const Dimension<int>& size);
-    ~Screen();
+    virtual ~Screen();
     virtual void Draw() = 0;
     virtual void Load();
     virtual void Unload();

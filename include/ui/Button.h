@@ -8,6 +8,7 @@ class Button : public UI, EventListener
 {
 public:
     Button(const Position<float>& position, const Dimension<float>& size, int buttons, std::function<void (SDL_Event* event)> callback);
+    virtual ~Button() = default;
     virtual void handle();
 
 private:
