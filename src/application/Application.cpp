@@ -8,7 +8,7 @@
 #include "ui/screen/ScreenManager.h"
 
 Application::Application()
-	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_Window(&m_CurrentState), m_CurrentState(ApplicationState::Game), m_Map(), m_Running(true)
+	: Context(SDL_INIT_EVERYTHING), EventListener(this), m_CurrentState(ApplicationState::Game), m_Window(&m_CurrentState), m_Map(), m_Running(true)
 {
 	ScreenManager::Init();
 }
@@ -38,6 +38,12 @@ void Application::handle()
 			if (m_CurrentEvent->window.event == SDL_WINDOWEVENT_RESIZED) {
 				m_Window.SetSize({m_CurrentEvent->window.data1, m_CurrentEvent->window.data2});
 				return;
+			}
+		case SDL_EventType::SDL_USEREVENT:
+			// refactor code in Map.cpp to create clean user event
+			if(m_CurrentEvent->user.code == 100)
+			{
+				m_Window.SetSize(m_Window.GetSize());
 			}
 	}
 }

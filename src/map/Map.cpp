@@ -17,11 +17,26 @@ const char* Map::m_Name(nullptr);
 size_t Map::m_Width(0);
 size_t Map::m_Height(0);
 
+#define MAP_RESIZED 100
+
 Map::Map()
 	:m_CurrentMap(0)
 {
 	registerMaps();
 	loadMap(m_Maps[m_CurrentMap]);
+	// the map resized constant is random and doesn't follow any rules
+	// to refactor
+	Uint32 type = SDL_RegisterEvents(1);
+	if(type != Uint32(-1))
+	{
+		SDL_Event e;
+		SDL_zero(e);
+		e.type = type;
+		e.user.code = MAP_RESIZED;
+		e.user.data1 = &m_Width;
+		e.user.data2 = &m_Height;
+		SDL_PushEvent(&e);
+	}
 	// m_MovableElements.push_back(new Player({0, 0}));//, [this](MovableEntity* entity) -> bool {return this[entity->GetY() * this->m_Width + entity->GetX()];}));
 }
 

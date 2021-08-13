@@ -24,4 +24,9 @@ private:
 	SDL_Renderer* m_Renderer;
 	Dimension<int> m_WindowSize;
 
+	// calculate viewport space
+	int m_Delta = -1;
+	Dimension<int> m_RenderCellSize = { 0, 0 };
+	Position<int> m_CellOffset = { 0, 0 };
+
 };

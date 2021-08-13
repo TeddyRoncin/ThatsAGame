@@ -10,7 +10,7 @@ class Application : public Context, public virtual EventListener
 {
 public:
 	Application();
-	~Application();
+	virtual ~Application();
 public:
 	virtual void handle() override;
 public:
