@@ -10,7 +10,7 @@ struct SpriteSheetInfo
 	std::map<std::string, int> animationIndex;
 	std::map<int, std::vector<int>> animationList;
 
-	SpriteSheetInfo addAnimation(std::string name, std::vector<int> indicies);
+	SpriteSheetInfo addAnimation(std::string name, int y = -1, std::vector<int> indicies = { 0 });
 };
 
 class Animable
@@ -19,7 +19,7 @@ public:
 	Animable(const char* path, const Position<float>* position, const Dimension<float>* size, Layer layer, const SpriteSheetInfo& info);
 	virtual ~Animable();
 public:
-	void setAnimation(std::string name);
+	void setAnimation(std::string name, int frame = -1);
 	void updateTexture();
 private:
 	SpriteSheetInfo m_Info;

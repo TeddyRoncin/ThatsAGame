@@ -5,9 +5,9 @@
 Player::Player(Position<float> position)
 	:EventListener(this), 
 	MovableEntity("assets/textures/player.png", 
-		SpriteSheetInfo{{0}, 8, 16, 0, {}}.addAnimation("idle", {0, 1}).addAnimation("run", {0, 1, 2}), 
-		{position.getX(), position.getY()}, {1.0f, 2.0f}
-	), 
+		SpriteSheetInfo{{0}, 8, 16, 0, {}}.addAnimation("idle", 0, {0, 1}).addAnimation("run", 1, {0, 1, 2}),
+		{position.getX(), position.getY()}, {0.9f, 1.9f}
+	),
 	m_LastPos({-1.0f, -1.0f})
 {
 	setAnimation("idle");

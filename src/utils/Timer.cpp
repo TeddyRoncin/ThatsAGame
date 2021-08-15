@@ -51,7 +51,7 @@ void Timer::waitForNextFrame()
 
 void Timer::Sleep(int timeToWait)
 {
-	int minSleepDuration = GetAverageMinSleepDuration();
+	float minSleepDuration = GetAverageMinSleepDuration();
 	int fixedTimeToWait = timeToWait / minSleepDuration * minSleepDuration; // Converts time to a multiple of minSleepDuration
 	std::chrono::time_point start = std::chrono::system_clock::now();
 	std::this_thread::sleep_for(std::chrono::microseconds(fixedTimeToWait));
@@ -82,12 +82,12 @@ void Timer::computeFrameTime()
 	m_FrameTime = (1 / (float) m_FpsCap) * 1000000;
 }
 
-int Timer::GetAverageMinSleepDuration()
+float Timer::GetAverageMinSleepDuration()
 {
-	long last10MinSleepDuration = 0;
+	float last10MinSleepDuration = 0.0f;
 	for (int i = 0; i < MIN_SLEEP_DURATION_BATCH; i++) {
 		last10MinSleepDuration += m_MinSleepDurations[i];
 	}
-	//std::cout << last10MinSleepDuration << std::endl;
+	// std::cout << last10MinSleepDuration << std::endl;
 	return last10MinSleepDuration / MIN_SLEEP_DURATION_BATCH;
 }

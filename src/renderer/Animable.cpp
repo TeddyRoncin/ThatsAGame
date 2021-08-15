@@ -3,12 +3,19 @@
 #include "renderer/Animable.h"
 #include "renderer/TextureManager.h"
 
-SpriteSheetInfo SpriteSheetInfo::addAnimation(std::string name, std::vector<int> indicies)
+SpriteSheetInfo SpriteSheetInfo::addAnimation(std::string name, int y, std::vector<int> indicies)
 {
-	static int animationNumber(0);
+	static int animationNumber(-1);
+	if(y == -1)
+	{
+		animationNumber++;
+	}
+	else
+	{
+		animationNumber = y;
+	}
 	animationIndex.emplace(std::make_pair(name, animationNumber));
 	animationList.emplace(std::make_pair(animationNumber, indicies));
-	animationNumber++;
 	return *this;
 }
 
@@ -23,13 +30,14 @@ Animable::~Animable()
 	TextureManager::DeleteTexture(m_RendererID, m_Layer);
 }
 
-void Animable::setAnimation(std::string name)
+/// TODO: verify that the frame is legit
+void Animable::setAnimation(std::string name, int frame)
 {
 	if(m_AnimationState == m_Info.animationIndex[name]) {
 		return;
 	}
 	m_AnimationState = m_Info.animationIndex[name];
-	m_Info.currentIndex = 0;
+	m_Info.currentIndex = frame;
 	m_Info.currentFrame[0] = m_AnimationState;
 	m_Info.currentFrame[1] = m_Info.animationList[m_AnimationState][m_Info.currentIndex];
 }
