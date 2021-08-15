@@ -2,11 +2,9 @@
 
 #include "EventBinding.h"
 
-class Application;
-
 class EventListener : public virtual EventBinding
 {
-	friend Application;
+	friend class Application;
 public:
 	// Action m_Action;
 
