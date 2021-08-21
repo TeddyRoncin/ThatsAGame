@@ -3,6 +3,9 @@
 #include "renderer/Renderer.h"
 #include "map/Map.h"
 
+Position<int> Renderer::m_CellOffset = { 0, 0 };
+Dimension<int> Renderer::m_RenderCellSize = { 0, 0 };
+
 Renderer::Renderer(const ApplicationState* const state, SDL_Window* window)
 	: m_State(state), m_WindowSize(0, 0), m_Renderer(SDL_CreateRenderer(window,-1,0)), m_Delta(-1)
 {
@@ -94,4 +97,14 @@ void Renderer::DrawTexture(const Texture& texture, int x, int y, int width, int 
 	SDL_Rect distrect{x, y, width, height};
 	SDL_Rect* srcrect = texture.ComputeActualSrcRect();
 	SDL_RenderCopy(m_Renderer, texture.texture, srcrect, &distrect);
+}
+
+void Renderer::ProjectPositionAndSize(Position<int>& position, Dimension<int>& size)
+{
+	auto&[x, y] = position.position;
+	auto&[width, height] = size.dimension;
+	x -= m_CellOffset.getX();
+	y -= m_CellOffset.getY();
+	width = std::ceil(width * m_RenderCellSize.getWidth() / Map::Width());
+	height = std::ceil(height * m_RenderCellSize.getHeight() / Map::Height());
 }
